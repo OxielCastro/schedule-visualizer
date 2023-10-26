@@ -1,7 +1,7 @@
 package edu.hanover.schedulevisualizer.ui.elements;
 
 import edu.hanover.schedulevisualizer.core.Context;
-import edu.hanover.schedulevisualizer.core.Course;
+import edu.hanover.schedulevisualizer.core.Section;
 import edu.hanover.schedulevisualizer.observable.MyObserver;
 import edu.hanover.schedulevisualizer.ui.draganddrop.DragAndDropController;
 import edu.hanover.schedulevisualizer.ui.draganddrop.DropTarget;
@@ -13,22 +13,22 @@ import javafx.scene.paint.Color;
 
 import java.util.List;
 
-public class UnassignedCourseList extends VBox implements MyObserver<List<Course>>, DropTarget {
+public class UnassignedCourseList extends VBox implements MyObserver<List<Section>>, DropTarget {
 
-    void addCourse(Course course) {
-        getChildren().add(CourseEntry.forCourse(course));
+    void addCourse(Section section) {
+        getChildren().add(SectionEntry.forCourse(section));
     }
 
-    public void update(List<Course> courses) {
-        Platform.runLater(() -> displayData(courses));
+    public void update(List<Section> sections) {
+        Platform.runLater(() -> displayData(sections));
     }
 
-    private void displayData(List<Course> courses) {
-        courses.forEach(this::displayCourse);
+    private void displayData(List<Section> sections) {
+        sections.forEach(this::displayCourse);
     }
 
-    private void displayCourse(Course course) {
-        course.getTimeslot().ifUnassignedSlotDo(() -> addCourse(course));
+    private void displayCourse(Section section) {
+        section.getTimeslot().ifUnassignedSlotDo(() -> addCourse(section));
     }
 
     public void setAsDropTarget() {

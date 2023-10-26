@@ -1,6 +1,6 @@
 package edu.hanover.schedulevisualizer.ui.elements;
 
-import edu.hanover.schedulevisualizer.core.Course;
+import edu.hanover.schedulevisualizer.core.Section;
 import edu.hanover.schedulevisualizer.ui.draganddrop.DragAndDropController;
 import edu.hanover.schedulevisualizer.ui.draganddrop.DropTarget;
 import javafx.fxml.FXML;
@@ -51,8 +51,8 @@ public class UITimeSlot extends VBox implements DropTarget {
         setPrefHeight(dayPattern == MWF ? 100 : 150);
     }
 
-    void addCourse(Course course) {
-        getChildren().add(CourseEntry.forCourse(course));
+    void addCourse(Section section) {
+        getChildren().add(SectionEntry.forCourse(section));
     }
 
     @FXML

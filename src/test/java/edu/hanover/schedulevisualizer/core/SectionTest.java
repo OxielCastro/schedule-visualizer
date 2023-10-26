@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-public class CourseTest {
+public class SectionTest {
     @Test
     public void canCreateCourse(){
         assertCreatedCourseHasCorrectParameters("Data Structures", "223", "CS", new HCTimeSlot(Weekday.MWF(), 1));
@@ -12,23 +12,23 @@ public class CourseTest {
     }
 
     private static void assertCreatedCourseHasCorrectParameters(String courseName, String courseNum, String prefix, HCTimeSlot timeslot1) {
-        Course course1 = new Course(prefix, courseNum, courseName, timeslot1);
-        assertThat(course1.getPrefix(), equalTo(prefix));
-        assertThat(course1.getCourseNum(), equalTo(courseNum));
-        assertThat(course1.getCourseName(), equalTo(courseName));
-        assertThat(course1.getTimeslot(), equalTo(timeslot1));
+        Section section1 = new Section(prefix, courseNum, courseName, timeslot1);
+        assertThat(section1.getPrefix(), equalTo(prefix));
+        assertThat(section1.getCourseNum(), equalTo(courseNum));
+        assertThat(section1.getCourseName(), equalTo(courseName));
+        assertThat(section1.getTimeslot(), equalTo(timeslot1));
     }
     @Test
     public void canCombinePrefixAndCourseNumber(){
-        Course course1 = new Course("CS", "223", "Data Structures", new HCTimeSlot(Weekday.MWF(), 1));
-        assertThat(course1.getCourseCode(), equalTo("CS 223"));
+        Section section1 = new Section("CS", "223", "Data Structures", new HCTimeSlot(Weekday.MWF(), 1));
+        assertThat(section1.getCourseCode(), equalTo("CS 223"));
     }
 
     @Test
     public void canConstructorWorkWithNullTimeSlot() {
         UnassignedTimeSlot nulltimeslot = new UnassignedTimeSlot();
-        Course course1 = new Course("CS", "223", "Data Structures", nulltimeslot);
-        assertThat(course1.getTimeslot(), equalTo(nulltimeslot));
+        Section section1 = new Section("CS", "223", "Data Structures", nulltimeslot);
+        assertThat(section1.getTimeslot(), equalTo(nulltimeslot));
 
     }
 }

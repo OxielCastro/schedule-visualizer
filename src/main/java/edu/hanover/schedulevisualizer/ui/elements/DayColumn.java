@@ -39,10 +39,10 @@ public class DayColumn extends VBox {
         return dayColumn;
     }
 
-    void addCourse(Course course) {
-        course.getTimeslot().
+    void addCourse(Section section) {
+        section.getTimeslot().
                 ifAssignedSlotNumberDo(
-                        (Integer slotnum) -> timeSlots.get(slotnum).addCourse(course));
+                        (Integer slotnum) -> timeSlots.get(slotnum).addCourse(section));
     }
 
     public Weekday getDay() {

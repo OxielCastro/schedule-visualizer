@@ -1,6 +1,6 @@
 package edu.hanover.schedulevisualizer.ui.elements;
 
-import edu.hanover.schedulevisualizer.core.Course;
+import edu.hanover.schedulevisualizer.core.Section;
 import edu.hanover.schedulevisualizer.core.Weekday;
 import edu.hanover.schedulevisualizer.observable.MyObserver;
 import javafx.application.Platform;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TimeSlotGrid extends HBox implements MyObserver<List<Course>> {
+public class TimeSlotGrid extends HBox implements MyObserver<List<Section>> {
     Map< Weekday, DayColumn> dayColumns = new HashMap<>();
     @FXML
     private Label welcomeText;
@@ -45,17 +45,17 @@ public class TimeSlotGrid extends HBox implements MyObserver<List<Course>> {
         }
     }
 
-    private void displayData(List<Course> data) {
+    private void displayData(List<Section> data) {
         data.forEach(this::displayCourse);
     }
 
-    private void displayCourse(Course course) {
-        for (Weekday weekday : course.getWeekdays()) {
-            dayColumns.get(weekday).addCourse(course);
+    private void displayCourse(Section section) {
+        for (Weekday weekday : section.getWeekdays()) {
+            dayColumns.get(weekday).addCourse(section);
         }
     }
 
-    public void update(List<Course> courses) {
-        Platform.runLater(() -> displayData(courses));
+    public void update(List<Section> sections) {
+        Platform.runLater(() -> displayData(sections));
     }
 }

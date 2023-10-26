@@ -1,7 +1,6 @@
 package edu.hanover.schedulevisualizer.core;
 
 import edu.hanover.schedulevisualizer.observable.MyObserver;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,16 +10,16 @@ import java.util.Map;
 public class Context {
     private static Context instance = new Context();//creates one
     private Map<String, TimeSlot> createdTimeslots = new HashMap<>();
-    private List<MyObserver<List<Course>>> observers = new ArrayList<>();
-    private List<Course> courses;
+    private List<MyObserver<List<Section>>> observers = new ArrayList<>();
+    private List<Section> sections;
 
     private Context(){
-        this.courses = List.of(
-                new Course("CS", "220", "Fundamentals of Computer Science", makeHCTimeSlot(Weekday.MWF(), 1)),
-                new Course("MAT", "121", "Calculus I", makeHCTimeSlot(List.of(Weekday.Tuesday), 7)),
-                new Course("FY", "101", "First Year", makeUnassignedTimeslot()),
-                new Course("FY2", "102", "First Year2", makeUnassignedTimeslot())
-                              );
+        this.sections = List.of(
+                new Section("CS", "220", "Fundamentals of Computer Science", makeHCTimeSlot(Weekday.MWF(), 1)),
+                new Section("MAT", "121", "Calculus I", makeHCTimeSlot(List.of(Weekday.Tuesday), 7)),
+                new Section("FY", "101", "First Year", makeUnassignedTimeslot()),
+                new Section("FY2", "102", "First Year2", makeUnassignedTimeslot())
+                               );
     }
 
     public TimeSlot makeUnassignedTimeslot() {
@@ -50,18 +49,18 @@ public class Context {
         notifyObservers();
     }
 
-    public void addObserver(MyObserver<List<Course>> observer) {
+    public void addObserver(MyObserver<List<Section>> observer) {
         observers.add(observer);
     }
 
     void notifyObservers() {
-        observers.forEach((obj) -> obj.update(courses));
+        observers.forEach((obj) -> obj.update(sections));
     }
 
-    public Course getCourseWithId(Long courseId) {
-        for (Course course : courses) {
-            if (course.getCourseId() == courseId) {
-                return course;
+    public Section getCourseWithId(Long courseId) {
+        for (Section section : sections) {
+            if (section.getCourseId() == courseId) {
+                return section;
             }
         }
         throw new RuntimeException("Cannot find course with id: " + courseId);
@@ -75,9 +74,9 @@ public class Context {
     }
 
     public void moveCourseToTimeslot(Long courseId, String timeslotId) {
-        Course course = getCourseWithId(courseId);
+        Section section = getCourseWithId(courseId);
         TimeSlot timeslot = getTimeslotWithId(timeslotId);
-        course.setTimeslot(timeslot);
-        System.out.println("Dropped: " + course + timeslot);
+        section.setTimeslot(timeslot);
+        System.out.println("Dropped: " + section + timeslot);
     }
 }

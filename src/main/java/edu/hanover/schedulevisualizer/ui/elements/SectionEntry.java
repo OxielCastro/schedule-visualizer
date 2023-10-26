@@ -1,6 +1,6 @@
 package edu.hanover.schedulevisualizer.ui.elements;
 
-import edu.hanover.schedulevisualizer.core.Course;
+import edu.hanover.schedulevisualizer.core.Section;
 import edu.hanover.schedulevisualizer.ui.draganddrop.DragAndDropController;
 import edu.hanover.schedulevisualizer.ui.draganddrop.DragSource;
 import javafx.fxml.FXML;
@@ -12,7 +12,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 
-public class CourseEntry extends StackPane implements DragSource {
+public class SectionEntry extends StackPane implements DragSource {
     @FXML
     Rectangle background;
     @FXML
@@ -20,7 +20,7 @@ public class CourseEntry extends StackPane implements DragSource {
 
     private long courseId;
 
-    private CourseEntry() {
+    private SectionEntry() {
         super();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
                 "course-entry-view.fxml"));
@@ -47,15 +47,15 @@ public class CourseEntry extends StackPane implements DragSource {
         this.setColor(Color.AZURE);
     }
 
-    public CourseEntry getNode() {
+    public SectionEntry getNode() {
         return this;
     }
 
-    static CourseEntry forCourse(Course course) {
-        CourseEntry entry = new CourseEntry();
-        entry.setText(course.getCourseCode());
+    static SectionEntry forCourse(Section section) {
+        SectionEntry entry = new SectionEntry();
+        entry.setText(section.getCourseCode());
         entry.setColor(Color.AQUA);
-        entry.setCourseId(course.getCourseId());
+        entry.setCourseId(section.getCourseId());
         return entry;
     }
 

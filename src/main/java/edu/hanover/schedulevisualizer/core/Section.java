@@ -2,7 +2,7 @@ package edu.hanover.schedulevisualizer.core;
 
 import java.util.List;
 
-public class Course {
+public class Section {
     private static long nextAvailableCourseId = 0;
     private final long courseId;
     private TimeSlot timeslot;
@@ -11,7 +11,7 @@ public class Course {
     private final String courseName;
 
 
-    public Course(String prefix, String courseNum, String courseName, TimeSlot timeslot) {
+    public Section(String prefix, String courseNum, String courseName, TimeSlot timeslot) {
         this.courseId = nextAvailableCourseId;
         nextAvailableCourseId += 1;
         this.prefix = prefix;

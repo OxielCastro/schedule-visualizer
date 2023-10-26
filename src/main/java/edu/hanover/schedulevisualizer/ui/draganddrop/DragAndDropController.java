@@ -13,7 +13,7 @@ public class DragAndDropController {
         return instance;
     }
 
-    private DragAndDropController() {}
+    public DragAndDropController() {}
 
     public void setupDropTarget(DropTarget target) {
         setupOnDragOver(target);
