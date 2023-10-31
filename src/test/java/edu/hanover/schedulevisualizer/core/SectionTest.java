@@ -31,4 +31,14 @@ public class SectionTest {
         assertThat(section1.getTimeslot(), equalTo(nulltimeslot));
 
     }
+
+    @Test
+    void canCreateSectionFromCourseObject() {
+        Course course1 = new Course("CS", "321", "Software Development Practicum");
+        UnassignedTimeSlot nulltimeslot = new UnassignedTimeSlot();
+        Section section1 = new Section(course1, nulltimeslot);
+        assertThat(section1.getPrefix(), equalTo("CS"));
+        assertThat(section1.getCourseNum(), equalTo("321"));
+        assertThat(section1.getCourseName(), equalTo("Software Development Practicum"));
+    }
 }

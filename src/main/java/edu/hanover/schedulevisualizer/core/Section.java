@@ -16,6 +16,13 @@ public class Section {
         this.timeslot = timeslot;
     }
 
+    public Section(Course course, TimeSlot timeslot) {
+        this.courseId = nextAvailableCourseId;
+        nextAvailableCourseId += 1;
+        this.course = course;
+        this.timeslot = timeslot;
+    }
+
 
     public String getPrefix() {
         return course.getPrefix();
