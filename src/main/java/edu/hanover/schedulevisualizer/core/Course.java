@@ -1,5 +1,7 @@
 package edu.hanover.schedulevisualizer.core;
 
+import java.util.Objects;
+
 public class Course {
     final String prefix;
     final String courseNum;
@@ -25,5 +27,20 @@ public class Course {
 
     public String getCourseCode() {
         return prefix + " " + courseNum;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return Objects.equals(prefix, course.prefix) &&
+                Objects.equals(courseNum, course.courseNum) &&
+                Objects.equals(courseName, course.courseName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(prefix, courseNum, courseName);
     }
 }
