@@ -2,9 +2,10 @@ package edu.hanover.schedulevisualizer.core;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 public class Schedule {
-    private Collection<Section> sections;
+    private Set<Section> sections;
 
     public Schedule() {
         this(new HashSet<Section>());
@@ -14,8 +15,9 @@ public class Schedule {
         this.sections = new HashSet<Section>(collection);
     }
 
-    public Collection<Section> getSections(){
-        return sections;
+    public Set<Section> getSections(){
+        Set<Section> sectionsToReturn = new HashSet<Section>(sections);
+        return sectionsToReturn;
     }
 
     public void addSection(Section section) {
@@ -25,4 +27,6 @@ public class Schedule {
     public void removeSection(Section section) {
         sections.remove(section);
     }
+
+    public boolean hasSection(Section section) { return sections.contains(section); }
 }
