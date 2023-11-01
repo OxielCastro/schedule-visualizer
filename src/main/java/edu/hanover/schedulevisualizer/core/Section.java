@@ -52,8 +52,4 @@ public class Section {
         // TODO: Set observable
         this.timeslot = timeslot;
     }
-
-    public void addSection(Section sections) {
-
-    }
 }
