@@ -90,6 +90,6 @@ public class Context {
         Section section = getCourseWithId(courseId);
         TimeSlot newTimeSlotInstance = getTimeslotWithId(newTimeSlotId);
         section.setTimeslot(newTimeSlotInstance);
-        notifyObservers(); // Update UI
+        notifyObservers(); // Update UI .
     }
 }
