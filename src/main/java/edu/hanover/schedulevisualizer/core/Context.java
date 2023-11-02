@@ -12,8 +12,7 @@ public class Context {
     private Map<String, TimeSlot> createdTimeslots = new HashMap<>();
     private List<MyObserver<List<Section>>> observers = new ArrayList<>();
     private List<Section> sections;
-    private long courseId;
-    private String id;
+    private String newTimeSlotId;
 
     private Context(){
         this.sections = new ArrayList<>(List.of(
@@ -21,7 +20,7 @@ public class Context {
                 new Section("MAT", "121", "Calculus I", makeHCTimeSlot(List.of(Weekday.Tuesday), 7)),
                 new Section("FY", "101", "First Year", makeUnassignedTimeslot()),
                 new Section("FY2", "102", "First Year2", makeUnassignedTimeslot())
-        )) ;
+        ));
     }
 
 
@@ -87,9 +86,10 @@ public class Context {
         sections.add(section);
     }
 
-    public void assignTimeslot(long courseId, String id) {
+    public void assignTimeslot(long courseId, String newTimeSlotId) {
         Section section = getCourseWithId(courseId);
-        TimeSlot timeslot = getTimeslotWithId(id);
-        section.setTimeslot(timeslot);
+        TimeSlot newTimeSlotInstance = getTimeslotWithId(newTimeSlotId);
+        section.setTimeslot(newTimeSlotInstance);
+        notifyObservers(); // Update UI
     }
 }
