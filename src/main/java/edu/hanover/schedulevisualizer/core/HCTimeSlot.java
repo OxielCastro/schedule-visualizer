@@ -58,7 +58,7 @@ class HCTimeSlot implements TimeSlot {
                 hasDaysInCommonWith(hcOtherSlot);
 
     }
-a
+
     public void ifAssignedSlotNumberDo(Consumer<Integer> f) {
         f.accept(slotnum);
     }

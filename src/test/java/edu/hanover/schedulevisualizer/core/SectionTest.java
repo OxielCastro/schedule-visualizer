@@ -1,6 +1,8 @@
 package edu.hanover.schedulevisualizer.core;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 public class SectionTest {
@@ -10,7 +12,7 @@ public class SectionTest {
         assertCreatedCourseHasCorrectParameters("System Fundamentals", "231", "CS", new HCTimeSlot(Weekday.TR(), 7));
         assertCreatedCourseHasCorrectParameters("Discrete Mathematics", "243", "MAT", new HCTimeSlot(Weekday.MWF(), 3));
     }
-
+    @Test
     private static void assertCreatedCourseHasCorrectParameters(String courseName, String courseNum, String prefix, HCTimeSlot timeslot1) {
         Section section1 = new Section(prefix, courseNum, courseName, timeslot1);
         assertThat(section1.getPrefix(), equalTo(prefix));
@@ -29,7 +31,6 @@ public class SectionTest {
         UnassignedTimeSlot nulltimeslot = new UnassignedTimeSlot();
         Section section1 = new Section("CS", "223", "Data Structures", nulltimeslot);
         assertThat(section1.getTimeslot(), equalTo(nulltimeslot));
-
     }
 
     @Test
@@ -40,5 +41,13 @@ public class SectionTest {
         assertThat(section1.getPrefix(), equalTo("CS"));
         assertThat(section1.getCourseNum(), equalTo("321"));
         assertThat(section1.getCourseName(), equalTo("Software Development Practicum"));
+    }
+
+    @Test
+    public void canAddInstructorList() {
+        Instructor barb = new Instructor("Barbara","Wahl", "wahl@hanover.edu");
+        Section section1 = new Section("CS", "223", "Data Structures", null);
+        section1.addInstructor(barb);
+        assertThat(section1.getInstructorList(), equalTo(List.of(barb)));
     }
 }
