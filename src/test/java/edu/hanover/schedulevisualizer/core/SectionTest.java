@@ -1,10 +1,12 @@
 package edu.hanover.schedulevisualizer.core;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+
 public class SectionTest {
     @Test
     public void canCreateCourse(){
@@ -50,4 +52,29 @@ public class SectionTest {
         section1.addInstructor(barb);
         assertThat(section1.getInstructorList(), equalTo(List.of(barb)));
     }
+
+    // This test only add one instructor per section
+    @Test
+    public void addInstructorToSection() {
+        Section section = new Section("CS", "220", "Fundamentals of Computer Science", null);
+        Instructor instructor = new Instructor("Barbara", "Wahl", "Wahl@hanover.edu");
+        section.addInstructor(instructor);
+
+        assertThat(section.getInstructorList().size(), equalTo(1));
+    }
+
+    // This test is adding more than 1 instructor per section
+    @Test
+    public void multipleInstructorsInOneSection() {
+        Section section = new Section("MAT", "121", "Calculus I", null);
+        Instructor instructor1 = new Instructor("Bradley", "Burdick", "burdick@hanover.edu");
+        Instructor instructor2 = new Instructor("Carl", "Jagels", "jagels@hanover.edu");
+        section.addInstructor(instructor1);
+        section.addInstructor(instructor2);
+
+        assertThat(section.getInstructorList().size(), equalTo(2));
+    }
+
+
 }
+

@@ -54,12 +54,17 @@ public class Section {
         // TODO: Set observable
         this.timeslot = timeslot;
     }
+    public List<Instructor> getInstructorList() {
+        return instructorList;
+    }
+
     public void addInstructor(Instructor instructor) {
         if (!instructorList.contains(instructor)) {
             instructorList.add(instructor);
         }
     }
-    public List<Instructor> getInstructorList() {
-        return instructorList;
+
+    public void removeInstructor(Instructor instructor) {
+        instructorList.remove(instructor);
     }
 }
