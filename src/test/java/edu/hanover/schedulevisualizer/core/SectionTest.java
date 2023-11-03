@@ -74,7 +74,5 @@ public class SectionTest {
 
         assertThat(section.getInstructorList().size(), equalTo(2));
     }
-
-
 }
 

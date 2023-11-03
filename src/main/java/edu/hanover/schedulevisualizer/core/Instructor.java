@@ -52,9 +52,6 @@ public class Instructor {
                 }
             }
         }
-
         return false; // No overlaps found
     }
-
-
 }
