@@ -9,9 +9,9 @@ import static org.junit.Assert.*;
 public class InstructorReplacementTest {
 
     @Test
-    public void testReplaceInstructor() {
+    public void testChangeInstructor() {
         // Create the current instructor
-        Instructor currentInstructor = new Instructor("Barbara", "Wahl", "wahl@hanover.edu");
+        Instructor currentInstructor = new Instructor("Barbara", "Smith", "barbara@hanover.edu");
 
         // Create the new instructor
         Instructor newInstructor = new Instructor("Bradley", "Burdick", "burdick@hanover.edu");
@@ -20,10 +20,10 @@ public class InstructorReplacementTest {
         Section section = new Section("MAT", "121", "Calculus I", Context.getInstance().makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
 
         // Assign the section to the current instructor
-        currentInstructor.assignSection(section);
+        section.addInstructor(currentInstructor);
 
-        // Reassign the section to the new instructor
-        currentInstructor.reassignSection(section, newInstructor);
+        // Reassign the section to the new instructor using the changeInstructor method
+        section.changeInstructor(currentInstructor, newInstructor);
 
         // Verify that the section is now assigned to the new instructor
         assertTrue(section.getInstructorList().contains(newInstructor));

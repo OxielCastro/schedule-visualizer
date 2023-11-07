@@ -64,6 +64,13 @@ public class Section {
         }
     }
 
+    public void changeInstructor(Instructor oldInstructor, Instructor newInstructor) {
+        if (instructorList.contains(oldInstructor)) {
+            removeInstructor(oldInstructor);
+            addInstructor(newInstructor);
+        }
+    }
+
     public void removeInstructor(Instructor instructor) {
         instructorList.remove(instructor);
     }
