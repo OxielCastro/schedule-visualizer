@@ -24,15 +24,6 @@ public class Instructor {
         return Id;
     }
 
-    public void assignSection(Section section) {
-        section.addInstructor(this);
-    }
-
-    public void reassignSection(Section section, Instructor newInstructor) {
-        section.removeInstructor(this);
-        newInstructor.assignSection(section);
-    }
-
     public boolean hasTimeSlotOverlap() {
         List<TimeSlot> assignedTimeSlots = new ArrayList<>();
 
