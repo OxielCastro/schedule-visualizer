@@ -24,25 +24,17 @@ public class Instructor {
         return Id;
     }
 
-    public boolean hasTimeSlotOverlap() {
-        List<TimeSlot> assignedTimeSlots = new ArrayList<>();
+    public boolean hasTimeSlotOverlap(Section section, Section otherSection) {
+        // Check if both sections have the same time slot
+        TimeSlot timeSlot1 = section.getTimeslot();
+        TimeSlot timeSlot2 = otherSection.getTimeslot();
 
-        // Get the list of time slots assigned to the instructor's sections
-        for (Section section : sections) {
-            TimeSlot timeSlot = section.getTimeslot();
-            if (timeSlot != null && timeSlot != UnassignedTimeSlot.getInstance()) {
-                assignedTimeSlots.add(timeSlot);
+        if (timeSlot1 != null && timeSlot2 != null && timeSlot1.equals(timeSlot2)) {
+            // Check if the sections have different instructors
+            if (section.getInstructorList().contains(this) && otherSection.getInstructorList().contains(this)) {
+                return true; // Both sections have the same time slot but different instructors
             }
         }
-
-        // Check for time slot overlaps among the assigned time slots
-        for (int i = 0; i < assignedTimeSlots.size(); i++) {
-            for (int j = i + 1; j < assignedTimeSlots.size(); j++) {
-                if (assignedTimeSlots.get(i).overlaps(assignedTimeSlots.get(j))) {
-                    return true; // There is an overlap
-                }
-            }
-        }
-        return false; // No overlaps found
+        return false; // Sections do not have the same time slot or have the same instructor
     }
 }
