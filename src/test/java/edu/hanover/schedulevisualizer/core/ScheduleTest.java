@@ -1,5 +1,6 @@
 package edu.hanover.schedulevisualizer.core;
 
+import edu.hanover.schedulevisualizer.observable.MyObserver;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 public class ScheduleTest {
 
@@ -79,5 +81,30 @@ public class ScheduleTest {
         schedule.removeSection(cs220);
         schedule.removeSection(cs220);
         assertEquals(Set.of(mat121), schedule.getSections());
+    }
+
+    @Test
+    public void contextCanCreateNewEmptySchedule(){
+        TestableContext context = new TestableContext();
+        Schedule originalSchedule = context.getSchedule();
+        context.createNewEmptySchedule();
+        Schedule newSchedule = context.getSchedule();
+        assertFalse(originalSchedule == newSchedule);
+    }
+
+    @Test
+    public void newCreatedScheduleIsEmpty(){
+        TestableContext context = new TestableContext();
+        context.createNewEmptySchedule();
+        assertTrue(context.getSchedule().getSections().isEmpty());
+    }
+
+    @Test
+    public void observersAreNotified(){
+        MyObserver<List<Section>> observer = mock(MyObserver.class);
+        TestableContext context = new TestableContext();
+        context.addObserver(observer);
+        context.createNewEmptySchedule();
+        verify(observer, times(1)).update(any());
     }
 }

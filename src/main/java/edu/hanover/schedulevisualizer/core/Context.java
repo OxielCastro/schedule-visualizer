@@ -11,11 +11,11 @@ public class Context {
     private static Context instance = new Context();//creates one
     private Map<String, TimeSlot> createdTimeslots = new HashMap<>();
     private List<MyObserver<List<Section>>> observers = new ArrayList<>();
-    private Schedule schedule;
+    protected Schedule schedule;
     private long courseId;
     private String id;
 
-    private Context(){
+    protected Context(){
         this.schedule = new Schedule(List.of(
                 new Section("CS", "220", "Fundamentals of Computer Science", makeHCTimeSlot(Weekday.MWF(), 1)),
                 new Section("MAT", "121", "Calculus I", makeHCTimeSlot(List.of(Weekday.Tuesday), 7)),
@@ -92,5 +92,8 @@ public class Context {
         notifyObservers();
     }
 
-
+    public void createNewEmptySchedule() {
+        this.schedule = new Schedule();
+        notifyObservers();
+    }
 }
