@@ -1,10 +1,18 @@
 package edu.hanover.schedulevisualizer.core;
 
+import edu.hanover.schedulevisualizer.observable.MyObserver;
 import org.junit.Test;
+import org.mockito.Mock;
+
+import java.util.List;
+import java.util.Observer;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class TimeslotIdTest {
     @Test
@@ -38,6 +46,22 @@ public class TimeslotIdTest {
             context.assignTimeslot(1234, newTimeSlot.getId());
         });
     }
+
+    @Test
+    public void notifyObservers() {
+        MyObserver<List<Section>> mockObserver = mock(MyObserver.class);
+        Context context = Context.getInstance();
+        context.addObserver(mockObserver);
+
+        TimeSlot newTimeSlot = context.makeHCTimeSlot(Weekday.MWF(), 3);
+        Section section = new Section("ABC", "325", "Web Application Develop", newTimeSlot);
+        context.addSections(section);
+        TimeSlot updatedTimeSlot = context.makeHCTimeSlot(Weekday.MWF(), 4);
+        context.assignTimeslot(section.getCourseId(), updatedTimeSlot.getId());
+
+        verify(mockObserver).update(any());
+    }
+
 }
 
 

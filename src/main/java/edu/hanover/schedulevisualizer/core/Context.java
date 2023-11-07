@@ -89,6 +89,7 @@ public class Context {
         Section section = getCourseWithId(courseId);
         TimeSlot timeslot = getTimeslotWithId(id);
         section.setTimeslot(timeslot);
+        notifyObservers();
     }
 
 
