@@ -8,7 +8,6 @@ public class Instructor {
     private final String last;
     private final String Id;
 
-    private List<Section> sections = new ArrayList<>();
 
     public Instructor(String first, String last, String Id) {
         this.first = first;
@@ -20,21 +19,15 @@ public class Instructor {
         return fullName;
     }
 
-    public String getId() {
-        return Id;
-    }
-
     public boolean hasTimeSlotOverlap(Section section, Section otherSection) {
-        // Check if both sections have the same time slot
         TimeSlot timeSlot1 = section.getTimeslot();
         TimeSlot timeSlot2 = otherSection.getTimeslot();
 
         if (timeSlot1 != null && timeSlot2 != null && timeSlot1.equals(timeSlot2)) {
-            // Check if the sections have different instructors
             if (section.getInstructorList().contains(this) && otherSection.getInstructorList().contains(this)) {
-                return true; // Both sections have the same time slot but different instructors
+                return true;
             }
         }
-        return false; // Sections do not have the same time slot or have the same instructor
+        return false;
     }
 }

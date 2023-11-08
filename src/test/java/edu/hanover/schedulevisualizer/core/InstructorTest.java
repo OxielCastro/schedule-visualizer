@@ -19,7 +19,6 @@ public class InstructorTest {
 
     @Test
     public void checkForInstructorTimeSlotOverlapTrue() {
-        // Create a section with same TimeSlot and same Instructors
         Instructor instructor = new Instructor("Barbara", "Wahl", "wahl@hanover.edu");
         Section section1 = new Section("CS", "220", "Fundamentals of Computer Science", Context.getInstance().makeHCTimeSlot(Weekday.MWF(), 1));
         Section section2 = new Section("MAT", "121", "Calculus I", Context.getInstance().makeHCTimeSlot(Weekday.MWF(), 1));
@@ -27,13 +26,11 @@ public class InstructorTest {
         section1.addInstructor(instructor);
         section2.addInstructor(instructor);
 
-        // Check for time slot overlap (instructor has overlapping classes)
         assertTrue(instructor.hasTimeSlotOverlap(section1, section2));
     }
 
     @Test
     public void checkForInstructorTimeSlotOverlapFalse() {
-        // Create a section with same TimeSlot and different Instructors
         Instructor instructor = new Instructor("Barbara", "Wahl", "wahl@hanover.edu");
         Section section1 = new Section("CS", "220", "Fundamentals of Computer Science", Context.getInstance().makeHCTimeSlot(Weekday.MWF(), 1));
         Section section2 = new Section("MAT", "121", "Calculus I", Context.getInstance().makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
@@ -41,7 +38,6 @@ public class InstructorTest {
         section1.addInstructor(instructor);
         section2.addInstructor(instructor);
 
-        // Check for time slot overlap (instructor has no overlapping classes)
         assertFalse(instructor.hasTimeSlotOverlap(section1, section2));
     }
 
