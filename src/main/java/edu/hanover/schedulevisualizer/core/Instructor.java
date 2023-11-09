@@ -8,6 +8,7 @@ public class Instructor {
     private final String last;
     private final String Id;
 
+    private List<TimeSlot> schedule = new ArrayList<>();
 
     public Instructor(String first, String last, String Id) {
         this.first = first;
@@ -17,6 +18,10 @@ public class Instructor {
     public String getFullName() {
         String fullName = first + " " + last;
         return fullName;
+    }
+
+    public String getId() {
+        return Id;
     }
 
     public boolean hasTimeSlotOverlap(Section section, Section otherSection) {
@@ -29,5 +34,9 @@ public class Instructor {
             }
         }
         return false;
+    }
+
+    public boolean isTeaching(TimeSlot timeSlot) {
+        return schedule.stream().anyMatch(slot -> slot.equals(timeSlot));
     }
 }

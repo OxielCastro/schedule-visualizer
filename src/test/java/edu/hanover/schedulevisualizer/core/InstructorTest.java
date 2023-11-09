@@ -18,6 +18,16 @@ public class InstructorTest {
     }
 
     @Test
+    public void assigningInstructor(){
+        Instructor instructor = new Instructor("Barbara", "Wahl", "wahl@hanover.edu");
+        Section section = new Section("MAT", "121", "Calculus I", Context.getInstance().makeHCTimeSlot(Weekday.MWF(), 1));
+
+        section.addInstructor(instructor);
+        assertTrue(section.getInstructorList().contains(instructor));
+        //assertTrue(instructor.isTeaching(section.getTimeslot()));
+    }
+
+    @Test
     public void checkForInstructorTimeSlotOverlapTrue() {
         Instructor instructor = new Instructor("Barbara", "Wahl", "wahl@hanover.edu");
         Section section1 = new Section("CS", "220", "Fundamentals of Computer Science", Context.getInstance().makeHCTimeSlot(Weekday.MWF(), 1));
