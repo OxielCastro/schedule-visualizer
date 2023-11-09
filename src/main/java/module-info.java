@@ -9,6 +9,7 @@ module edu.hanover.schedulevisualizer {
     requires org.kordamp.bootstrapfx.core;
     requires javafx.graphics;
     requires annotations;
+    requires junit;
 
     opens edu.hanover.schedulevisualizer to javafx.fxml, javafx.graphics;
     exports edu.hanover.schedulevisualizer;

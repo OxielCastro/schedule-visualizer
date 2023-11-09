@@ -6,6 +6,8 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class SectionTest {
     @Test
@@ -73,6 +75,14 @@ public class SectionTest {
         section.addInstructor(instructor2);
 
         assertThat(section.getInstructorList().size(), equalTo(2));
+    }
+
+    @Test
+    void TwoSectionsHaveSameCourse() {
+        Course course1 = new Course("CS", "321", "Software Development Practicum");
+        Section section1 = new Section(course1, null);
+        Section section2 = new Section(course1, null);
+        assertTrue(section1.IsSameCourse(section2));
     }
 }
 

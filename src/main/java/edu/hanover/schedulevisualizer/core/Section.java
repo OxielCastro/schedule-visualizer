@@ -75,6 +75,10 @@
             instructorList.remove(instructor);
         }
 
+        public Boolean IsSameCourse(Section section1) {
+            return (section1.course.equals(this.course));
+        }
+
         public boolean hasInstructor(Instructor instr) {
 //            for (Instructor currInstr : this.getInstructorList()) {
 //                if (currInstr.equals(instr)) {
