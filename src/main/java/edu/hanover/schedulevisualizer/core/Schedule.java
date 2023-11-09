@@ -27,4 +27,15 @@ public class Schedule {
     }
 
     public boolean hasSection(Section section) { return sections.contains(section); }
+
+    public static String getInstructorSchedule(String instrID, Schedule schedule) {
+        for (Section i : schedule.getSections()) {
+            for (Instructor j :i.getInstructorList()) {
+                if (j.getId() == instrID) {
+                    return j.getId();
+                }
+            }
+        }
+        return "";
+    }
 }

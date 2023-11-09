@@ -15,7 +15,7 @@ public class Context {
     private long courseId;
     private String id;
 
-    private Context(){
+    protected Context(){
         this.schedule = new Schedule(List.of(
                 new Section("CS", "220", "Fundamentals of Computer Science", makeHCTimeSlot(Weekday.MWF(), 1)),
                 new Section("MAT", "121", "Calculus I", makeHCTimeSlot(List.of(Weekday.Tuesday), 7)),
@@ -24,16 +24,7 @@ public class Context {
         )) ;
     }
 
-    public static String getInstructorSchedule(String instrID, Schedule schedule) {
-        for (Section i : schedule) {
-            for (Instructor j :i.getInstructorList()) {
-                if (j.getId() == instrID) {
-                    return j.getId();
-                }
-            }
-        }
-        return "";
-    }
+
 
     public TimeSlot makeUnassignedTimeslot() {
         return addIfNeededThenReturn(UnassignedTimeSlot.getInstance());
@@ -100,6 +91,11 @@ public class Context {
         Section section = getCourseWithId(courseId);
         TimeSlot timeslot = getTimeslotWithId(id);
         section.setTimeslot(timeslot);
+        notifyObservers();
+    }
+
+    public void createNewEmptySchedule() {
+        this.schedule = new Schedule();
         notifyObservers();
     }
 
