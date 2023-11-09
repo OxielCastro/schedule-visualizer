@@ -18,13 +18,21 @@ public class InstructorTest {
     }
 
     @Test
-    public void assigningInstructor(){
-        Instructor instructor = new Instructor("Barbara", "Wahl", "wahl@hanover.edu");
-        Section section = new Section("MAT", "121", "Calculus I", Context.getInstance().makeHCTimeSlot(Weekday.MWF(), 1));
+    public void canAddInstructorToSection() {
+        Instructor instructor1 = new Instructor("Bradley","Burdick", "burdick@hanover.edu");
+        Section CalcI = new Section("MAT", "121", "Calculus I", null);
+        CalcI.addInstructor(instructor1);
+        assertThat(CalcI.getInstructorList(), equalTo(List.of(instructor1)));
+    }
 
-        section.addInstructor(instructor);
-        assertTrue(section.getInstructorList().contains(instructor));
-        //assertTrue(instructor.isTeaching(section.getTimeslot()));
+    @Test
+    public void canHaveMultipleInstructors() {
+        Instructor instructor1 = new Instructor("Bradley","Burdick", "burdick@hanover.edu");
+        Instructor instructor2 = new Instructor("Barbara", "Wahl", "Wahl@hanover.edu");
+        Section CalcI = new Section("MAT", "121", "Calculus I", null);
+        CalcI.addInstructor(instructor1);
+        CalcI.addInstructor(instructor2);
+        assertThat(CalcI.getInstructorList(), equalTo(List.of(instructor1, instructor2)));
     }
 
     @Test

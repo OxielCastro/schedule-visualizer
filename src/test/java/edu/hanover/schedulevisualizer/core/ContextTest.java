@@ -7,7 +7,6 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class ContextTest {
-
     @Test
     public void canRetrieveCreatedTimeslotFromId() {
         Context context = Context.getInstance();
@@ -17,5 +16,10 @@ public class ContextTest {
         initialTimeslot = context.makeUnassignedTimeslot();
         retrievedTimeSlot = context.getTimeslotWithId(initialTimeslot.getId());
         assertEquals(initialTimeslot, retrievedTimeSlot);
+    }
+
+    @Test
+    public void hasMasterInstructorList() {
+
     }
 }
