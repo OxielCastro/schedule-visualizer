@@ -74,4 +74,13 @@
         public void removeInstructor(Instructor instructor) {
             instructorList.remove(instructor);
         }
+
+        public boolean hasInstructor(Instructor instr) {
+//            for (Instructor currInstr : this.getInstructorList()) {
+//                if (currInstr.equals(instr)) {
+//                    acc.add(currSection);
+//                }
+//            }
+            return true;
+        }
     }

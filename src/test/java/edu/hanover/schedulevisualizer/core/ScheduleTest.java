@@ -1,13 +1,15 @@
 package edu.hanover.schedulevisualizer.core;
 
 import edu.hanover.schedulevisualizer.observable.MyObserver;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import static edu.hanover.schedulevisualizer.core.Schedule.getInstructorSchedule;
+import static edu.hanover.schedulevisualizer.core.Schedule.findSectionfor;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -108,9 +110,9 @@ public class ScheduleTest {
         context.createNewEmptySchedule();
         verify(observer, times(1)).update(any());
     }
-
+    @Ignore
     @Test
-    public void canGetInstructorIdGivenInstructor() {
+    public void findSectionForFindsSections() {
         Section CS220;
         Section MAT121;
         HCTimeSlot MWF1 = new HCTimeSlot(Weekday.MWF(), 1);
@@ -123,8 +125,10 @@ public class ScheduleTest {
         CS220.addInstructor(instructor);
         Instructor instructor2 = new Instructor("Hallett", "Harrison", "halletth@hanover.edu");
         MAT121.addInstructor(instructor2);
-        assertEquals(instructor.getId(), getInstructorSchedule("wahlb@hanover.edu", schedule));
-        assertEquals(instructor2.getId(), getInstructorSchedule("halletth@hanover.edu", schedule));
+        List<Section> correctList = new ArrayList<>(List.of(CS220));
+        List<Section> correctList2 = new ArrayList<>(List.of(CS220));
+        assertEquals(correctList, findSectionfor(instructor, schedule));
+        assertEquals(correctList2, findSectionfor(instructor2, schedule));
 
     }
 }

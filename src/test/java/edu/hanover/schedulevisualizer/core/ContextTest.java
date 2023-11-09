@@ -27,8 +27,6 @@ public class ContextTest {
     }
 
 
-    }
-
     @Test
     public void hasMasterInstructorList() {
 

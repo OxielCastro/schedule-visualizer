@@ -28,14 +28,16 @@ public class Schedule {
 
     public boolean hasSection(Section section) { return sections.contains(section); }
 
-    public static String getInstructorSchedule(String instrID, Schedule schedule) {
-        for (Section i : schedule.getSections()) {
-            for (Instructor j :i.getInstructorList()) {
-                if (j.getId() == instrID) {
-                    return j.getId();
+    public static List<Section> findSectionfor(Instructor instr, Schedule schedule) {
+//        return sections.filter(s ->s.)
+        List<Section> acc = new ArrayList<>();
+        for (Section currSection : schedule.getSections()) {
+            for (Instructor currInstr : currSection.getInstructorList()) {
+                if (currInstr.equals(instr)) {
+                    acc.add(currSection);
                 }
             }
         }
-        return "";
+        return acc;
     }
 }

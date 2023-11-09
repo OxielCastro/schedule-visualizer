@@ -39,4 +39,6 @@ public class Instructor {
     public boolean isTeaching(TimeSlot timeSlot) {
         return schedule.stream().anyMatch(slot -> slot.equals(timeSlot));
     }
+
+
 }

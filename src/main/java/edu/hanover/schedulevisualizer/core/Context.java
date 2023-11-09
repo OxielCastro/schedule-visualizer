@@ -11,7 +11,7 @@ public class Context {
     private static Context instance = new Context();//creates one
     private Map<String, TimeSlot> createdTimeslots = new HashMap<>();
     private List<MyObserver<List<Section>>> observers = new ArrayList<>();
-    private Schedule schedule;
+    protected Schedule schedule;
     private long courseId;
     private String id;
 
