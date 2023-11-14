@@ -79,7 +79,7 @@
             return (section1.course.equals(this.course));
         }
 
-        public boolean hasInstr(Instructor instr) {
+        public boolean hasInstructor(Instructor instr) {
             return this.getInstructorList().contains(instr);
         }
     }

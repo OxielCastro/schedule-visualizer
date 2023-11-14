@@ -122,6 +122,7 @@ public class ScheduleTest {
         )) ;
         Instructor instructor = new Instructor("Barb", "Wahl", "wahlb@hanover.edu");
         CS220.addInstructor(instructor);
+        MAT121.addInstructor(instructor);
         Instructor instructor2 = new Instructor("Hallett", "Harrison", "halletth@hanover.edu");
         MAT121.addInstructor(instructor2);
         List<Section> correctList = new ArrayList<>(List.of(CS220));

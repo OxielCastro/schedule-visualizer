@@ -31,7 +31,7 @@ public class Schedule implements Iterable<Section>{
 
     public static List<Section> findSectionFor(Instructor instr, Schedule schedule) {
         return schedule.getSections()
-                .stream().filter(section -> section.hasInstr(instr))
+                .stream().filter(section -> section.hasInstructor(instr))
                 .collect(Collectors.toList());
     }
 
