@@ -9,12 +9,14 @@ public class Instructor {
     private final String Id;
 
     private List<TimeSlot> schedule = new ArrayList<>();
+    private List<Section> SectionsInstructor = new ArrayList<>();
 
     public Instructor(String first, String last, String Id) {
         this.first = first;
         this.last = last;
         this.Id = Id;
     }
+
     public String getFullName() {
         String fullName = first + " " + last;
         return fullName;
@@ -35,10 +37,4 @@ public class Instructor {
         }
         return false;
     }
-
-    public boolean isTeaching(TimeSlot timeSlot) {
-        return schedule.stream().anyMatch(slot -> slot.equals(timeSlot));
-    }
-
-
 }

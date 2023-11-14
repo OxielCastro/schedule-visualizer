@@ -58,5 +58,4 @@ public class InstructorTest {
 
         assertFalse(instructor.hasTimeSlotOverlap(section1, section2));
     }
-
 }

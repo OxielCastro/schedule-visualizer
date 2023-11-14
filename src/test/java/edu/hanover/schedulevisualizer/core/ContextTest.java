@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class ContextTest {
+public class    ContextTest {
 
     @Before
     public void setUp() throws Exception {
@@ -29,6 +29,44 @@ public class ContextTest {
 
     @Test
     public void hasMasterInstructorList() {
+        Context context = Context.getInstance();
 
+
+    }
+
+    @Test
+    public void testIsInstructorInMasterList() {
+        Context context = Context.getInstance();
+
+        Instructor instructor1 = new Instructor("Barbara", "Wahl", "CABW");
+        Instructor instructor2 = new Instructor("Haris", "Skiadas", "CSHS");
+        Instructor instructor3 = new Instructor("Donald", "Millar", "CSDM");
+        context.addInstructorToMasterList(instructor1);
+        context.addInstructorToMasterList(instructor2);
+        context.addInstructorToMasterList(instructor3);
+
+        assertFalse(context.isInstructorInMasterList("CSBW"));
+        assertTrue(context.isInstructorInMasterList("CSHS"));
+        assertTrue(context.isInstructorInMasterList("CSDM"));
+    }
+
+    @Test
+    public void testSearchInstructorById() {
+        Context context = Context.getInstance();
+
+        // Create an instructor and add it to the MasterList
+        Instructor instructor = new Instructor("Barbara", "Wahl", "CSBW");
+        context.addInstructorToMasterList(instructor);
+
+        // Create sections associated with the instructor
+        Section section1 = new Section("CS", "220", "Fundamentals of Computer Science", context.makeHCTimeSlot(Weekday.MWF(), 1));
+        Section section2 = new Section("MAT", "121", "Calculus I", context.makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
+        section1.addInstructor(instructor);
+        section2.addInstructor(instructor);
+        context.addSections(section1);
+        context.addSections(section2);
+
+        Instructor searchedInstructor = context.getInstructorWithId("CSBW");
+        assertEquals(instructor, searchedInstructor);
     }
 }

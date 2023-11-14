@@ -11,6 +11,7 @@ public class Context {
     private static Context instance = new Context();//creates one
     private Map<String, TimeSlot> createdTimeslots = new HashMap<>();
     private List<MyObserver<List<Section>>> observers = new ArrayList<>();
+    private Map<String, Instructor> instructorMasterList = new HashMap<>();
     protected Schedule schedule;
     private long courseId;
     private String id;
@@ -23,8 +24,6 @@ public class Context {
                 new Section("FY2", "102", "First Year2", makeUnassignedTimeslot())
         )) ;
     }
-
-
 
     public TimeSlot makeUnassignedTimeslot() {
         return addIfNeededThenReturn(UnassignedTimeSlot.getInstance());
@@ -99,4 +98,19 @@ public class Context {
         notifyObservers();
     }
 
+    public void addInstructorToMasterList(Instructor instructor) {
+        instructorMasterList.put(instructor.getId(), instructor);
+    }
+
+    public boolean isInstructorInMasterList(String instructorId) {
+        return instructorMasterList.containsKey(instructorId);
+    }
+
+    public Instructor getInstructorWithId(String instructorId) {
+        if (isInstructorInMasterList(instructorId)) {
+            return instructorMasterList.get(instructorId);
+        } else {
+            throw new IllegalArgumentException("Instructor with ID " + instructorId + " not found.");
+        }
+    }
 }
