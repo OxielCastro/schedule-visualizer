@@ -5,11 +5,10 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import static edu.hanover.schedulevisualizer.core.Schedule.findSectionfor;
+import static edu.hanover.schedulevisualizer.core.Schedule.findSectionFor;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -127,8 +126,22 @@ public class ScheduleTest {
         MAT121.addInstructor(instructor2);
         List<Section> correctList = new ArrayList<>(List.of(CS220));
         List<Section> correctList2 = new ArrayList<>(List.of(CS220));
-        assertEquals(correctList, findSectionfor(instructor, schedule));
-        assertEquals(correctList2, findSectionfor(instructor2, schedule));
+        assertEquals(correctList, findSectionFor(instructor, schedule));
+        assertEquals(correctList2, findSectionFor(instructor2, schedule));
 
+    }
+
+    @Test
+    public void forLoopWorksForIterableSchedule() {
+        // test for empty schedule
+        Schedule emptySchedule = new Schedule();
+        long numberOfCourses = 0;
+        for(Section s : emptySchedule) { numberOfCourses += 1; }
+        assertEquals(0, numberOfCourses);
+        // test for schedule with 3 sections
+        numberOfCourses = 0;
+        Schedule schedule = new Schedule(List.of(cs220, mat121, fy101));
+        for(Section s : schedule) { numberOfCourses += 1; }
+        assertEquals(3, numberOfCourses);
     }
 }

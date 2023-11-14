@@ -2,7 +2,7 @@ package edu.hanover.schedulevisualizer.core;
 
 import java.util.*;
 
-public class Schedule {
+public class Schedule implements Iterable<Section>{
     private Set<Section> sections;
 
     public Schedule() {
@@ -28,7 +28,7 @@ public class Schedule {
 
     public boolean hasSection(Section section) { return sections.contains(section); }
 
-    public static List<Section> findSectionfor(Instructor instr, Schedule schedule) {
+    public static List<Section> findSectionFor(Instructor instr, Schedule schedule) {
 //        return sections.filter(s ->s.)
         List<Section> acc = new ArrayList<>();
         for (Section currSection : schedule.getSections()) {
@@ -40,4 +40,9 @@ public class Schedule {
         }
         return acc;
     }
+
+    public Iterator<Section> iterator() {
+        return sections.iterator();
+    }
+
 }
