@@ -111,7 +111,7 @@ public class ScheduleTest {
     }
     @Ignore
     @Test
-    public void findSectionForFindsSections() {
+    public void findSectionForWorksCorrectly() {
         Section CS220;
         Section MAT121;
         HCTimeSlot MWF1 = new HCTimeSlot(Weekday.MWF(), 1);
@@ -125,7 +125,7 @@ public class ScheduleTest {
         Instructor instructor2 = new Instructor("Hallett", "Harrison", "halletth@hanover.edu");
         MAT121.addInstructor(instructor2);
         List<Section> correctList = new ArrayList<>(List.of(CS220));
-        List<Section> correctList2 = new ArrayList<>(List.of(CS220));
+        List<Section> correctList2 = new ArrayList<>(List.of(MAT121));
         assertEquals(correctList, findSectionFor(instructor, schedule));
         assertEquals(correctList2, findSectionFor(instructor2, schedule));
 
