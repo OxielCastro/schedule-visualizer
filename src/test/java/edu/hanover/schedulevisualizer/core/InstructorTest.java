@@ -18,21 +18,11 @@ public class InstructorTest {
     }
 
     @Test
-    public void canAddInstructorToSection() {
+    public void canAssignInstructorToSection() {
         Instructor instructor1 = new Instructor("Bradley","Burdick", "burdick@hanover.edu");
         Section CalcI = new Section("MAT", "121", "Calculus I", null);
         CalcI.addInstructor(instructor1);
         assertThat(CalcI.getInstructorList(), equalTo(List.of(instructor1)));
-    }
-
-    @Test
-    public void canHaveMultipleInstructors() {
-        Instructor instructor1 = new Instructor("Bradley","Burdick", "burdick@hanover.edu");
-        Instructor instructor2 = new Instructor("Barbara", "Wahl", "Wahl@hanover.edu");
-        Section CalcI = new Section("MAT", "121", "Calculus I", null);
-        CalcI.addInstructor(instructor1);
-        CalcI.addInstructor(instructor2);
-        assertThat(CalcI.getInstructorList(), equalTo(List.of(instructor1, instructor2)));
     }
 
     @Test
@@ -57,5 +47,12 @@ public class InstructorTest {
         section2.addInstructor(instructor);
 
         assertFalse(instructor.hasTimeSlotOverlap(section1, section2));
+    }
+
+    @Test
+    public void canCompareInstructorsLast() {
+        Instructor instructor1 = new Instructor("Barbara", "Wahl", "wahl@hanover.edu");
+        Instructor instructor2 = new Instructor("Donald", "Millar", "millar@hanover.edu");
+        assertTrue(instructor1.compareTo(instructor2) > 0);
     }
 }

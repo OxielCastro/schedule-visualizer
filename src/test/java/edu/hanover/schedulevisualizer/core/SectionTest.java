@@ -61,7 +61,6 @@ public class SectionTest {
         Section section = new Section("CS", "220", "Fundamentals of Computer Science", null);
         Instructor instructor = new Instructor("Barbara", "Wahl", "Wahl@hanover.edu");
         section.addInstructor(instructor);
-
         assertThat(section.getInstructorList().size(), equalTo(1));
     }
 

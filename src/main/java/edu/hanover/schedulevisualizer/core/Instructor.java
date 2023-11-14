@@ -1,9 +1,11 @@
 package edu.hanover.schedulevisualizer.core;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Instructor {
+public class Instructor implements Comparable<Instructor> {
     private final String first;
     private final String last;
     private final String Id;
@@ -36,5 +38,10 @@ public class Instructor {
             }
         }
         return false;
+    }
+
+    @Override
+    public int compareTo(Instructor instructor) {
+        return this.last.compareTo(instructor.last);
     }
 }
