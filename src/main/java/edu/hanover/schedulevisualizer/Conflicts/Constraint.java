@@ -2,20 +2,22 @@ package edu.hanover.schedulevisualizer.Conflicts;
 
 import edu.hanover.schedulevisualizer.core.Section;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-public abstract class Constraint {
-    void generateConflicts(List<Section> sectionlist) {
+public interface Constraint {
+    default List<Optional<Conflict>> generateConflicts(List<Section> sectionlist) {
+        List<Optional<Conflict>> conflictlist = new ArrayList<>();
         for (int i = 0; i < sectionlist.size(); i++) {
             for (int j = i + 1; j < sectionlist.size(); j++) {
-                if (sectionlist.get(i).equals(sectionlist.get(j))) {
-                    twoConflictingCourses(sectionlist.get(i), sectionlist.get(j));
-                }
+                conflictlist.add(generateConflict(sectionlist.get(i), sectionlist.get(j)));
             }
         }
+        return conflictlist;
     }
 
-    protected abstract Boolean twoConflictingCourses(Section section, Section section1);
+    Boolean twoConflictingCourses(Section section, Section section1);
 
-    //abstract Conflict generateConflict(Section section1, Section section2);
+    Optional<Conflict> generateConflict(Section section1, Section section2);
 }

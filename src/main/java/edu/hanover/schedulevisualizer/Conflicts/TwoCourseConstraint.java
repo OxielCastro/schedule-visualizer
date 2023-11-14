@@ -3,8 +3,9 @@ package edu.hanover.schedulevisualizer.Conflicts;
 import edu.hanover.schedulevisualizer.core.Section;
 
 import java.util.List;
+import java.util.Optional;
 
-public class TwoCourseConstraint extends Constraint {
+public class TwoCourseConstraint implements Constraint {
 
     Section section1;
     Section section2;
@@ -16,5 +17,12 @@ public class TwoCourseConstraint extends Constraint {
 
     public Boolean twoConflictingCourses(Section section1, Section section2) {
         return section1.IsSameCourse(section2);
+    }
+
+    public Optional<Conflict> generateConflict(Section section1, Section section2) {
+        if (twoConflictingCourses(section1, section2)) {
+            return Optional.of(new TwoCourseConflict(section1, section2));
+        }
+        return Optional.empty();
     }
 }
