@@ -30,8 +30,13 @@ public class InstructorFilledTimeSlotTest {
         section2.addInstructor(instructor2);
         InstructorFilledTimeSlot IsntFilledTimeSlot = new InstructorFilledTimeSlot();
         assertFalse(IsntFilledTimeSlot.IsSameInstructor(section1, section2));
-
-
     }
 
+    @Test
+    public void neitherCourseHasInstructor() {
+        Section section1 = new Section("CS", "321", "Software Development Practicum", new HCTimeSlot(Weekday.MWF(), 1));
+        Section section2 = new Section("CS", "321", "Software Development Practicum", new HCTimeSlot(Weekday.MWF(), 1));
+        InstructorFilledTimeSlot IsntFilledTimeSlot = new InstructorFilledTimeSlot();
+        assertFalse(IsntFilledTimeSlot.IsSameInstructor(section1, section2));
+    }
 }
