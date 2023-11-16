@@ -1,17 +1,15 @@
 package edu.hanover.schedulevisualizer.core;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Instructor implements Comparable<Instructor> {
     private final String first;
     private final String last;
     private final String Id;
-
-    private List<TimeSlot> schedule = new ArrayList<>();
-    private List<Section> SectionsInstructor = new ArrayList<>();
+    private List<Instructor> instructorList;
 
     public Instructor(String first, String last, String Id) {
         this.first = first;
@@ -41,7 +39,16 @@ public class Instructor implements Comparable<Instructor> {
     }
 
     @Override
-    public int compareTo(Instructor instructor) {
-        return this.last.compareTo(instructor.last);
+    public int compareTo(Instructor other) {
+        int compareLast = this.last.compareTo(other.last);
+        if (compareLast != 0) {
+            return compareLast;
+        } else {
+            return this.first.compareTo(other.first);
+        }
+    }
+
+    static void sortInstructors(Instructor[] instructors) {
+        Arrays.sort(instructors);
     }
 }

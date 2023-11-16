@@ -6,8 +6,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class InstructorTest {
     @Test
@@ -54,5 +53,32 @@ public class InstructorTest {
         Instructor instructor1 = new Instructor("Barbara", "Wahl", "wahl@hanover.edu");
         Instructor instructor2 = new Instructor("Donald", "Millar", "millar@hanover.edu");
         assertTrue(instructor1.compareTo(instructor2) > 0);
+    }
+
+    @Test
+    public void canCompareInstructorsFirst() {
+        Instructor instructor1 = new Instructor("Barbara", "Wahl", "wahl@hanover.edu");
+        Instructor instructor2 = new Instructor("Barbara", "Waal", "wall@hanover.edu");
+
+        assertFalse(instructor1.compareTo(instructor2) < 0);
+    }
+
+    @Test
+    public void sortInstrcutorsName() {
+        Instructor[] instructors = {
+                new Instructor("Millie", "Zurick", "zurick@hanover.edu"),
+                new Instructor("Barbara", "Wahl", "wahl@hanover.edu"),
+                new Instructor("Donald", "Millar", "millar@hanover.edu"),
+                new Instructor("Barbara", "Waal", "wall@hanover.edu"),
+                new Instructor("Haris", "Skiadas", "skiadas@hanover.edu")
+        };
+
+        Instructor.sortInstructors(instructors);
+
+        assertEquals("Donald Millar", instructors[0].getFullName());
+        assertEquals("Haris Skiadas", instructors[1].getFullName());
+        assertEquals("Barbara Waal", instructors[2].getFullName());
+        assertEquals("Barbara Wahl", instructors[3].getFullName());
+        assertEquals("Millie Zurick", instructors[4].getFullName());
     }
 }
