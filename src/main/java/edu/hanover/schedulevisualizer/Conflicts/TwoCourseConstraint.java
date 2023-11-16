@@ -15,7 +15,7 @@ public class TwoCourseConstraint implements Constraint {
         this.section2 = section2;
     }
 
-    public Boolean twoConflictingCourses(Section section1, Section section2) {
+    public boolean twoConflictingCourses(Section section1, Section section2) {
         return section1.IsSameCourse(section2);
     }
 

@@ -27,7 +27,7 @@ public class TwoSectionConflictTest {
     }
 
     @Test
-    public void GenerateConflictFromTwoSections() {
+    public void sameSectionsHaveSameTimeSlot() {
         Section section1 = new Section("CS", "321", "Software Development Practicum", new HCTimeSlot(Weekday.MWF(), 1));
         Section section2 = new Section("CS", "321", "Software Development Practicum", new HCTimeSlot(Weekday.MWF(), 1));
         TwoCourseConstraint twocourse = new TwoCourseConstraint(section1, section2);

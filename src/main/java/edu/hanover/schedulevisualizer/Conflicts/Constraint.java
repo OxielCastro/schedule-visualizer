@@ -17,7 +17,7 @@ public interface Constraint {
         return conflictlist;
     }
 
-    Boolean twoConflictingCourses(Section section, Section section1);
+    boolean twoConflictingCourses(Section section, Section section1);
 
     Optional<Conflict> generateConflict(Section section1, Section section2);
 }
