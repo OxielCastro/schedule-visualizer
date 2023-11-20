@@ -82,4 +82,8 @@
         public boolean hasInstructor(Instructor instr) {
             return this.getInstructorList().contains(instr);
         }
+
+        public String toString(Section section){
+            return course.getPrefix() + course.getCourseNum() + " " + timeslot.getWeekdayList() + " " ;
+        }
     }
