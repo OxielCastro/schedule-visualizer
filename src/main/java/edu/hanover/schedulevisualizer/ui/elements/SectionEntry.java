@@ -3,35 +3,22 @@ package edu.hanover.schedulevisualizer.ui.elements;
 import edu.hanover.schedulevisualizer.core.Section;
 import edu.hanover.schedulevisualizer.ui.draganddrop.DragAndDropController;
 import edu.hanover.schedulevisualizer.ui.draganddrop.DragSource;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
-import java.io.IOException;
-
-public class SectionEntry extends StackPane implements DragSource {
-    @FXML
-    Rectangle background;
-    @FXML
-    Label label;
+public class SectionEntry extends Label implements DragSource {
+    private final String style = "-fx-pref-width: 90; -fx-max-width: 90; -fx-min-width: 90;" +
+            "-fx-pref-height: 25; -fx-min-height: 25; -fx-max-height: 25;" +
+            "-fx-background-radius: 25; ";
+    private Color color;
 
     private long courseId;
 
     private SectionEntry() {
         super();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "course-entry-view.fxml"));
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
-        try {
-            fxmlLoader.load();
-            DragAndDropController.getInstance().setupDragSource(this);
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
+        this.setColor(Color.AQUA);
+        this.setAlignment(Pos.CENTER);
     }
 
     public String getDraggedContent() {
@@ -63,24 +50,9 @@ public class SectionEntry extends StackPane implements DragSource {
         this.courseId = courseId;
     }
 
-    public String getText() {
-        return label.getText();
-    }
-
-    public void setText(String text) {
-        label.setText(text);
-    }
-
-    public Color getColor() {
-        return (Color) background.getFill();
-    }
-
     public void setColor(Color color) {
-        background.setFill(color);
-    }
-
-    @FXML
-    public void initialize() {
+        this.color = color;
+        this.setStyle(style + "-fx-background-color: \"" + color + "\"");
     }
 
 }

@@ -1,20 +1,18 @@
 package edu.hanover.schedulevisualizer.ui.elements;
 
-import javafx.fxml.FXMLLoader;
+import edu.hanover.schedulevisualizer.ui.controller.MainController;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
-
-import java.io.IOException;
 
 public class MainView extends HBox {
     public MainView() {
         super();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "main-view.fxml"));
-        fxmlLoader.setRoot(this);
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
+        TimeSlotGrid timeSlotGrid = new TimeSlotGrid();
+        Button sidepanelButton = new Button("<<<");
+        SidePanel sidePanel = new SidePanel();
+        this.getChildren().addAll(
+                timeSlotGrid,sidepanelButton, sidePanel
+                                 );
+        MainController controller = new MainController(sidePanel, sidepanelButton);
     }
 }

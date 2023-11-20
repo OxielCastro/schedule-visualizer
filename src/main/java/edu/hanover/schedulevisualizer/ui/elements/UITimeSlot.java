@@ -3,14 +3,10 @@ package edu.hanover.schedulevisualizer.ui.elements;
 import edu.hanover.schedulevisualizer.core.Section;
 import edu.hanover.schedulevisualizer.ui.draganddrop.DragAndDropController;
 import edu.hanover.schedulevisualizer.ui.draganddrop.DropTarget;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-
-import java.io.IOException;
 
 import static edu.hanover.schedulevisualizer.ui.elements.DayPattern.MWF;
 
@@ -23,15 +19,8 @@ public class UITimeSlot extends VBox implements DropTarget {
 
     public UITimeSlot() {
         super();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "timeslot-view.fxml"));
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
+        this.setStyle("-fx-border-color: black; -fx-border-width: 1; -fx-padding: 5");
+        DragAndDropController.getInstance().setupDropTarget(this);
     }
 
     static UITimeSlot forDayPattern(DayPattern dayPattern, String slotID, String timeslotId) {
@@ -53,11 +42,6 @@ public class UITimeSlot extends VBox implements DropTarget {
 
     void addCourse(Section section) {
         getChildren().add(SectionEntry.forCourse(section));
-    }
-
-    @FXML
-    public void initialize() {
-        DragAndDropController.getInstance().setupDropTarget(this);
     }
 
     public void signalValidDropTarget() {

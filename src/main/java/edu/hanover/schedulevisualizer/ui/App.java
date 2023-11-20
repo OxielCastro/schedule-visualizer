@@ -1,7 +1,6 @@
 package edu.hanover.schedulevisualizer.ui;
 
-import edu.hanover.schedulevisualizer.HelloApplication;
-import javafx.fxml.FXMLLoader;
+import edu.hanover.schedulevisualizer.ui.elements.MainView;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -9,8 +8,7 @@ import java.io.IOException;
 
 public class App {
     public void startApp(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        Scene scene = new Scene(new MainView());
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();

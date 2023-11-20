@@ -3,6 +3,7 @@ package edu.hanover.schedulevisualizer.ui.elements;
 import edu.hanover.schedulevisualizer.core.Section;
 import edu.hanover.schedulevisualizer.core.Weekday;
 import edu.hanover.schedulevisualizer.observable.MyObserver;
+import edu.hanover.schedulevisualizer.ui.controller.TimeSlotGridController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,25 +17,11 @@ import java.util.Map;
 
 public class TimeSlotGrid extends HBox implements MyObserver<List<Section>> {
     Map< Weekday, DayColumn> dayColumns = new HashMap<>();
-    @FXML
-    private Label welcomeText;
-
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
 
     public TimeSlotGrid() {
         super();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "timeslotgrid-view.fxml"));
-        fxmlLoader.setRoot(this);
         addDayColumns();
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
+        new TimeSlotGridController(this);
     }
 
     private void addDayColumns() {

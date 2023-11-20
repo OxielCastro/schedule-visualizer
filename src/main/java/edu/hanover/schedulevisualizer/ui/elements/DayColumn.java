@@ -1,12 +1,10 @@
 package edu.hanover.schedulevisualizer.ui.elements;
 
 import edu.hanover.schedulevisualizer.core.*;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,21 +13,20 @@ import java.util.Map;
 public class DayColumn extends VBox {
 
     Map<Integer, UITimeSlot> timeSlots = new HashMap<>();
-    @FXML
-    private Label label;
+
     private Weekday day;
+    private Label label;
 
     public DayColumn() {
         super();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "dayColumn-view.fxml"));
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
+
+        this.setStyle("-fx-pref-width: 100; -fx-max-width: 100; -fx-min-width: 100;");
+        label = new Label();
+        label.setStyle("-fx-pref-width: 100; -fx-max-width: 100; -fx-min-width: 100;" +
+                               "-fx-pref-height: 30; -fx-max-height: 30; -fx-min-height: 30;" +
+                               "-fx-border-width: 1; -fx-border-color: black; -fx-background-color: #90ddff");
+        label.setAlignment(Pos.CENTER);
+        getChildren().add(label);
     }
 
     static DayColumn forWeekday(Weekday weekday) {

@@ -1,21 +1,17 @@
 package edu.hanover.schedulevisualizer.ui.elements;
 
-import javafx.fxml.FXMLLoader;
+import edu.hanover.schedulevisualizer.ui.controller.SidePanelController;
 import javafx.scene.layout.VBox;
 
-import java.io.IOException;
+public class SidePanel extends VBox {
+    private final UnassignedCourseList unassignedCourseList;
 
-public class SidePanel extends VBox{
     public SidePanel() {
         super();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "sidepanel-view.fxml"));
-        fxmlLoader.setRoot(this);
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
+        this.setStyle("-fx-border-color: black; -fx-border-width: 1; -fx-padding: 20");
+        unassignedCourseList = new UnassignedCourseList();
+        this.getChildren().add(unassignedCourseList);
+        SidePanelController controller = new SidePanelController(this, unassignedCourseList);
     }
 
 }
