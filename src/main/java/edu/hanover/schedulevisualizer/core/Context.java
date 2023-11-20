@@ -102,6 +102,10 @@ public class Context {
         instructorMasterList.put(instructor.getId(), instructor);
     }
 
+    public void removeInstructorToMasterList(Instructor instructor){
+        instructorMasterList.remove(instructor.getId(), instructor);
+    }
+
     public boolean isInstructorInMasterList(String instructorId) {
         return instructorMasterList.containsKey(instructorId);
     }

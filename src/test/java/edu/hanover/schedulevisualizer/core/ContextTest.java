@@ -34,8 +34,13 @@ public class    ContextTest {
 
     }
 
+    // Changing the instructor to a section
+    // Methods on the context - basically taking the idea of the instructor and section.
+    // It should put the ID
+    // Add and remove instructor in to a given instructor
+
     @Test
-    public void testIsInstructorInMasterList() {
+    public void isInstructorInMasterList() {
         Context context = Context.getInstance();
 
         Instructor instructor1 = new Instructor("Barbara", "Wahl", "CABW");
@@ -49,6 +54,25 @@ public class    ContextTest {
         assertTrue(context.isInstructorInMasterList("CSHS"));
         assertTrue(context.isInstructorInMasterList("CSDM"));
     }
+
+    @Test
+    public void removeInstructorInMasterList() {
+        Context context = Context.getInstance();
+
+        Instructor instructor1 = new Instructor("Barbara", "Wahl", "CABW");
+        Instructor instructor2 = new Instructor("Haris", "Skiadas", "CSHS");
+        Instructor instructor3 = new Instructor("Donald", "Millar", "CSDM");
+        context.addInstructorToMasterList(instructor1);
+        context.addInstructorToMasterList(instructor2);
+        context.addInstructorToMasterList(instructor3);
+
+        context.removeInstructorToMasterList(instructor1);
+
+        assertFalse(context.isInstructorInMasterList("CSBW"));
+        assertTrue(context.isInstructorInMasterList("CSHS"));
+        assertTrue(context.isInstructorInMasterList("CSDM"));
+    }
+
 
     @Test
     public void testSearchInstructorById() {
