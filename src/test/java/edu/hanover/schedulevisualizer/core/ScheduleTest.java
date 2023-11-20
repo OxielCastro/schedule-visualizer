@@ -112,23 +112,23 @@ public class ScheduleTest {
     @Ignore
     @Test
     public void findSectionForWorksCorrectly() {
-        Section CS220;
-        Section MAT121;
         HCTimeSlot MWF1 = new HCTimeSlot(Weekday.MWF(), 1);
         HCTimeSlot MWF2 = new HCTimeSlot(Weekday.MWF(), 2);
-        Schedule schedule = new Schedule(List.of(
-                CS220 = new Section("CS", "220", "Fundamentals of Computer Science", MWF1),
-                MAT121 = new Section("MAT", "121", "Calculus I", MWF2)
-        )) ;
+        Section CS220 = new Section("CS", "220", "Fundamentals of Computer Science", MWF1);
+        Section MAT121 = new Section("MAT", "121", "Calculus I", MWF2);
+        Schedule schedule = new Schedule(List.of(CS220, MAT121)) ;
         Instructor instructor = new Instructor("Barb", "Wahl", "wahlb@hanover.edu");
         CS220.addInstructor(instructor);
         MAT121.addInstructor(instructor);
         Instructor instructor2 = new Instructor("Hallett", "Harrison", "halletth@hanover.edu");
         MAT121.addInstructor(instructor2);
-        List<Section> correctList = new ArrayList<>(List.of(CS220));
+        List<Section> correctList = new ArrayList<>(List.of(CS220, MAT121));
         List<Section> correctList2 = new ArrayList<>(List.of(MAT121));
-        assertEquals(correctList, findSectionFor(instructor, schedule));
-        assertEquals(correctList2, findSectionFor(instructor2, schedule));
+        assertEquals(correctList.size(), findSectionFor(instructor, schedule).size());
+        assertTrue(findSectionFor(instructor, schedule).contains(CS220));
+        assertTrue(findSectionFor(instructor, schedule).contains(MAT121));
+        assertEquals(correctList2.size(), findSectionFor(instructor2, schedule).size());
+        assertTrue(findSectionFor(instructor2, schedule).contains(MAT121));
 
     }
 
