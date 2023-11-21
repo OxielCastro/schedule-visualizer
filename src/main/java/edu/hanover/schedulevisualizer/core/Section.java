@@ -83,7 +83,11 @@
             return this.getInstructorList().contains(instr);
         }
 
-        public String toString(Section section){
-            return course.getPrefix() + course.getCourseNum() + " " + timeslot.getWeekdayList() + " " ;
+        public String makeString(){
+            String acc = "";
+            for (Weekday weekday : timeslot.getWeekdayList()) {
+                acc = acc + weekday.toShortString();
+            }
+            return course.getPrefix() + course.getCourseNum() + " " + acc + " " + timeslot.toString();
         }
     }

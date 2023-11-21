@@ -83,5 +83,15 @@ public class SectionTest {
         Section section2 = new Section(course1, null);
         assertTrue(section1.IsSameCourse(section2));
     }
+
+    @Test
+    void makeStringWorks() {
+        Course course1 = new Course("CS", "321", "Software Development Practicum");
+        HCTimeSlot timeSlot = new HCTimeSlot(Weekday.MWF(), 1);
+        Section section1 = new Section(course1, timeSlot);
+        String string = section1.makeString();
+        String correctString = "CS321 MWF 8:00am - 9:10am";
+        assertEquals(correctString, string);
+    }
 }
 

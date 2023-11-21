@@ -78,4 +78,9 @@ class HCTimeSlot implements TimeSlot {
         return false;
     }
 
+    public String toString() {
+        return this.getStartTime().toString() + " - " + this.getEndTime().toString();
+    }
+
+
 }
