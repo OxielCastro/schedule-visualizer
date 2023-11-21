@@ -14,6 +14,12 @@ public class Schedule implements Iterable<Section>{
         this.sections = new HashSet<Section>(collection);
     }
 
+    public List<Section> findSectionFor(Instructor instr) {
+        return getSections()
+                .stream().filter(section -> section.hasInstructor(instr))
+                .collect(Collectors.toList());
+    }
+
     public Collection<Section> getSections(){
         Collection<Section> sectionsToReturn = new HashSet<Section>(sections);
         return sectionsToReturn;
@@ -28,12 +34,6 @@ public class Schedule implements Iterable<Section>{
     }
 
     public boolean hasSection(Section section) { return sections.contains(section); }
-
-    public static List<Section> findSectionFor(Instructor instr, Schedule schedule) {
-        return schedule.getSections()
-                .stream().filter(section -> section.hasInstructor(instr))
-                .collect(Collectors.toList());
-    }
 
     public Iterator<Section> iterator() {
         return sections.iterator();

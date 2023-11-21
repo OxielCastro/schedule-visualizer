@@ -3,6 +3,7 @@ package edu.hanover.schedulevisualizer.core;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -92,5 +93,24 @@ public class    ContextTest {
 
         Instructor searchedInstructor = context.getInstructorWithId("CSBW");
         assertEquals(instructor, searchedInstructor);
+    }
+
+    @Test
+    public void getInstructorScheduleWorks() {
+        // Setup
+        HCTimeSlot MWF1 = new HCTimeSlot(Weekday.MWF(), 1);
+        HCTimeSlot MWF2 = new HCTimeSlot(Weekday.MWF(), 2);
+        Section CS220 = new Section("CS", "220", "Fundamentals of Computer Science", MWF1);
+        Section MAT121 = new Section("MAT", "121", "Calculus I", MWF2);
+        Schedule schedule = new Schedule(List.of(CS220, MAT121)) ;
+        Instructor instructor = new Instructor("Barb", "Wahl", "wahlb@hanover.edu");
+        CS220.addInstructor(instructor);
+        MAT121.addInstructor(instructor);
+        Instructor instructor2 = new Instructor("Hallett", "Harrison", "halletth@hanover.edu");
+        MAT121.addInstructor(instructor2);
+        Context context = new TestableContext();
+//        context.setSchedule(schedule);
+        List<String> correctList = List.of("CS220 MWF 8:00am - 9:10am", "MAT121 MWF 9:20am - 10:30am");
+//        getInstructorSchedule("wahlb@hanover.edu");
     }
 }

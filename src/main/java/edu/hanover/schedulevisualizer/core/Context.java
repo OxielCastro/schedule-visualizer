@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+
 public class Context {
     private static Context instance = new Context();//creates one
     private Map<String, TimeSlot> createdTimeslots = new HashMap<>();
@@ -118,4 +120,14 @@ public class Context {
             throw new IllegalArgumentException("Instructor with ID " + instructorId + " not found.");
         }
     }
+
+    public List<String> getInstructorSchedule(String id) {
+        Instructor instructor = getInstructorWithId(id);
+        List<Section> instructorSections = schedule.findSectionFor(instructor);
+        List<String> acc = new ArrayList<>();
+        for (Section section : instructorSections) {
+            acc.add(section.makeString());
+        }
+        return acc;
+    };
 }

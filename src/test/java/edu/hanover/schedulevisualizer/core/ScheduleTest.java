@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import static edu.hanover.schedulevisualizer.core.Schedule.findSectionFor;
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -124,11 +124,11 @@ public class ScheduleTest {
         MAT121.addInstructor(instructor2);
         List<Section> correctList = new ArrayList<>(List.of(CS220, MAT121));
         List<Section> correctList2 = new ArrayList<>(List.of(MAT121));
-        assertEquals(correctList.size(), findSectionFor(instructor, schedule).size());
-        assertTrue(findSectionFor(instructor, schedule).contains(CS220));
-        assertTrue(findSectionFor(instructor, schedule).contains(MAT121));
-        assertEquals(correctList2.size(), findSectionFor(instructor2, schedule).size());
-        assertTrue(findSectionFor(instructor2, schedule).contains(MAT121));
+        assertEquals(correctList.size(), schedule.findSectionFor(instructor).size());
+        assertTrue(schedule.findSectionFor(instructor).contains(CS220));
+        assertTrue(schedule.findSectionFor(instructor).contains(MAT121));
+        assertEquals(correctList2.size(), schedule.findSectionFor(instructor2).size());
+        assertTrue(schedule.findSectionFor(instructor2).contains(MAT121));
 
     }
 
