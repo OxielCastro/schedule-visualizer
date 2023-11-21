@@ -24,6 +24,7 @@ public class UnassignedCourseList extends VBox implements MyObserver<List<Sectio
     }
 
     private void displayData(List<Section> sections) {
+        getChildren().clear();
         sections.forEach(this::displayCourse);
     }
 

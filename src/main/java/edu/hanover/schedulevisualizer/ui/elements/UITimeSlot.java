@@ -59,4 +59,8 @@ public class UITimeSlot extends VBox implements DropTarget {
     public Node getNode() {
         return this;
     }
+
+    public void clear() {
+        getChildren().clear();
+    }
 }

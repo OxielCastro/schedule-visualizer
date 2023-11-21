@@ -10,9 +10,10 @@ public class MainView extends HBox {
         TimeSlotGrid timeSlotGrid = new TimeSlotGrid();
         Button sidepanelButton = new Button("<<<");
         SidePanel sidePanel = new SidePanel();
+        Button newScheduleButton = new Button("+ New Schedule");
         this.getChildren().addAll(
-                timeSlotGrid,sidepanelButton, sidePanel
+                timeSlotGrid, sidepanelButton, sidePanel, newScheduleButton
                                  );
-        MainController controller = new MainController(sidePanel, sidepanelButton);
+        MainController controller = new MainController(sidePanel, sidepanelButton, newScheduleButton);
     }
 }

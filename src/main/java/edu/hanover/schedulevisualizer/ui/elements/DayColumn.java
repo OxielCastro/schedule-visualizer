@@ -68,4 +68,7 @@ public class DayColumn extends VBox {
         return "slot" + slotNum + getId();
     }
 
+    public void clear(){
+        timeSlots.values().forEach(UITimeSlot::clear);
+    }
 }

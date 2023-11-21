@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 
 public class SectionEntry extends Label implements DragSource {
-    private final String style = "-fx-pref-width: 90; -fx-max-width: 90; -fx-min-width: 90;" +
+    private final String style = "-fx-pref-width: 85; -fx-max-width: 85; -fx-min-width: 85;" +
             "-fx-pref-height: 25; -fx-min-height: 25; -fx-max-height: 25;" +
             "-fx-background-radius: 25; ";
     private Color color;

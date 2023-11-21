@@ -33,6 +33,7 @@ public class TimeSlotGrid extends HBox implements MyObserver<List<Section>> {
     }
 
     private void displayData(List<Section> data) {
+        dayColumns.values().forEach(DayColumn::clear);
         data.forEach(this::displayCourse);
     }
 

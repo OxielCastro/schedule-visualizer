@@ -96,6 +96,7 @@ public class Context {
     public void createNewEmptySchedule() {
         this.schedule = new Schedule();
         notifyObservers();
+        System.out.println("Context called");
     }
 
     public void addInstructorToMasterList(Instructor instructor) {
