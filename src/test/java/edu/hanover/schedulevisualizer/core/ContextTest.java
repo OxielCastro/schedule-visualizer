@@ -98,19 +98,21 @@ public class    ContextTest {
     @Test
     public void getInstructorScheduleWorks() {
         // Setup
-        HCTimeSlot MWF1 = new HCTimeSlot(Weekday.MWF(), 1);
-        HCTimeSlot MWF2 = new HCTimeSlot(Weekday.MWF(), 2);
-        Section CS220 = new Section("CS", "220", "Fundamentals of Computer Science", MWF1);
-        Section MAT121 = new Section("MAT", "121", "Calculus I", MWF2);
+        Section CS220 = new Section("CS", "220", "Fundamentals of Computer Science", new HCTimeSlot(Weekday.MWF(), 1));
+        Section MAT121 = new Section("MAT", "121", "Calculus I", new HCTimeSlot(Weekday.MWF(), 2));
         Schedule schedule = new Schedule(List.of(CS220, MAT121)) ;
         Instructor instructor = new Instructor("Barb", "Wahl", "wahlb@hanover.edu");
         CS220.addInstructor(instructor);
         MAT121.addInstructor(instructor);
         Instructor instructor2 = new Instructor("Hallett", "Harrison", "halletth@hanover.edu");
         MAT121.addInstructor(instructor2);
-        Context context = new TestableContext();
-//        context.setSchedule(schedule);
-        List<String> correctList = List.of("CS220 MWF 8:00am - 9:10am", "MAT121 MWF 9:20am - 10:30am");
-//        getInstructorSchedule("wahlb@hanover.edu");
+        TestableContext context = new TestableContext();
+        context.setSchedule(schedule);
+        context.addInstructorToMasterList(instructor);
+        context.addInstructorToMasterList(instructor2);
+        int correctListSize = 2;
+        assertEquals(correctListSize, context.getInstructorSchedule("wahlb@hanover.edu").size());
+        assertTrue(context.getInstructorSchedule("wahlb@hanover.edu").contains("CS220 MWF 8:00am - 9:10am"));
+        assertTrue(context.getInstructorSchedule("wahlb@hanover.edu").contains("MAT121 MWF 9:20am - 10:30am"));
     }
 }
