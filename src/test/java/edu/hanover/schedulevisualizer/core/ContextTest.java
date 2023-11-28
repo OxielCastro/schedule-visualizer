@@ -115,4 +115,11 @@ public class    ContextTest {
         assertTrue(context.getInstructorSchedule("wahlb@hanover.edu").contains("CS220 MWF 8:00am - 9:10am"));
         assertTrue(context.getInstructorSchedule("wahlb@hanover.edu").contains("MAT121 MWF 9:20am - 10:30am"));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void getInstructorScheduleThrowsErrorCorrectly() {
+        Schedule schedule = new Schedule();
+        TestableContext context = new TestableContext();
+        context.getInstructorSchedule("wahlb@hanover.edu");
+    }
 }
