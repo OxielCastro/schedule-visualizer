@@ -120,6 +120,7 @@ public class    ContextTest {
     public void getInstructorScheduleThrowsErrorCorrectly() {
         Schedule schedule = new Schedule();
         TestableContext context = new TestableContext();
+        context.setSchedule(schedule);
         context.getInstructorSchedule("wahlb@hanover.edu");
     }
 }
