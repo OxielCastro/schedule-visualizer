@@ -42,7 +42,7 @@ public class    ContextTest {
 
     @Test
     public void isInstructorInMasterList() {
-        Context context = Context.getInstance();
+        Context context = new TestableContext();
 
         Instructor instructor1 = new Instructor("Barbara", "Wahl", "CABW");
         Instructor instructor2 = new Instructor("Haris", "Skiadas", "CSHS");

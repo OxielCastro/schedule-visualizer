@@ -27,7 +27,6 @@ public class MainController {
     private void createNewEmptySchedule(ActionEvent event) {
         Context context = Context.getInstance();
         context.createNewEmptySchedule();
-        System.out.println("Made New Schedule");
     }
 
     boolean getPanelVisible() {
