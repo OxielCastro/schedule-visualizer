@@ -95,6 +95,14 @@ public class Context {
         notifyObservers();
     }
 
+    public void assignInstructor(long courseId, String id, String instructorId){
+        Section section = getCourseWithId(courseId);
+        TimeSlot timeslot = getTimeslotWithId(id);
+        Instructor instructor = getInstructorWithId(instructorId);
+        section.setInstructor(instructor);
+        notifyObservers();
+    }
+
     public void createNewEmptySchedule() {
         this.schedule = new Schedule();
         notifyObservers();

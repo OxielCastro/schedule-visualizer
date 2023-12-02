@@ -8,13 +8,13 @@
         private final long courseId;
         private final Course course;
         private TimeSlot timeslot;
+        private Instructor instructor;
         private List<Instructor> instructorList = new ArrayList<>();
         public Section(String prefix, String courseNum, String courseName, TimeSlot timeslot) {
             this.courseId = nextAvailableCourseId;
             nextAvailableCourseId += 1;
             this.course = new Course(prefix, courseNum, courseName);
             this.timeslot = timeslot;
-            this.instructorList = new ArrayList<>(instructorList);
         }
 
         public Section(Course course, TimeSlot timeslot) {
@@ -22,7 +22,6 @@
             nextAvailableCourseId += 1;
             this.course = course;
             this.timeslot = timeslot;
-            this.instructorList = new ArrayList<>(instructorList);
         }
 
 
@@ -54,6 +53,11 @@
             // TODO: Set observable
             this.timeslot = timeslot;
         }
+
+        public void setInstructor(Instructor instructor) {
+            this.instructor = instructor;
+        }
+
         public List<Instructor> getInstructorList() {
             return instructorList;
         }
