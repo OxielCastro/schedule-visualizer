@@ -1,3 +1,5 @@
 /.idea/
 /target/
 /schedule-visualizer.iml
+/build/
+/.gradle/
