@@ -2,11 +2,11 @@ package edu.hanover.schedulevisualizer.core;
 
 import edu.hanover.schedulevisualizer.Conflicts.InstructorConflict;
 import edu.hanover.schedulevisualizer.Conflicts.InstructorConstraint;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class InstructorConstraintTest {
     @Test

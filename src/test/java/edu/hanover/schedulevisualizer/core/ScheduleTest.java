@@ -1,15 +1,15 @@
 package edu.hanover.schedulevisualizer.core;
 
 import edu.hanover.schedulevisualizer.observable.MyObserver;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class ScheduleTest {
@@ -109,7 +109,7 @@ public class ScheduleTest {
         context.createNewEmptySchedule();
         verify(observer, times(1)).update(any());
     }
-    @Ignore
+    @Disabled
     @Test
     public void findSectionForWorksCorrectly() {
         HCTimeSlot MWF1 = new HCTimeSlot(Weekday.MWF(), 1);

@@ -1,7 +1,7 @@
 package edu.hanover.schedulevisualizer.core;
 
 import edu.hanover.schedulevisualizer.observable.MyObserver;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.Observer;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

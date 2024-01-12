@@ -3,12 +3,11 @@ package edu.hanover.schedulevisualizer.ui.draganddrop;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.DragEvent;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class DragAndDropControllerTest {
@@ -16,7 +15,7 @@ public class DragAndDropControllerTest {
     private DropTarget target;
     private Node node;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         controller = new DragAndDropController();
         target = mock(DropTarget.class);
@@ -24,14 +23,14 @@ public class DragAndDropControllerTest {
         when(target.getNode()).thenReturn(node);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void controllerCallsSetOnDragOverWhenSettingDropTarget() {
         controller.setupDropTarget(target);
         verify(node).setOnDragOver(any());
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void cannotDoDropOnTargetSameAsSource() {
         DragEvent event = mock(DragEvent.class);

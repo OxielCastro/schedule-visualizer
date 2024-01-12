@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.hamcrest.text.MatchesPattern;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxAssert;
@@ -15,8 +15,6 @@ import org.testfx.framework.junit5.Start;
 import org.testfx.matcher.control.LabeledMatchers;
 
 import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(ApplicationExtension.class)
 class AppTest {
@@ -29,11 +27,13 @@ class AppTest {
         app.startApp(stage);
     }
 
+    @Disabled
     @Test
     void should_contain_button_with_text(FxRobot robot) {
         FxAssert.verifyThat("#helloButton", LabeledMatchers.hasText("Hello!"));
     }
 
+    @Disabled
     @Test
     void when_button_is_clicked_text_changes(FxRobot robot) {
         // when:

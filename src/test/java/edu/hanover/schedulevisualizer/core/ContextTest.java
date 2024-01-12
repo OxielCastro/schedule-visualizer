@@ -1,17 +1,18 @@
 package edu.hanover.schedulevisualizer.core;
 
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.Assert.*;
 
 public class    ContextTest {
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
 
     }
@@ -116,11 +117,13 @@ public class    ContextTest {
         assertTrue(context.getInstructorSchedule("wahlb@hanover.edu").contains("MAT121 MWF 9:20am - 10:30am"));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void getInstructorScheduleThrowsErrorCorrectly() {
-        Schedule schedule = new Schedule();
-        TestableContext context = new TestableContext();
-        context.setSchedule(schedule);
-        context.getInstructorSchedule("wahlb@hanover.edu");
+        assertThrows(IllegalArgumentException.class, () -> {
+            Schedule schedule = new Schedule();
+            TestableContext context = new TestableContext();
+            context.setSchedule(schedule);
+            context.getInstructorSchedule("wahlb@hanover.edu");
+        });
     }
 }

@@ -6,9 +6,6 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UnassignedTimeSlotTest {
 
@@ -22,6 +19,6 @@ public class UnassignedTimeSlotTest {
     public void overlapsTestUnassigned(){
         UnassignedTimeSlot unassignedSlot = new UnassignedTimeSlot();
         assertThat(unassignedSlot.overlaps(new UnassignedTimeSlot()), equalTo(Boolean.FALSE));
-        
+
     }
 }
