@@ -1,6 +1,9 @@
 plugins {
     id("java")
+    id("application")
+    id("org.javamodularity.moduleplugin") version "1.8.9" apply false
     id("org.openjfx.javafxplugin") version "0.1.0"
+    id("org.beryx.jlink") version "2.24.1"
 }
 
 java {
@@ -33,4 +36,15 @@ dependencies {
 
 tasks.named<Test>("test") {
     useJUnitPlatform()
+}
+
+javafx {
+    version = "17"
+    setPlatform("mac")
+    modules("javafx.controls", "javafx.fxml")
+}
+
+application {
+    mainModule.set("edu.hanover.schedulevisualizer")
+    mainClass.set("edu.hanover.schedulevisualizer.HelloApplication")
 }
