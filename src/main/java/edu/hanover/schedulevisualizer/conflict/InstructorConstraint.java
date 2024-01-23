@@ -18,7 +18,7 @@ public class InstructorConstraint implements Constraint {
         return false;
     }
 
-    public Optional<Conflict> generateConflict(Section section1, Section section2) {
+    public Optional<Conflict> generateConflict(final Section section1, final Section section2) {
         if (twoConflictingCourses(section1, section2)) {
             return Optional.of(new InstructorConflict(section1, section2));
         }

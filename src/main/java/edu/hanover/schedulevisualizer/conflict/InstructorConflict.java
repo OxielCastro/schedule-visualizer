@@ -8,7 +8,7 @@ public class InstructorConflict implements Conflict {
     Section section1;
     Section section2;
 
-    public InstructorConflict(Section section1, Section section2) {
+    public InstructorConflict(final Section section1, final Section section2) {
         this.section1 = section1;
         this.section2 = section2;
     }
