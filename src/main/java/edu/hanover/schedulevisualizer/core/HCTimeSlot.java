@@ -3,14 +3,15 @@ import java.util.List;
 import java.util.function.Consumer;
 
 class HCTimeSlot implements TimeSlot {
-    private List<Weekday> weekdayList;
+    private final List<Weekday> weekdayList;
     public int slotnum;
 
-    public HCTimeSlot(List<Weekday> weekdayList, int slotnum){
+    public HCTimeSlot(final List<Weekday> weekdayList, final int slotnum){
         this.weekdayList = weekdayList;
         this.slotnum = slotnum;
     }
 
+    @Override
     public String getId() {
         String weekdaysString = "";
         for (Weekday w : weekdayList) { weekdaysString += w; }
