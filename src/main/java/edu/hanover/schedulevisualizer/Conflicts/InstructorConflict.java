@@ -22,7 +22,7 @@ public class InstructorConflict implements Conflict {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        InstructorConflict that = (InstructorConflict) o;
+        final InstructorConflict that = (InstructorConflict) o;
         return Objects.equals(section1, that.section1) && Objects.equals(section2, that.section2);
     }
 
