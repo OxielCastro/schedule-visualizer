@@ -1,7 +1,7 @@
 package edu.hanover.schedulevisualizer.core;
 
-import edu.hanover.schedulevisualizer.Conflicts.TwoCourseConflict;
-import edu.hanover.schedulevisualizer.Conflicts.TwoCourseConstraint;
+import edu.hanover.schedulevisualizer.conflict.TwoCourseConflict;
+import edu.hanover.schedulevisualizer.conflict.TwoCourseConstraint;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;

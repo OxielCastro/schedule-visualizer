@@ -1,7 +1,7 @@
 package edu.hanover.schedulevisualizer.core;
 
-import edu.hanover.schedulevisualizer.Conflicts.InstructorConflict;
-import edu.hanover.schedulevisualizer.Conflicts.InstructorConstraint;
+import edu.hanover.schedulevisualizer.conflict.InstructorConflict;
+import edu.hanover.schedulevisualizer.conflict.InstructorConstraint;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;

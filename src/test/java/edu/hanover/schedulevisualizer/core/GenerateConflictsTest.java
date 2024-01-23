@@ -1,6 +1,6 @@
 package edu.hanover.schedulevisualizer.core;
 
-import edu.hanover.schedulevisualizer.Conflicts.*;
+import edu.hanover.schedulevisualizer.conflict.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
