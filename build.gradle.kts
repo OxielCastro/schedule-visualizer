@@ -4,6 +4,7 @@ plugins {
     id("org.javamodularity.moduleplugin") version "1.8.9" apply false
     id("org.openjfx.javafxplugin") version "0.1.0"
     id("org.beryx.jlink") version "2.24.1"
+    pmd
 }
 
 java {
@@ -48,3 +49,11 @@ application {
     mainModule.set("edu.hanover.schedulevisualizer")
     mainClass.set("edu.hanover.schedulevisualizer.HelloApplication")
 }
+
+pmd {
+    toolVersion = "6.55.0"
+    isConsoleOutput = false
+    isIgnoreFailures = true
+    ruleSets = listOf("category/java/errorprone.xml", "category/java/design.xml", "category/java/codestyle.xml", "category/java/bestpractices.xml")
+}
+
