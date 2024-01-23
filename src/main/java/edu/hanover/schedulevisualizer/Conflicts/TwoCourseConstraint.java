@@ -2,7 +2,6 @@ package edu.hanover.schedulevisualizer.Conflicts;
 
 import edu.hanover.schedulevisualizer.core.Section;
 
-import java.util.List;
 import java.util.Optional;
 
 public class TwoCourseConstraint implements Constraint {

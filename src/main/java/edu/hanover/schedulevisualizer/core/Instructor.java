@@ -1,7 +1,6 @@
 package edu.hanover.schedulevisualizer.core;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class Instructor implements Comparable<Instructor> {
     private final String first;
