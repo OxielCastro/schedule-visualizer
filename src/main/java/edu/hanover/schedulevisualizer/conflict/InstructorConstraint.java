@@ -1,4 +1,4 @@
-package edu.hanover.schedulevisualizer.Conflicts;
+package edu.hanover.schedulevisualizer.conflict;
 
 import edu.hanover.schedulevisualizer.core.Instructor;
 import edu.hanover.schedulevisualizer.core.Section;
