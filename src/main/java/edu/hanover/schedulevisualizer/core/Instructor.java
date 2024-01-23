@@ -7,23 +7,24 @@ public class Instructor implements Comparable<Instructor> {
     private final String last;
     private final String Id;
 
-    public Instructor(final String first, final String last, final String Id) {
+    public Instructor(String first, String last, String Id) {
         this.first = first;
         this.last = last;
         this.Id = Id;
     }
 
-    public String getFullName() {
-        return first + " " + last;
+     public String getFullName() {
+        String fullName = first + " " + last;
+        return fullName;
     }
 
-    public String getId() {
+     String getId() {
         return Id;
     }
 
-    public boolean hasTimeSlotOverlap(final Section section, final Section otherSection) {
-        final TimeSlot timeSlot1 = section.getTimeslot();
-        final TimeSlot timeSlot2 = otherSection.getTimeslot();
+    public boolean hasTimeSlotOverlap(Section section, Section otherSection) {
+        TimeSlot timeSlot1 = section.getTimeslot();
+        TimeSlot timeSlot2 = otherSection.getTimeslot();
 
         if (timeSlot1 != null && timeSlot2 != null && timeSlot1.equals(timeSlot2)) {
             if (section.getInstructorList().contains(this) && otherSection.getInstructorList().contains(this)) {
@@ -34,8 +35,8 @@ public class Instructor implements Comparable<Instructor> {
     }
 
     @Override
-    public int compareTo(final Instructor other) {
-        final int compareLast = this.last.compareTo(other.last);
+    public int compareTo(Instructor other) {
+        int compareLast = this.last.compareTo(other.last);
         if (compareLast != 0) {
             return compareLast;
         } else {
@@ -43,7 +44,7 @@ public class Instructor implements Comparable<Instructor> {
         }
     }
 
-    static void sortInstructors(final Instructor[] instructors) {
+    static void sortInstructors(Instructor[] instructors) {
         Arrays.sort(instructors);
     }
 }

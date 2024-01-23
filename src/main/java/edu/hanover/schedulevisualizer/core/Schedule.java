@@ -25,15 +25,15 @@ public class Schedule implements Iterable<Section>{
         return sections1;
     }
 
-    public void addSection(final Section section) {
+    void addSection(final Section section) {
         sections.add(section);
     }
 
-    public void removeSection(final Section section) {
+    void removeSection(final Section section) {
         sections.remove(section);
     }
 
-    public boolean hasSection(final Section section) { return sections.contains(section); }
+    boolean hasSection(final Section section) { return sections.contains(section); }
 
     public Iterator<Section> iterator() {
         return sections.iterator();
