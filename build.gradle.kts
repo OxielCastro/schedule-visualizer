@@ -5,6 +5,7 @@ plugins {
     id("org.openjfx.javafxplugin") version "0.1.0"
     id("org.beryx.jlink") version "2.24.1"
     pmd
+    jacoco
 }
 
 java {
@@ -57,3 +58,9 @@ pmd {
     ruleSets = listOf("category/java/errorprone.xml", "category/java/design.xml", "category/java/codestyle.xml", "category/java/bestpractices.xml")
 }
 
+tasks.test {
+    finalizedBy(tasks.named("jacocoTestReport")) // report is always generated after tests run
+}
+tasks.named<Task>("jacocoTestReport") {
+    dependsOn(tasks.test) // tests are required to run before generating the report
+}
