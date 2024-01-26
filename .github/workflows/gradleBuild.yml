@@ -20,6 +20,11 @@ jobs:
         with:
           name: coverage-report
           path: build/reports/jacoco/test/html
+      - name: Post in Discord
+        uses: sarisia/actions-status-discord@v1
+        if: always()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Upload coverage to gh-pages
         uses: actions/deploy-pages@v4 
         with:
