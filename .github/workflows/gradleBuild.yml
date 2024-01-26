@@ -6,7 +6,5 @@ jobs:
   buildGradle:
     runs-on: ubuntu-latest
     steps:
-      - name: List files
-        run: ls
-      - name: Print current directory
-        run: pwd
+      - name: Build the project
+        run: ./gradlew build
