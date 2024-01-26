@@ -1,0 +1,4 @@
+name: Run Gradle Build
+on:
+  push:
+  workflow_dispatch:
