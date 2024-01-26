@@ -20,3 +20,7 @@ jobs:
         with:
           name: coverage-report
           path: build/reports/jacoco/test/html
+      - name: Upload coverage to gh-pages
+        uses: actions/deploy-pages@v4 
+        with:
+          artifact-name: coverage-report
