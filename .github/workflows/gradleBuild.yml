@@ -2,3 +2,11 @@ name: Run Gradle Build
 on:
   push:
   workflow_dispatch:
+jobs:
+  buildGradle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List files
+        run: ls
+      - name: Print current directory
+        run: pwd
