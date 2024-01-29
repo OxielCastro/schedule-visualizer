@@ -8,6 +8,12 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
+      - name: Read dotenv
+        uses: xom9ikk/dotenv@v2
+      - name: Log variables
+        run: | 
+          echo "Java version: $JAVA_VERSION\n" >> $GITHUB_STEP_SUMMARY
+          echo "Java vendor: $JAVA_VENDOR\n" >> $GITHUB_STEP_SUMMARY
       - name: Build the project
         id: gradle-build
         run: ./gradlew build

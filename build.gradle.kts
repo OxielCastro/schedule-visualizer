@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("application")
+    id("co.uzzu.dotenv.gradle") version "4.0.0"
     id("org.javamodularity.moduleplugin") version "1.8.9" apply false
     id("org.openjfx.javafxplugin") version "0.1.0"
     id("org.beryx.jlink") version "2.24.1"
@@ -8,9 +9,22 @@ plugins {
     jacoco
 }
 
+val vendors = mapOf(
+    "ADOPTIUM" to JvmVendorSpec.ADOPTIUM,
+    "AMAZON" to JvmVendorSpec.AMAZON,
+    "APPLE" to JvmVendorSpec.APPLE,
+    "AZUL" to JvmVendorSpec.AZUL,
+    "MICROSOFT" to JvmVendorSpec.MICROSOFT,
+    "ORACLE" to JvmVendorSpec.ORACLE,
+    "IBM" to JvmVendorSpec.IBM,
+)
+
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
+        val javaVersion = env.fetch("JAVA_VERSION", "17")
+        val javaVendor = env.fetch("JAVA_VENDOR", "")
+        languageVersion.set(JavaLanguageVersion.of(javaVersion))
+        vendor.set(vendors.getOrDefault(javaVendor, JvmVendorSpec.AMAZON))
     }
 }
 
@@ -55,7 +69,12 @@ pmd {
     toolVersion = "6.55.0"
     isConsoleOutput = false
     isIgnoreFailures = true
-    ruleSets = listOf("category/java/errorprone.xml", "category/java/design.xml", "category/java/codestyle.xml", "category/java/bestpractices.xml")
+    ruleSets = listOf(
+        "category/java/errorprone.xml",
+        "category/java/design.xml",
+        "category/java/codestyle.xml",
+        "category/java/bestpractices.xml"
+    )
 }
 
 tasks.test {
