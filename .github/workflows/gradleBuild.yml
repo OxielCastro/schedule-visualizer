@@ -35,13 +35,12 @@ jobs:
           name: coverage-report
           path: _site/coverage
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
     
   pages_deploy:
     needs: prepare_site
     runs-on: ubuntu-latest
     permissions:
-      actions: read
       pages: write
       id-token: write
     environment:
