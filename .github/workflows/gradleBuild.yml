@@ -14,10 +14,11 @@ jobs:
         run: | 
           echo "Java version: $JAVA_VERSION" >> $GITHUB_STEP_SUMMARY
           echo "Java vendor: $JAVA_VENDOR" >> $GITHUB_STEP_SUMMARY
+          echo "Java distro: $JAVA_DISTRIBUTION" >> $GITHUB_STEP_SUMMARY
       - name: Cache stuff
         uses: actions/setup-java@v4
         with:
-          distribution: ${{ fromJSON('{ "AMAZON": "corretto", "ADOPTIUM": "temurin" }')[env.JAVA_VERSION]}}
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
           java-version: ${{ env.JAVA_VERSION }}
           cache: gradle
       - name: Build the project
