@@ -69,12 +69,13 @@ pmd {
     toolVersion = "6.55.0"
     isConsoleOutput = false
     isIgnoreFailures = true
-    ruleSets = listOf(
-        "category/java/errorprone.xml",
-        "category/java/design.xml",
-        "category/java/codestyle.xml",
-        "category/java/bestpractices.xml"
-    )
+    ruleSetFiles(files("config/pmd.xml"))
+//    ruleSets = listOf(
+//        "category/java/errorprone.xml",
+//        "category/java/design.xml",
+//        "category/java/codestyle.xml",
+//        "category/java/bestpractices.xml"
+//    )
 }
 
 tasks.test {
