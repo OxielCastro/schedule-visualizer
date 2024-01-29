@@ -12,8 +12,14 @@ jobs:
         uses: xom9ikk/dotenv@v2
       - name: Log variables
         run: | 
-          echo "Java version: $JAVA_VERSION\n" >> $GITHUB_STEP_SUMMARY
-          echo "Java vendor: $JAVA_VENDOR\n" >> $GITHUB_STEP_SUMMARY
+          echo "Java version: $JAVA_VERSION" >> $GITHUB_STEP_SUMMARY
+          echo "Java vendor: $JAVA_VENDOR" >> $GITHUB_STEP_SUMMARY
+      - name: Cache stuff
+        uses: actions/setup-java@v4
+        with:
+          distribution: ${{ fromJSON({'AMAZON' => 'corretto', 'ADOPTIUM' => 'temurin' })[env.JAVA_VERSION]}}
+          java-version: ${{ env.JAVA_VERSION }}
+          cache: gradle
       - name: Build the project
         id: gradle-build
         run: ./gradlew build
