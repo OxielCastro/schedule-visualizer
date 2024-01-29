@@ -17,7 +17,7 @@ jobs:
       - name: Cache stuff
         uses: actions/setup-java@v4
         with:
-          distribution: ${{ fromJSON('{\'AMAZON\' => \'corretto\', \'ADOPTIUM\' => \'temurin\' }')[env.JAVA_VERSION]}}
+          distribution: ${{ fromJSON('{ "AMAZON": "corretto", "ADOPTIUM": "temurin" }')[env.JAVA_VERSION]}}
           java-version: ${{ env.JAVA_VERSION }}
           cache: gradle
       - name: Build the project
