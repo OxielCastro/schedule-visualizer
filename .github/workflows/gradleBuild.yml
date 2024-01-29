@@ -43,7 +43,9 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: pmd-report
-          path: _site/pmd.html      
+          path: _site/pmd
+      - name: Rename pmd report file
+        run: mv _site/pmd/main.html _site/pmd/index.html 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
     
