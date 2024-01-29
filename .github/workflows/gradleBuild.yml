@@ -29,11 +29,21 @@ jobs:
     needs: buildGradle
     runs-on: ubuntu-latest
     steps:
+      - name: Check out _site directory
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            _site
       - name: Download coverage report
         uses: actions/download-artifact@v4
         with:
           name: coverage-report
           path: _site/coverage
+      - name: Download pmd report
+        uses: actions/download-artifact@v4
+        with:
+          name: pmd-report
+          path: _site/pmd.html      
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
     
