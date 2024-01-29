@@ -9,6 +9,7 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v4
       - name: Build the project
+        id: gradle-build
         run: ./gradlew build
       - name: Upload PMD report
         uses: actions/upload-artifact@v4
@@ -25,6 +26,8 @@ jobs:
         if: always()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: ${{ steps.gradle-build.outcome }}
+          color:  ${{ steps.gradle-build.outcome == "failure" && "0xeb6154" || "0x1ac949" }}
   prepare_site:
     needs: buildGradle
     runs-on: ubuntu-latest
@@ -45,10 +48,10 @@ jobs:
           name: pmd-report
           path: _site/pmd
       - name: Rename pmd report file
-        run: mv _site/pmd/main.html _site/pmd/index.html 
+        run: mv _site/pmd/main.html _site/pmd/index.html
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
-    
+
   pages_deploy:
     needs: prepare_site
     runs-on: ubuntu-latest
