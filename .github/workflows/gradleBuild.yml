@@ -27,7 +27,7 @@ jobs:
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           status: ${{ steps.gradle-build.outcome }}
-          color:  ${{ steps.gradle-build.outcome == "failure" && "0xeb6154" || "0x1ac949" }}
+          color:  ${{ steps.gradle-build.outcome == 'failure' && '0xeb6154' || '0x1ac949' }}
   prepare_site:
     needs: buildGradle
     runs-on: ubuntu-latest
