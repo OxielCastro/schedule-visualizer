@@ -18,6 +18,7 @@ class HCTimeSlot implements TimeSlot {
         return weekdaysString + "-" + slotnum;
     }
 
+    @SuppressWarnings("PMD.CyclomaticComplexity")
     public DayTime getStartTime() {
         return switch (slotnum) {
             case 1 -> new DayTime(8, 0);
@@ -34,6 +35,7 @@ class HCTimeSlot implements TimeSlot {
         };
     }
 
+    @SuppressWarnings("PMD.CyclomaticComplexity")
     public DayTime getEndTime() {
         return switch (slotnum) {
             case 1 -> new DayTime(9, 10);
