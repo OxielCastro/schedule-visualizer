@@ -5,12 +5,8 @@ import edu.hanover.schedulevisualizer.core.Weekday;
 import edu.hanover.schedulevisualizer.observable.MyObserver;
 import edu.hanover.schedulevisualizer.ui.controller.TimeSlotGridController;
 import javafx.application.Platform;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
