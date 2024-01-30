@@ -29,5 +29,10 @@
             <property name="maxfields" value="4" />
         </properties>
     </rule>
+    <rule ref="category/java/codestyle.xml/LongVariable">
+        <properties>
+            <property name="minimum" value="21" />
+        </properties>
+    </rule>
 
 </ruleset>

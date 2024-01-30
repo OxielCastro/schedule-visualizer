@@ -18,13 +18,13 @@ public class Context {
     private long courseId;
     private String id;
 
-    protected Context(){
+    protected Context() {
         this.schedule = new Schedule(List.of(
                 new Section("CS", "220", "Fundamentals of Computer Science", makeHCTimeSlot(Weekday.MWF(), 1)),
                 new Section("MAT", "121", "Calculus I", makeHCTimeSlot(List.of(Weekday.Tuesday), 7)),
                 new Section("FY", "101", "First Year", makeUnassignedTimeslot()),
                 new Section("FY2", "102", "First Year2", makeUnassignedTimeslot())
-        )) ;
+        ));
     }
 
     public TimeSlot makeUnassignedTimeslot() {
@@ -61,6 +61,7 @@ public class Context {
         observers.forEach((obj) -> obj.update(new ArrayList<Section>(schedule.getSections())));
     }
 
+
     public Section getCourseWithId(Long courseId) {
         for (Section section : schedule.getSections()) {
             if (section.getCourseId() == courseId) {
@@ -69,6 +70,7 @@ public class Context {
         }
         throw new RuntimeException("Cannot find course with id: " + courseId);
     }
+
 
     public TimeSlot getTimeslotWithId(String timeslotId) {
         // TODO: Add error-checking if id doesn't exist
@@ -83,6 +85,7 @@ public class Context {
         section.setTimeslot(timeslot);
         System.out.println("Dropped: " + section + timeslot);
     }
+
 
     public void addSections(Section section) {
         schedule.addSection(section);
@@ -103,6 +106,7 @@ public class Context {
         notifyObservers();
     }
 
+
     public void createNewEmptySchedule() {
         this.schedule = new Schedule();
         notifyObservers();
@@ -112,7 +116,7 @@ public class Context {
         instructorMasterList.put(instructor.getId(), instructor);
     }
 
-    public void removeInstructorToMasterList(Instructor instructor){
+    public void removeInstructorToMasterList(Instructor instructor) {
         instructorMasterList.remove(instructor.getId(), instructor);
     }
 
@@ -136,5 +140,8 @@ public class Context {
             acc.add(section.makeString());
         }
         return acc;
-    };
+    }
+
+    ;
+
 }

@@ -19,14 +19,18 @@ public class TimeslotIdTest {
     public void reassignedTimeSlot() {
         // Create Course, Create Timeslot (2), call assign, check course has new time slot
         Context context = Context.getInstance();
-        TimeSlot initialTimeslot = context.makeHCTimeSlot(Weekday.MWF(), 1);
+        TimeSlot initialTimeslot = context.makeHCTimeSlot(Weekday.MWF(), 1);  //originalTimeSlot
         TimeSlot newTimeSlot = context.makeHCTimeSlot(Weekday.MWF(), 2);
-        Section section = new Section("ABC", "220", "Fundamentals of Computer Science", initialTimeslot);
+        Section section = new Section("ABC", "220", "Fundamentals of Computer Science", initialTimeslot); // Extract method
         context.addSections(section);
         context.assignTimeslot(section.getCourseId(), newTimeSlot.getId());
         Section updatedSection = context.getCourseWithId(section.getCourseId());
         assertThat(updatedSection.getTimeslot(), equalTo(newTimeSlot));
     }
+
+
+
+
 
     @Test
     public void assignInvalidTimeslot() {
@@ -46,6 +50,7 @@ public class TimeslotIdTest {
             context.assignTimeslot(1234, newTimeSlot.getId());
         });
     }
+
 
     @Test
     public void notifyObservers() {
