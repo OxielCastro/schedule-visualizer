@@ -19,6 +19,7 @@
     <rule ref="category/java/codestyle.xml">
         <exclude name="ControlStatementBraces"/>
         <exclude name="DefaultPackage"/>
+        <exclude name="OnlyOneReturn"></exclude>
     </rule>
 
     <rule ref="category/java/bestpractices.xml">
