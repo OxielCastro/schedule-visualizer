@@ -15,18 +15,18 @@ public class DragAndDropController {
 
     public DragAndDropController() {}
 
-    public void setupDropTarget(DropTarget target) {
+    public void setupDropTarget(final DropTarget target) {
         setupOnDragOver(target);
         setupOnDragEntered(target);
         setupOnDragExited(target);
         setupOnDragDropped(target);
     }
 
-    public void setupDragSource(DragSource source) {
+    public void setupDragSource(final DragSource source) {
         source.getNode().setOnDragDetected(event -> {
-            Dragboard db = source.getNode().startDragAndDrop(TransferMode.ANY);
+            final Dragboard db = source.getNode().startDragAndDrop(TransferMode.ANY);
 
-            ClipboardContent content = new ClipboardContent();
+            final ClipboardContent content = new ClipboardContent();
             content.putString(source.getDraggedContent());
             db.setContent(content);
             source.indicateDragStarted();
@@ -38,18 +38,18 @@ public class DragAndDropController {
     }
 
 
-    private void setupOnDragDropped(DropTarget target) {
+    private void setupOnDragDropped(final DropTarget target) {
         target.getNode().setOnDragDropped(event -> {
             // TODO: needs to move correct version of this code to actual target
-            boolean success = completeTheDragAndDrop(event, target);
+            final boolean success = completeTheDragAndDrop(event, target);
             event.setDropCompleted(success);
 
             event.consume();
         });
     }
 
-    private boolean completeTheDragAndDrop(DragEvent event, DropTarget target) {
-        Dragboard db = event.getDragboard();
+    private boolean completeTheDragAndDrop(final DragEvent event, final DropTarget target) {
+        final Dragboard db = event.getDragboard();
 
         if (db.hasString()) {
             System.out.println(db.getString());
@@ -58,14 +58,14 @@ public class DragAndDropController {
         return false;
     }
 
-    private void setupOnDragExited(DropTarget target) {
+    private void setupOnDragExited(final DropTarget target) {
         target.getNode().setOnDragExited(event -> {
             target.clearValidDropTarget();
             event.consume();
         });
     }
 
-    private void setupOnDragEntered(DropTarget target) {
+    private void setupOnDragEntered(final DropTarget target) {
         target.getNode().setOnDragEntered(event -> {
             if (isValidSourceAndContent(event, target)) {
                 target.signalValidDropTarget();
@@ -75,21 +75,21 @@ public class DragAndDropController {
         });
     }
 
-    private boolean isValidSourceAndContent(DragEvent event, DropTarget target) {
+    private boolean isValidSourceAndContent(final DragEvent event, final DropTarget target) {
         return containsGestureSource(event.getGestureSource(), target) &&
                 isValidDragboardContent(event);
     }
 
-    private static boolean isValidDragboardContent(DragEvent event) {
+    private static boolean isValidDragboardContent(final DragEvent event) {
         return event.getDragboard().hasString();
     }
 
-    private boolean containsGestureSource(Object gestureSource, DropTarget target) {
+    private boolean containsGestureSource(final Object gestureSource, final DropTarget target) {
         // TODO: Not exactly what it says, allows self-drops
         return gestureSource != target;
     }
 
-    private void setupOnDragOver(DropTarget target) {
+    private void setupOnDragOver(final DropTarget target) {
         target.getNode().setOnDragOver(
                 event -> {
                     if (isValidSourceAndContent(event, target)) {
@@ -102,7 +102,7 @@ public class DragAndDropController {
                 });
     }
 
-    public void setDropExecutor(DropExecutor dropExecutor) {
+    public void setDropExecutor(final DropExecutor dropExecutor) {
         this.dropExecutor = dropExecutor;
     }
 }

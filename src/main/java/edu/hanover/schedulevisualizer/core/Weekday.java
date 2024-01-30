@@ -11,7 +11,7 @@ public enum Weekday {
 
     private final String abbr;
 
-    Weekday(String abbr) {
+    Weekday(final String abbr) {
         this.abbr = abbr;
     }
 

@@ -10,14 +10,14 @@
         private TimeSlot timeslot;
         private Instructor instructor;
         private List<Instructor> instructorList = new ArrayList<>();
-        public Section(String prefix, String courseNum, String courseName, TimeSlot timeslot) {
+        public Section(final String prefix, final String courseNum, final String courseName, final TimeSlot timeslot) {
             this.courseId = nextAvailableCourseId;
             nextAvailableCourseId += 1;
             this.course = new Course(prefix, courseNum, courseName);
             this.timeslot = timeslot;
         }
 
-        public Section(Course course, TimeSlot timeslot) {
+        public Section(final Course course, final TimeSlot timeslot) {
             this.courseId = nextAvailableCourseId;
             nextAvailableCourseId += 1;
             this.course = course;
@@ -49,12 +49,12 @@
             return courseId;
         }
 
-        public void setTimeslot(TimeSlot timeslot) {
+        public void setTimeslot(final TimeSlot timeslot) {
             // TODO: Set observable
             this.timeslot = timeslot;
         }
 
-        public void setInstructor(Instructor instructor) {
+        public void setInstructor(final Instructor instructor) {
             this.instructor = instructor;
         }
 
@@ -62,34 +62,34 @@
             return instructorList;
         }
 
-        public void addInstructor(Instructor instructor) {
+        public void addInstructor(final Instructor instructor) {
             if (!instructorList.contains(instructor)) {
                 instructorList.add(instructor);
             }
         }
 
-        public void changeInstructor(Instructor oldInstructor, Instructor newInstructor) {
+        public void changeInstructor(final Instructor oldInstructor, final Instructor newInstructor) {
             if (instructorList.contains(oldInstructor)) {
                 removeInstructor(oldInstructor);
                 addInstructor(newInstructor);
             }
         }
 
-        public void removeInstructor(Instructor instructor) {
+        public void removeInstructor(final Instructor instructor) {
             instructorList.remove(instructor);
         }
 
-        public Boolean IsSameCourse(Section section1) {
+        public Boolean IsSameCourse(final Section section1) {
             return (section1.course.equals(this.course));
         }
 
-        public boolean hasInstructor(Instructor instr) {
+        public boolean hasInstructor(final Instructor instr) {
             return this.getInstructorList().contains(instr);
         }
 
         public String makeString(){
             String acc = "";
-            for (Weekday weekday : timeslot.getWeekdayList()) {
+            for (final Weekday weekday : timeslot.getWeekdayList()) {
                 acc = acc + weekday.toShortString();
             }
             return course.getPrefix() + course.getCourseNum() + " " + acc + " " + timeslot.toString();

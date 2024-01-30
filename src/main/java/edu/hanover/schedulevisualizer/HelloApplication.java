@@ -16,10 +16,10 @@ public class HelloApplication extends Application {
     private final App app = new App();
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(final Stage stage) throws IOException {
         stage.getIcons().add(new Image(HelloApplication.class.getResourceAsStream("icon.png")));
         app.startApp(stage);
-        Thread thread = new Thread() {
+        final Thread thread = new Thread() {
             public void run() {
                 try {
                     Thread.sleep(1000);
@@ -32,12 +32,12 @@ public class HelloApplication extends Application {
         thread.start();
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         DragAndDropController.getInstance().setDropExecutor(new DropExecutor() {
             // Add methods to call on Context.getInstance()
-            public boolean executeTheDrop(DropTarget target, Dragboard db) {
-                Long courseId = Long.valueOf(db.getString());
-                String timeslotId = target.getTimeslotId();
+            public boolean executeTheDrop(final DropTarget target, final Dragboard db) {
+                final Long courseId = Long.valueOf(db.getString());
+                final String timeslotId = target.getTimeslotId();
                 Context.getInstance().moveCourseToTimeslot(courseId, timeslotId);
                 return true;
             }

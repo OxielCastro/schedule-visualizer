@@ -3,19 +3,19 @@ public class DayTime {
     public int hours;
     public int minutes;
 
-    public DayTime(int hours, int minutes) {
+    public DayTime(final int hours, final int minutes) {
         this.hours = hours;
         this.minutes = minutes;
     }
 
-    public boolean equals(Object other){
+    public boolean equals(final Object other){
         if(other == null) return false;
         if (other.getClass() != getClass()) return false;
-        DayTime dt = (DayTime) other;
+        final DayTime dt = (DayTime) other;
         return hours == dt.hours && minutes == dt.minutes;
     }
 
-    public boolean isEarlier(DayTime other) {
+    public boolean isEarlier(final DayTime other) {
         return hours < other.hours ||
                 (hours == other.hours && minutes < other.minutes);
     }

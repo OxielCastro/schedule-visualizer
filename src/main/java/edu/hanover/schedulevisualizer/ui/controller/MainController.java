@@ -10,7 +10,7 @@ public class MainController {
     private SidePanel sidePanel;
     private Button sidePanelButton;
 
-    public MainController(SidePanel sidePanel, Button sidePanelButton, Button newScheduleButton) {
+    public MainController(final SidePanel sidePanel, final Button sidePanelButton, final Button newScheduleButton) {
         this.sidePanel = sidePanel;
         this.sidePanelButton = sidePanelButton;
         this.newScheduleButton = newScheduleButton;
@@ -20,12 +20,12 @@ public class MainController {
     }
     private boolean panelVisible = false;
 
-    public void onToggleSidePanel(ActionEvent event) {
+    public void onToggleSidePanel(final ActionEvent event) {
         setPanelVisible(!getPanelVisible());
     }
 
-    private void createNewEmptySchedule(ActionEvent event) {
-        Context context = Context.getInstance();
+    private void createNewEmptySchedule(final ActionEvent event) {
+        final Context context = Context.getInstance();
         context.createNewEmptySchedule();
     }
 
@@ -33,7 +33,7 @@ public class MainController {
         return panelVisible;
     }
 
-    void setPanelVisible(boolean panelVisible) {
+    void setPanelVisible(final boolean panelVisible) {
         this.panelVisible = panelVisible;
         sidePanel.setVisible(panelVisible);
         sidePanel.setManaged(panelVisible);

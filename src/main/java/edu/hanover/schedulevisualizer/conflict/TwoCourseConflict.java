@@ -9,7 +9,7 @@ public class TwoCourseConflict implements Conflict {
     Section section1;
     Section section2;
 
-    public TwoCourseConflict(Section section1, Section section2) {
+    public TwoCourseConflict(final Section section1, final Section section2) {
         this.section1 = section1;
         this.section2 = section2;
     }
@@ -21,10 +21,10 @@ public class TwoCourseConflict implements Conflict {
 
     @Override
     @SuppressWarnings("PMD.ShortVariable")
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TwoCourseConflict that = (TwoCourseConflict) o;
+        final TwoCourseConflict that = (TwoCourseConflict) o;
         return Objects.equals(section1, that.section1) && Objects.equals(section2, that.section2);
     }
 

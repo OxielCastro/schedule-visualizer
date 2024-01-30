@@ -14,7 +14,7 @@ class HCTimeSlot implements TimeSlot {
     @Override
     public String getId() {
         String weekdaysString = "";
-        for (Weekday w : weekdayList) { weekdaysString += w; }
+        for (final Weekday w : weekdayList) { weekdaysString += w; }
         return weekdaysString + "-" + slotnum;
     }
 
@@ -55,27 +55,27 @@ class HCTimeSlot implements TimeSlot {
         return weekdayList;
     }
 
-    public boolean overlaps(TimeSlot otherSlot) {
-        HCTimeSlot hcOtherSlot = (HCTimeSlot) otherSlot;
+    public boolean overlaps(final TimeSlot otherSlot) {
+        final HCTimeSlot hcOtherSlot = (HCTimeSlot) otherSlot;
         return hcOtherSlot.slotnum == slotnum &&
                 hasDaysInCommonWith(hcOtherSlot);
 
     }
 
-    public void ifAssignedSlotNumberDo(Consumer<Integer> f) {
+    public void ifAssignedSlotNumberDo(final Consumer<Integer> f) {
         f.accept(slotnum);
     }
 
-    public void ifUnAssignedSlotNumberDo(Runnable f){
+    public void ifUnAssignedSlotNumberDo(Runnable f){ //NOPMD
         // does nothing
     }
 
 
-    public void ifUnassignedSlotDo(Runnable runnable) {
+    public void ifUnassignedSlotDo(final Runnable runnable) {
     }
 
-    private boolean hasDaysInCommonWith(HCTimeSlot hcOtherSlot) {
-        for(Weekday day1 : weekdayList) {
+    private boolean hasDaysInCommonWith(final HCTimeSlot hcOtherSlot) {
+        for(final Weekday day1 : weekdayList) {
             if (hcOtherSlot.weekdayList.contains(day1)) return true;
         }
         return false;

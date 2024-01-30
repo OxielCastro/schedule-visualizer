@@ -22,16 +22,16 @@ class UnassignedTimeSlot implements TimeSlot {
         return List.of();
     }
 
-    public boolean overlaps(TimeSlot otherSlot) {
+    public boolean overlaps(final TimeSlot otherSlot) {
         return false;
     }
 
-    public void ifAssignedSlotNumberDo(Consumer<Integer> f) {
+    public void ifAssignedSlotNumberDo(final Consumer<Integer> f) {
         // Do nothing if timeslot is not assigned number
     }
 
 
-    public void ifUnassignedSlotDo(Runnable runnable) {
+    public void ifUnassignedSlotDo(final Runnable runnable) {
         runnable.run();
     }
 }

@@ -10,30 +10,30 @@ public class Schedule implements Iterable<Section>{
         this(new HashSet<Section>());
     }
 
-    public Schedule(Collection<Section> collection) {
+    public Schedule(final Collection<Section> collection) {
         this.sections = new HashSet<Section>(collection);
     }
 
-    public List<Section> findSectionFor(Instructor instr) {
+    public List<Section> findSectionFor(final Instructor instr) {
         return getSections()
                 .stream().filter(section -> section.hasInstructor(instr))
                 .collect(Collectors.toList());
     }
 
     public Collection<Section> getSections(){
-        Collection<Section> sectionsToReturn = new HashSet<Section>(sections);
-        return sectionsToReturn;
+        final HashSet<Section> sections1 = new HashSet<>(sections);
+        return sections1;
     }
 
-    public void addSection(Section section) {
+    public void addSection(final Section section) {
         sections.add(section);
     }
 
-    public void removeSection(Section section) {
+    public void removeSection(final Section section) {
         sections.remove(section);
     }
 
-    public boolean hasSection(Section section) { return sections.contains(section); }
+    public boolean hasSection(final Section section) { return sections.contains(section); }
 
     public Iterator<Section> iterator() {
         return sections.iterator();

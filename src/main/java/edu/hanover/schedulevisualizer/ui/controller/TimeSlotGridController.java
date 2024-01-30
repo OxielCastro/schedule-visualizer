@@ -8,7 +8,7 @@ public class TimeSlotGridController {
 
     Context context;
 
-    public TimeSlotGridController(TimeSlotGrid grid) {
+    public TimeSlotGridController(final TimeSlotGrid grid) {
         this.grid = grid;
         this.context = Context.getInstance();
         context.addObserver(grid);

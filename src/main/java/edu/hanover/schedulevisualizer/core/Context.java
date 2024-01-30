@@ -31,11 +31,11 @@ public class Context {
         return addIfNeededThenReturn(UnassignedTimeSlot.getInstance());
     }
 
-    public TimeSlot makeHCTimeSlot(List<Weekday> Tuesday, int slotnum) {
+    public TimeSlot makeHCTimeSlot(final List<Weekday> Tuesday, final int slotnum) {
         return addIfNeededThenReturn(new HCTimeSlot(Tuesday, slotnum));
     }
 
-    private TimeSlot addIfNeededThenReturn(TimeSlot timeSlot) {
+    private TimeSlot addIfNeededThenReturn(final TimeSlot timeSlot) {
         if (createdTimeslots.containsKey(timeSlot.getId())) {
             return createdTimeslots.get(timeSlot.getId()); //putIfAbsent method will fix exit point issue
         }
@@ -53,7 +53,7 @@ public class Context {
         notifyObservers();
     }
 
-    public void addObserver(MyObserver<List<Section>> observer) {
+    public void addObserver(final MyObserver<List<Section>> observer) {
         observers.add(observer);
     }
 
@@ -62,8 +62,8 @@ public class Context {
     }
 
 
-    public Section getCourseWithId(Long courseId) {
-        for (Section section : schedule.getSections()) {
+    public Section getCourseWithId(final Long courseId) {
+        for (final Section section : schedule.getSections()) {
             if (section.getCourseId() == courseId) {
                 return section;
             }
@@ -72,36 +72,36 @@ public class Context {
     }
 
 
-    public TimeSlot getTimeslotWithId(String timeslotId) {
+    public TimeSlot getTimeslotWithId(final String timeslotId) {
         // TODO: Add error-checking if id doesn't exist
         if (!createdTimeslots.containsKey(timeslotId))
             throw new RuntimeException("Should not have a timeslot id that is not stored");
         return createdTimeslots.get(timeslotId);
     }
 
-    public void moveCourseToTimeslot(Long courseId, String timeslotId) {
-        Section section = getCourseWithId(courseId);
-        TimeSlot timeslot = getTimeslotWithId(timeslotId);
+    public void moveCourseToTimeslot(final Long courseId, final String timeslotId) {
+        final Section section = getCourseWithId(courseId);
+        final TimeSlot timeslot = getTimeslotWithId(timeslotId);
         section.setTimeslot(timeslot);
         System.out.println("Dropped: " + section + timeslot);
     }
 
 
-    public void addSections(Section section) {
+    public void addSections(final Section section) {
         schedule.addSection(section);
     }
 
-    public void assignTimeslot(long courseId, String id) {
-        Section section = getCourseWithId(courseId);
-        TimeSlot timeslot = getTimeslotWithId(id);
+    public void assignTimeslot(final long courseId, final String id) {
+        final Section section = getCourseWithId(courseId);
+        final TimeSlot timeslot = getTimeslotWithId(id);
         section.setTimeslot(timeslot);
         notifyObservers();
     }
 
-    public void assignInstructor(long courseId, String id, String instructorId){
-        Section section = getCourseWithId(courseId);
-        TimeSlot timeslot = getTimeslotWithId(id);
-        Instructor instructor = getInstructorWithId(instructorId);
+    public void assignInstructor(final long courseId, final String id, final String instructorId){
+        final Section section = getCourseWithId(courseId);
+        final TimeSlot timeslot = getTimeslotWithId(id);
+        final Instructor instructor = getInstructorWithId(instructorId);
         section.setInstructor(instructor);
         notifyObservers();
     }
@@ -112,19 +112,19 @@ public class Context {
         notifyObservers();
     }
 
-    public void addInstructorToMasterList(Instructor instructor) {
+    public void addInstructorToMasterList(final Instructor instructor) {
         instructorMasterList.put(instructor.getId(), instructor);
     }
 
-    public void removeInstructorToMasterList(Instructor instructor) {
+    public void removeInstructorToMasterList(final Instructor instructor) {
         instructorMasterList.remove(instructor.getId(), instructor);
     }
 
-    public boolean isInstructorInMasterList(String instructorId) {
+    public boolean isInstructorInMasterList(final String instructorId) {
         return instructorMasterList.containsKey(instructorId);
     }
 
-    public Instructor getInstructorWithId(String instructorId) {
+    public Instructor getInstructorWithId(final String instructorId) {
         if (isInstructorInMasterList(instructorId)) {
             return instructorMasterList.get(instructorId);
         } else {
@@ -132,11 +132,11 @@ public class Context {
         }
     }
 
-    public List<String> getInstructorSchedule(String id) {
-        Instructor instructor = getInstructorWithId(id);
-        List<Section> instructorSections = schedule.findSectionFor(instructor);
-        List<String> acc = new ArrayList<>();
-        for (Section section : instructorSections) {
+    public List<String> getInstructorSchedule(final String id) {
+        final Instructor instructor = getInstructorWithId(id);
+        final List<Section> instructorSections = schedule.findSectionFor(instructor);
+        final List<String> acc = new ArrayList<>();
+        for (final Section section : instructorSections) {
             acc.add(section.makeString());
         }
         return acc;

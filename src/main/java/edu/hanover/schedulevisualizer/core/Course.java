@@ -7,7 +7,7 @@ public class Course {
     final String courseNum;
     final String courseName;
 
-    public Course(String prefix, String courseNum, String courseName) {
+    public Course(final String prefix, final String courseNum, final String courseName) {
         this.prefix = prefix;
         this.courseNum = courseNum;
         this.courseName = courseName;
@@ -31,10 +31,10 @@ public class Course {
 
     @Override
     @SuppressWarnings("PMD.ShortVariable")
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Course course = (Course) o;
+        final Course course = (Course) o;
         return Objects.equals(prefix, course.prefix) &&
                 Objects.equals(courseNum, course.courseNum) &&
                 Objects.equals(courseName, course.courseName);

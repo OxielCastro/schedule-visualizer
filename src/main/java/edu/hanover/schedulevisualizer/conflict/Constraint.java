@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface Constraint {
-    default List<Optional<Conflict>> generateConflicts(List<Section> sectionlist) {
-        List<Optional<Conflict>> conflictlist = new ArrayList<>();
+    default List<Optional<Conflict>> generateConflicts(final List<Section> sectionlist) {
+        final List<Optional<Conflict>> conflictlist = new ArrayList<>();
         for (int i = 0; i < sectionlist.size(); i++) {
             for (int j = i + 1; j < sectionlist.size(); j++) {
                 conflictlist.add(generateConflict(sectionlist.get(i), sectionlist.get(j)));

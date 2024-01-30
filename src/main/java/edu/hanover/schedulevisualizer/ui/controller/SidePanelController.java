@@ -8,10 +8,10 @@ public class SidePanelController {
     public SidePanel panel;
     public UnassignedCourseList unassignedCourseList;
 
-    public SidePanelController(SidePanel panel, UnassignedCourseList unassignedCourseList) {
+    public SidePanelController(final SidePanel panel, final UnassignedCourseList unassignedCourseList) {
         this.panel = panel;
         this.unassignedCourseList = unassignedCourseList;
-        Context context = Context.getInstance();
+        final Context context = Context.getInstance();
         context.addObserver(unassignedCourseList);
         unassignedCourseList.setAsDropTarget();
     }

@@ -7,8 +7,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class App {
-    public void startApp(Stage stage) throws IOException {
-        Scene scene = new Scene(new MainView());
+    public void startApp(final Stage stage) throws IOException {
+        final Scene scene = new Scene(new MainView());
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();

@@ -8,7 +8,7 @@ import java.util.Optional;
 public class InstructorConstraint implements Constraint {
     Instructor instructor;
 
-    public boolean twoConflictingCourses(Section section1, Section section2) {
+    public boolean twoConflictingCourses(final Section section1, final Section section2) {
         if (section1.getInstructorList().isEmpty() || section2.getInstructorList().isEmpty()) {
             return false;
         }
