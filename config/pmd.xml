@@ -18,12 +18,10 @@
 
     <rule ref="category/java/codestyle.xml">
         <exclude name="ControlStatementBraces"/>
+        <exclude name="DefaultPackage"/>
     </rule>
 
     <rule ref="category/java/bestpractices.xml">
-    </rule>
-
-    <rule ref="category/java/codestyle.xml/DefaultPackage" >
     </rule>
 
     <rule ref="category/java/design.xml/TooManyFields">
