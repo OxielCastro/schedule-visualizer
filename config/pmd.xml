@@ -22,5 +22,10 @@
     <rule ref="category/java/bestpractices.xml">
 
     </rule>
+    <rule ref="category/java/design.xml/TooManyFields">
+        <properties>
+            <property name="maxfields" value="4" />
+        </properties>
+    </rule>
 
 </ruleset>
