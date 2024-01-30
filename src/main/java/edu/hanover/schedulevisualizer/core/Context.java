@@ -37,9 +37,9 @@ public class Context {
 
     private TimeSlot addIfNeededThenReturn(TimeSlot timeSlot) {
         if (createdTimeslots.containsKey(timeSlot.getId())) {
-            return createdTimeslots.get(timeSlot.getId());
+            return createdTimeslots.get(timeSlot.getId()); //putIfAbsent method will fix exit point issue
         }
-        createdTimeslots.put(timeSlot.getId(), timeSlot);
+        createdTimeslots.putIfAbsent(timeSlot.getId(), timeSlot);
         return timeSlot;
     }
 
