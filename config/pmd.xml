@@ -11,17 +11,21 @@
 
     <include-pattern>.*</include-pattern>
     <rule ref="category/java/errorprone.xml">
-
     </rule>
+
     <rule ref="category/java/design.xml">
-
     </rule>
+
     <rule ref="category/java/codestyle.xml">
         <exclude name="ControlStatementBraces"/>
     </rule>
-    <rule ref="category/java/bestpractices.xml">
 
+    <rule ref="category/java/bestpractices.xml">
     </rule>
+
+    <rule ref="category/java/codestyle.xml/DefaultPackage" >
+    </rule>
+
     <rule ref="category/java/design.xml/TooManyFields">
         <properties>
             <property name="maxfields" value="4" />
