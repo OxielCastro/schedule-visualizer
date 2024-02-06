@@ -45,6 +45,10 @@ public class Context {
 
     ;//prevents others from calling
 
+    /**
+     * Get a reference to the singleton instance for Context.
+     * @return the singleton instance of {@link Context}
+     */
     public static Context getInstance() {
         return instance;
     }
