@@ -34,7 +34,10 @@ repositories {
     mavenCentral()
 }
 
+val markdownDoclet by configurations.creating
+
 dependencies {
+    markdownDoclet("org.jdrupes.mdoclet:doclet:4.1.0")
     implementation("org.openjfx:javafx-controls:19")
     implementation("org.openjfx:javafx-fxml:19")
     implementation("org.openjfx:javafx-web:19")
@@ -83,4 +86,21 @@ tasks.named<Task>("jacocoTestReport") {
 
 tasks.build {
     dependsOn(tasks.javadoc)
+}
+
+tasks.javadoc {
+    options.docletpath = markdownDoclet.files.toList()
+    options.doclet = "org.jdrupes.mdoclet.MDoclet"
+    options.quiet()
+    (options as CoreJavadocOptions).addStringOption("Xdoclint:-html")
+
+    options.jFlags = listOf(
+        "--add-exports=jdk.compiler/com.sun.tools.doclint=ALL-UNNAMED",
+        "--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED",
+        "--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED",
+        "--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED",
+        "--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED",
+        "--add-exports=jdk.javadoc/jdk.javadoc.internal.tool=ALL-UNNAMED",
+        "--add-exports=jdk.javadoc/jdk.javadoc.internal.doclets.toolkit=ALL-UNNAMED",
+        "--add-opens=jdk.javadoc/jdk.javadoc.internal.doclets.toolkit.resources.releases=ALL-UNNAMED")
 }
