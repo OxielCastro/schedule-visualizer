@@ -4,13 +4,22 @@ package edu.hanover.schedulevisualizer.core;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * Represents an unassigned time slot.
+ * indicating a time slot that has not been assigned any specific details.
+ */
 
 class UnassignedTimeSlot implements TimeSlot {
     private final static UnassignedTimeSlot instance = new UnassignedTimeSlot();
 
     UnassignedTimeSlot(){}
 
-    public static UnassignedTimeSlot getInstance() {
+    /**
+     * Get the singleton instance of UnassignedTimeSlot.
+     *
+     * @return The singleton instance of UnassignedTimeSlot.
+     */
+    static UnassignedTimeSlot getInstance() {
         return instance;
     }
 
@@ -29,7 +38,6 @@ class UnassignedTimeSlot implements TimeSlot {
     public void ifAssignedSlotNumberDo(final Consumer<Integer> f) {
         // Do nothing if timeslot is not assigned number
     }
-
 
     public void ifUnassignedSlotDo(final Runnable runnable) {
         runnable.run();
