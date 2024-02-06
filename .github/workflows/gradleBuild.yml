@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: javadocs
-          path: build/docs
+          path: build/docs/javadoc
       - name: Upload PMD report
         uses: actions/upload-artifact@v4
         with:
