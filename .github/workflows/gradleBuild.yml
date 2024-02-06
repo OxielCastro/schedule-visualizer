@@ -24,6 +24,11 @@ jobs:
       - name: Build the project
         id: gradle-build
         run: ./gradlew build
+      - name: Upload Javadocs
+        uses: actions/upload-artifact@v4
+        with:
+          name: javadocs
+          path: build/docs
       - name: Upload PMD report
         uses: actions/upload-artifact@v4
         with:
@@ -50,6 +55,11 @@ jobs:
         with:
           sparse-checkout: |
             _site
+      - name: Download Javadocs
+        uses: actions/download-artifact@v4
+        with:
+          name: javadocs
+          path: _site/docs
       - name: Download coverage report
         uses: actions/download-artifact@v4
         with:

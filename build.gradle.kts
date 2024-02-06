@@ -9,6 +9,8 @@ plugins {
     jacoco
 }
 
+version = env.fetch("VERSION")
+
 val vendors = mapOf(
     "ADOPTIUM" to JvmVendorSpec.ADOPTIUM,
     "AMAZON" to JvmVendorSpec.AMAZON,
@@ -70,12 +72,6 @@ pmd {
     isConsoleOutput = false
     isIgnoreFailures = true
     ruleSetFiles(files("config/pmd.xml"))
-//    ruleSets = listOf(
-//        "category/java/errorprone.xml",
-//        "category/java/design.xml",
-//        "category/java/codestyle.xml",
-//        "category/java/bestpractices.xml"
-//    )
 }
 
 tasks.test {
@@ -83,4 +79,8 @@ tasks.test {
 }
 tasks.named<Task>("jacocoTestReport") {
     dependsOn(tasks.test) // tests are required to run before generating the report
+}
+
+tasks.build {
+    dependsOn(tasks.javadoc)
 }
