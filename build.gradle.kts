@@ -53,6 +53,10 @@ dependencies {
     testImplementation("org.hamcrest:hamcrest:2.2")
     testImplementation("org.testfx:testfx-core:4.0.17")
     testImplementation("org.testfx:testfx-junit5:4.0.17")
+    // Database stuff
+    implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
+    runtimeOnly("org.hibernate.orm:hibernate-core:6.4.3.Final")
+    testRuntimeOnly("com.h2database:h2:2.2.224")
 }
 
 tasks.named<Test>("test") {

@@ -8,6 +8,7 @@ module edu.hanover.schedulevisualizer {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires javafx.graphics;
+    requires jakarta.persistence;
 //    requires annotations;
 //    requires junit;
 
