@@ -1,4 +1,4 @@
-package edu.hanover.schedulevisualizer.Conflicts;
+package edu.hanover.schedulevisualizer.conflict;
 
 public class InstructorPreferenceConstraint {
     public InstructorPreferenceConstraint() {
