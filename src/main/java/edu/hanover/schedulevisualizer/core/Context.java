@@ -106,7 +106,7 @@ public class Context {
         final Section section = getCourseWithId(courseId);
         final TimeSlot timeslot = getTimeslotWithId(id);
         final Instructor instructor = getInstructorWithId(instructorId);
-        section.setInstructor(instructor);
+        section.addInstructor(instructor);
         notifyObservers();
     }
 
