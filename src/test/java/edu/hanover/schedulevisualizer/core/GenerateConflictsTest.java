@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class GenerateConflictsTest {
     @Test
     public void GenerateConflictsTestForTwoCourseConflictWithThreeCourses() {
-        Section section1 = new Section("CS", "321", "Software Development Practicum", new HCTimeSlot(Weekday.MWF(), 1));
-        Section section2 = new Section("CS", "321", "Software Development Practicum", new HCTimeSlot(Weekday.MWF(), 1));
-        Section section3 = new Section("CS", "220", "Fundamentals Of CS", new HCTimeSlot(Weekday.MWF(), 1));
+        Section section1 = new Section(new Course("CS", "321", "Software Development Practicum"), new HCTimeSlot(Weekday.MWF(), 1));
+        Section section2 = new Section(new Course("CS", "321", "Software Development Practicum"), new HCTimeSlot(Weekday.MWF(), 1));
+        Section section3 = new Section(new Course("CS", "220", "Fundamentals Of CS"), new HCTimeSlot(Weekday.MWF(), 1));
         List<Section> sectionlist = new ArrayList<>();
         sectionlist.add(section1);
         sectionlist.add(section2);

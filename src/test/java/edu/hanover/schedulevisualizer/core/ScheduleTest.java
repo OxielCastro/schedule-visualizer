@@ -14,9 +14,9 @@ import static org.mockito.Mockito.*;
 
 public class ScheduleTest {
 
-    private Section cs220 = new Section("CS", "220", "Fundamentals of Computer Science", new HCTimeSlot(Weekday.MWF(), 1));
-    private Section mat121 = new Section("MAT", "121", "Calculus I", new HCTimeSlot(List.of(Weekday.Tuesday), 7));
-    private Section fy101 = new Section("FY", "101", "First Year", new UnassignedTimeSlot());
+    private Section cs220 = new Section(new Course("CS", "220", "Fundamentals of Computer Science"), new HCTimeSlot(Weekday.MWF(), 1));
+    private Section mat121 = new Section(new Course("MAT", "121", "Calculus I"), new HCTimeSlot(List.of(Weekday.Tuesday), 7));
+    private Section fy101 = new Section(new Course("FY", "101", "First Year"), new UnassignedTimeSlot());
 
     @Test
     public void canMakeNewEmptySchedule(){
@@ -114,8 +114,8 @@ public class ScheduleTest {
     public void findSectionForWorksCorrectly() {
         HCTimeSlot MWF1 = new HCTimeSlot(Weekday.MWF(), 1);
         HCTimeSlot MWF2 = new HCTimeSlot(Weekday.MWF(), 2);
-        Section CS220 = new Section("CS", "220", "Fundamentals of Computer Science", MWF1);
-        Section MAT121 = new Section("MAT", "121", "Calculus I", MWF2);
+        Section CS220 = new Section(new Course("CS", "220", "Fundamentals of Computer Science"), MWF1);
+        Section MAT121 = new Section(new Course("MAT", "121", "Calculus I"), MWF2);
         Schedule schedule = new Schedule(List.of(CS220, MAT121)) ;
         Instructor instructor = new Instructor("Barb", "Wahl", "wahlb@hanover.edu");
         CS220.addInstructor(instructor);

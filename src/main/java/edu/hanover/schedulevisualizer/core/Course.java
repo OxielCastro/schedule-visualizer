@@ -1,5 +1,9 @@
 package edu.hanover.schedulevisualizer.core;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
 import java.util.Objects;
 
 /**
@@ -7,11 +11,17 @@ import java.util.Objects;
  * prefix, courseNum, and courseName parameters.
  * @author mattb
  */
+@Entity
 public class Course {
-    final String prefix;
-    final String courseNum;
-    final String courseName;
+    @Id
+    @GeneratedValue
+    int CourseId;
 
+    String prefix;
+    String courseNum;
+    String courseName;
+
+    protected Course() {}
     /**
      * This is the constructor for a particular instance of a course.
      * @param prefix this represents the prefix of a course of a particular department.

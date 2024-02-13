@@ -1,5 +1,4 @@
 package edu.hanover.schedulevisualizer.core;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -18,7 +17,7 @@ public class SectionTest {
     }
     @Test
     private static void assertCreatedCourseHasCorrectParameters(String courseName, String courseNum, String prefix, HCTimeSlot timeslot1) {
-        Section section1 = new Section(prefix, courseNum, courseName, timeslot1);
+        Section section1 = new Section(new Course(prefix, courseNum, courseName), timeslot1);
         assertThat(section1.getPrefix(), equalTo(prefix));
         assertThat(section1.getCourseNum(), equalTo(courseNum));
         assertThat(section1.getCourseName(), equalTo(courseName));
@@ -26,14 +25,14 @@ public class SectionTest {
     }
     @Test
     public void canCombinePrefixAndCourseNumber(){
-        Section section1 = new Section("CS", "223", "Data Structures", new HCTimeSlot(Weekday.MWF(), 1));
+        Section section1 = new Section(new Course("CS", "223", "Data Structures"), new HCTimeSlot(Weekday.MWF(), 1));
         assertThat(section1.getCourseCode(), equalTo("CS 223"));
     }
 
     @Test
     public void canConstructorWorkWithNullTimeSlot() {
         UnassignedTimeSlot nulltimeslot = new UnassignedTimeSlot();
-        Section section1 = new Section("CS", "223", "Data Structures", nulltimeslot);
+        Section section1 = new Section(new Course("CS", "223", "Data Structures"), nulltimeslot);
         assertThat(section1.getTimeslot(), equalTo(nulltimeslot));
     }
 
@@ -50,7 +49,7 @@ public class SectionTest {
     @Test
     public void canAddInstructorList() {
         Instructor barb = new Instructor("Barbara","Wahl", "wahl@hanover.edu");
-        Section section1 = new Section("CS", "223", "Data Structures", null);
+        Section section1 = new Section(new Course("CS", "223", "Data Structures"), null);
         section1.addInstructor(barb);
         assertThat(section1.getInstructorList(), equalTo(List.of(barb)));
     }
@@ -58,7 +57,7 @@ public class SectionTest {
     // This test only add one instructor per section
     @Test
     public void addInstructorToSection() {
-        Section section = new Section("CS", "220", "Fundamentals of Computer Science", null);
+        Section section = new Section(new Course("CS", "220", "Fundamentals of Computer Science"), null);
         Instructor instructor = new Instructor("Barbara", "Wahl", "Wahl@hanover.edu");
         section.addInstructor(instructor);
         assertThat(section.getInstructorList().size(), equalTo(1));
@@ -67,7 +66,7 @@ public class SectionTest {
     // This test is adding more than 1 instructor per section
     @Test
     public void multipleInstructorsInOneSection() {
-        Section section = new Section("MAT", "121", "Calculus I", null);
+        Section section = new Section(new Course("MAT", "121", "Calculus I"), null);
         Instructor instructor1 = new Instructor("Bradley", "Burdick", "burdick@hanover.edu");
         Instructor instructor2 = new Instructor("Carl", "Jagels", "jagels@hanover.edu");
         section.addInstructor(instructor1);

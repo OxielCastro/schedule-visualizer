@@ -18,7 +18,7 @@ public class InstructorReplacementTest {
         Instructor newInstructor = new Instructor("Bradley", "Burdick", "burdick@hanover.edu");
 
         // Create a section assigned to the current instructor
-        Section section = new Section("MAT", "121", "Calculus I", Context.getInstance().makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
+        Section section = new Section(new Course("MAT", "121", "Calculus I"), Context.getInstance().makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
 
         // Assign the section to the current instructor
         section.addInstructor(currentInstructor);
