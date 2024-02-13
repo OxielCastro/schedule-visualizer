@@ -38,5 +38,11 @@
             <property name="minimum" value="21" />
         </properties>
     </rule>
+    <rule ref="category/java/codestyle.xml/ShortVariable">
+        <properties>
+            <property name="minimum" value="0" />
+        </properties>
+    </rule>
+
 
 </ruleset>
