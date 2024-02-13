@@ -11,6 +11,17 @@ import java.util.Optional;
  * Constraints define rules or conditions under which two course sections are considered conflicting.
  */
 
+/**
+ *
+ *
+ * This interface is going to contain the logic for creating a constraint and storing it
+ * in a list. This interface does not return anything excpet for the gnerated conflict list
+ * after it has determined the conflicts.
+ *
+ *
+ *
+ */
+
 public interface Constraint {
 
     /**

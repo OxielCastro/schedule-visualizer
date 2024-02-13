@@ -10,10 +10,7 @@
         private TimeSlot timeslot;
         private List<Instructor> instructorList = new ArrayList<>();
         public Section(final String prefix, final String courseNum, final String courseName, final TimeSlot timeslot) {
-            this.courseId = nextAvailableCourseId;
-            nextAvailableCourseId += 1;
-            this.course = new Course(prefix, courseNum, courseName);
-            this.timeslot = timeslot;
+            this(new Course(prefix, courseNum, courseName), timeslot);
         }
 
         public Section(final Course course, final TimeSlot timeslot) {

@@ -4,7 +4,6 @@ package edu.hanover.schedulevisualizer.core;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -85,8 +84,8 @@ public class    ContextTest {
         context.addInstructorToMasterList(instructor);
 
         // Create sections associated with the instructor
-        Section section1 = new Section("CS", "220", "Fundamentals of Computer Science", context.makeHCTimeSlot(Weekday.MWF(), 1));
-        Section section2 = new Section("MAT", "121", "Calculus I", context.makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
+        Section section1 = new Section(new Course("CS", "220", "Fundamentals of Computer Science"), context.makeHCTimeSlot(Weekday.MWF(), 1));
+        Section section2 = new Section(new Course("MAT", "121", "Calculus I"), context.makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
         section1.addInstructor(instructor);
         section2.addInstructor(instructor);
         context.addSections(section1);
@@ -99,8 +98,8 @@ public class    ContextTest {
     @Test
     public void getInstructorScheduleWorks() {
         // Setup
-        Section CS220 = new Section("CS", "220", "Fundamentals of Computer Science", new HCTimeSlot(Weekday.MWF(), 1));
-        Section MAT121 = new Section("MAT", "121", "Calculus I", new HCTimeSlot(Weekday.MWF(), 2));
+        Section CS220 = new Section(new Course("CS", "220", "Fundamentals of Computer Science"), new HCTimeSlot(Weekday.MWF(), 1));
+        Section MAT121 = new Section(new Course("MAT", "121", "Calculus I"), new HCTimeSlot(Weekday.MWF(), 2));
         Schedule schedule = new Schedule(List.of(CS220, MAT121)) ;
         Instructor instructor = new Instructor("Barb", "Wahl", "wahlb@hanover.edu");
         CS220.addInstructor(instructor);

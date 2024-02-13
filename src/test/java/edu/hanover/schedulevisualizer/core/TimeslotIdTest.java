@@ -2,10 +2,8 @@ package edu.hanover.schedulevisualizer.core;
 
 import edu.hanover.schedulevisualizer.observable.MyObserver;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
 import java.util.List;
-import java.util.Observer;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,7 +19,7 @@ public class TimeslotIdTest {
         Context context = Context.getInstance();
         TimeSlot initialTimeslot = context.makeHCTimeSlot(Weekday.MWF(), 1);  //originalTimeSlot
         TimeSlot newTimeSlot = context.makeHCTimeSlot(Weekday.MWF(), 2);
-        Section section = new Section("ABC", "220", "Fundamentals of Computer Science", initialTimeslot); // Extract method
+        Section section = new Section(new Course("ABC", "220", "Fundamentals of Computer Science"), initialTimeslot); // Extract method
         context.addSections(section);
         context.assignTimeslot(section.getCourseId(), newTimeSlot.getId());
         Section updatedSection = context.getCourseWithId(section.getCourseId());
@@ -59,7 +57,7 @@ public class TimeslotIdTest {
         context.addObserver(mockObserver);
 
         TimeSlot newTimeSlot = context.makeHCTimeSlot(Weekday.MWF(), 3);
-        Section section = new Section("ABC", "325", "Web Application Develop", newTimeSlot);
+        Section section = new Section(new Course("ABC", "325", "Web Application Develop"), newTimeSlot);
         context.addSections(section);
         TimeSlot updatedTimeSlot = context.makeHCTimeSlot(Weekday.MWF(), 4);
         context.assignTimeslot(section.getCourseId(), updatedTimeSlot.getId());

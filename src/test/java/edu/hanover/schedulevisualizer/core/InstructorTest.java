@@ -19,7 +19,7 @@ public class InstructorTest {
     @Test
     public void canAssignInstructorToSection() {
         Instructor instructor1 = new Instructor("Bradley","Burdick", "burdick@hanover.edu");
-        Section CalcI = new Section("MAT", "121", "Calculus I", null);
+        Section CalcI = new Section(new Course("MAT", "121", "Calculus I"), null);
         CalcI.addInstructor(instructor1);
         assertThat(CalcI.getInstructorList(), equalTo(List.of(instructor1)));
     }
@@ -27,8 +27,8 @@ public class InstructorTest {
     @Test
     public void checkForInstructorTimeSlotOverlapTrue() {
         Instructor instructor = new Instructor("Barbara", "Wahl", "wahl@hanover.edu");
-        Section section1 = new Section("CS", "220", "Fundamentals of Computer Science", Context.getInstance().makeHCTimeSlot(Weekday.MWF(), 1));
-        Section section2 = new Section("MAT", "121", "Calculus I", Context.getInstance().makeHCTimeSlot(Weekday.MWF(), 1));
+        Section section1 = new Section(new Course("CS", "220", "Fundamentals of Computer Science"), Context.getInstance().makeHCTimeSlot(Weekday.MWF(), 1));
+        Section section2 = new Section(new Course("MAT", "121", "Calculus I"), Context.getInstance().makeHCTimeSlot(Weekday.MWF(), 1));
 
         section1.addInstructor(instructor);
         section2.addInstructor(instructor);
@@ -39,8 +39,8 @@ public class InstructorTest {
     @Test
     public void checkForInstructorTimeSlotOverlapFalse() {
         Instructor instructor = new Instructor("Barbara", "Wahl", "wahl@hanover.edu");
-        Section section1 = new Section("CS", "220", "Fundamentals of Computer Science", Context.getInstance().makeHCTimeSlot(Weekday.MWF(), 1));
-        Section section2 = new Section("MAT", "121", "Calculus I", Context.getInstance().makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
+        Section section1 = new Section(new Course("CS", "220", "Fundamentals of Computer Science"), Context.getInstance().makeHCTimeSlot(Weekday.MWF(), 1));
+        Section section2 = new Section(new Course("MAT", "121", "Calculus I"), Context.getInstance().makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
 
         section1.addInstructor(instructor);
         section2.addInstructor(instructor);

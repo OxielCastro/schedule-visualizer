@@ -20,10 +20,10 @@ public class Context {
 
     protected Context() {
         this.schedule = new Schedule(List.of(
-                new Section("CS", "220", "Fundamentals of Computer Science", makeHCTimeSlot(Weekday.MWF(), 1)),
-                new Section("MAT", "121", "Calculus I", makeHCTimeSlot(List.of(Weekday.Tuesday), 7)),
-                new Section("FY", "101", "First Year", makeUnassignedTimeslot()),
-                new Section("FY2", "102", "First Year2", makeUnassignedTimeslot())
+                new Section(new Course("CS", "220", "Fundamentals of Computer Science"), makeHCTimeSlot(Weekday.MWF(), 1)),
+                new Section(new Course("MAT", "121", "Calculus I"), makeHCTimeSlot(List.of(Weekday.Tuesday), 7)),
+                new Section(new Course("FY", "101", "First Year"), makeUnassignedTimeslot()),
+                new Section(new Course("FY2", "102", "First Year2"), makeUnassignedTimeslot())
         ));
     }
 
