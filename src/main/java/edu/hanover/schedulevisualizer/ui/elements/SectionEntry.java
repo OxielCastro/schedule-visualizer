@@ -41,7 +41,7 @@ public class SectionEntry extends Label implements DragSource {
         SectionEntry entry = new SectionEntry();
         entry.setText(section.getCourseCode());
         entry.setColor(Color.AQUA);
-        entry.setCourseId(section.getCourseId());
+        entry.setCourseId(section.getSectionId());
         return entry;
     }
 

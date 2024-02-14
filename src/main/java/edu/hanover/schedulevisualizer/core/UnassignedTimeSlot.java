@@ -9,7 +9,7 @@ import java.util.function.Consumer;
  * indicating a time slot that has not been assigned any specific details.
  */
 
-class UnassignedTimeSlot implements TimeSlot {
+public class UnassignedTimeSlot implements TimeSlot {
     private final static UnassignedTimeSlot instance = new UnassignedTimeSlot();
 
     UnassignedTimeSlot(){}
@@ -19,7 +19,7 @@ class UnassignedTimeSlot implements TimeSlot {
      *
      * @return The singleton instance of UnassignedTimeSlot.
      */
-    static UnassignedTimeSlot getInstance() {
+    public static UnassignedTimeSlot getInstance() {
         return instance;
     }
 

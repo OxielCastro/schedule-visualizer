@@ -68,7 +68,7 @@ public class Context {
 
     public Section getCourseWithId(final Long courseId) {
         for (final Section section : schedule.getSections()) {
-            if (section.getCourseId() == courseId) {
+            if (section.getSectionId() == courseId) {
                 return section;
             }
         }

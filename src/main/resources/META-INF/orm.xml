@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+        http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd" version="2.2">
+    <entity class="edu.hanover.schedulevisualizer.core.Course" name="Course" access="FIELD">
+        <attributes>
+            <id name="courseId" access="FIELD">
+                <generated-value/>
+            </id>
+            <basic name="prefix">
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="edu.hanover.schedulevisualizer.core.Section" name="Section" access="FIELD">
+        <attributes>
+            <id name="sectionId" access="FIELD">
+                <generated-value/>
+            </id>
+            <basic name="timeslot" access="FIELD">
+                <convert converter="edu.hanover.schedulevisualizer.db.TimeSlotConverter" />
+            </basic>
+            <many-to-one name="course" access="FIELD">
+            </many-to-one>
+            <many-to-many name="instructorList">
+            </many-to-many>
+        </attributes>
+    </entity>
+    <entity class="edu.hanover.schedulevisualizer.core.Instructor" access="FIELD">
+        <attributes>
+            <id name="Id" access="FIELD"/>
+        </attributes>
+    </entity>
+    <converter class="edu.hanover.schedulevisualizer.db.TimeSlotConverter" auto-apply="false"/>
+</entity-mappings>

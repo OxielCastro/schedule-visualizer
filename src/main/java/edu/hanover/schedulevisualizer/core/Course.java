@@ -13,9 +13,7 @@ import java.util.Objects;
  */
 @Entity
 public class Course {
-    @Id
-    @GeneratedValue
-    int CourseId;
+    public int courseId;
 
     String prefix;
     String courseNum;

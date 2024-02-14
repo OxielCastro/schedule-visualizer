@@ -21,8 +21,8 @@ public class TimeslotIdTest {
         TimeSlot newTimeSlot = context.makeHCTimeSlot(Weekday.MWF(), 2);
         Section section = new Section(new Course("ABC", "220", "Fundamentals of Computer Science"), initialTimeslot); // Extract method
         context.addSections(section);
-        context.assignTimeslot(section.getCourseId(), newTimeSlot.getId());
-        Section updatedSection = context.getCourseWithId(section.getCourseId());
+        context.assignTimeslot(section.getSectionId(), newTimeSlot.getId());
+        Section updatedSection = context.getCourseWithId(section.getSectionId());
         assertThat(updatedSection.getTimeslot(), equalTo(newTimeSlot));
     }
 
@@ -60,7 +60,7 @@ public class TimeslotIdTest {
         Section section = new Section(new Course("ABC", "325", "Web Application Develop"), newTimeSlot);
         context.addSections(section);
         TimeSlot updatedTimeSlot = context.makeHCTimeSlot(Weekday.MWF(), 4);
-        context.assignTimeslot(section.getCourseId(), updatedTimeSlot.getId());
+        context.assignTimeslot(section.getSectionId(), updatedTimeSlot.getId());
 
         verify(mockObserver).update(any());
     }

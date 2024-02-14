@@ -5,16 +5,18 @@
 
     public class Section {
         private static long nextAvailableCourseId = 0;
-        private final long courseId;
-        private final Course course;
+        private long sectionId;
+        private Course course;
         private TimeSlot timeslot;
         private List<Instructor> instructorList = new ArrayList<>();
         public Section(final String prefix, final String courseNum, final String courseName, final TimeSlot timeslot) {
             this(new Course(prefix, courseNum, courseName), timeslot);
         }
 
+        protected Section() {}
+
         public Section(final Course course, final TimeSlot timeslot) {
-            this.courseId = nextAvailableCourseId;
+            this.sectionId = nextAvailableCourseId;
             nextAvailableCourseId += 1;
             this.course = course;
             this.timeslot = timeslot;
@@ -41,8 +43,8 @@
 
         public List<Weekday> getWeekdays() { return timeslot.getWeekdayList(); }
 
-        public long getCourseId() {
-            return courseId;
+        public long getSectionId() {
+            return sectionId;
         }
 
         public void setTimeslot(final TimeSlot timeslot) {

@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 /**
  * Class that implements the interface Timeslot
  */
-class HCTimeSlot implements TimeSlot {
+public class HCTimeSlot implements TimeSlot {
     private final List<Weekday> weekdayList;
     public int slotnum;
 
