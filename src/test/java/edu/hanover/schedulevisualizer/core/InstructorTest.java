@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class InstructorTest {
+public class InstructorTest extends ContextAwareTest {
     @Test
     public void instructorsHaveFullName() {
         Instructor instructor1 = new Instructor("Bradley","Burdick", "burdick@hanover.edu");
@@ -27,8 +27,8 @@ public class InstructorTest {
     @Test
     public void checkForInstructorTimeSlotOverlapTrue() {
         Instructor instructor = new Instructor("Barbara", "Wahl", "wahl@hanover.edu");
-        Section section1 = new Section(new Course("CS", "220", "Fundamentals of Computer Science"), Context.getInstance().makeHCTimeSlot(Weekday.MWF(), 1));
-        Section section2 = new Section(new Course("MAT", "121", "Calculus I"), Context.getInstance().makeHCTimeSlot(Weekday.MWF(), 1));
+        Section section1 = new Section(new Course("CS", "220", "Fundamentals of Computer Science"), context.makeHCTimeSlot(Weekday.MWF(), 1));
+        Section section2 = new Section(new Course("MAT", "121", "Calculus I"), context.makeHCTimeSlot(Weekday.MWF(), 1));
 
         section1.addInstructor(instructor);
         section2.addInstructor(instructor);
@@ -39,8 +39,8 @@ public class InstructorTest {
     @Test
     public void checkForInstructorTimeSlotOverlapFalse() {
         Instructor instructor = new Instructor("Barbara", "Wahl", "wahl@hanover.edu");
-        Section section1 = new Section(new Course("CS", "220", "Fundamentals of Computer Science"), Context.getInstance().makeHCTimeSlot(Weekday.MWF(), 1));
-        Section section2 = new Section(new Course("MAT", "121", "Calculus I"), Context.getInstance().makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
+        Section section1 = new Section(new Course("CS", "220", "Fundamentals of Computer Science"), context.makeHCTimeSlot(Weekday.MWF(), 1));
+        Section section2 = new Section(new Course("MAT", "121", "Calculus I"), context.makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
 
         section1.addInstructor(instructor);
         section2.addInstructor(instructor);

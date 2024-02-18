@@ -1,7 +1,6 @@
 package edu.hanover.schedulevisualizer.core;
 
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,16 +8,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class    ContextTest {
-
-    @BeforeEach
-    public void setUp() throws Exception {
-
-    }
+public class ContextTest extends ContextAwareTest {
 
     @Test
     public void canRetrieveCreatedTimeslotFromId() {
-        Context context = Context.getInstance();
         TimeSlot initialTimeslot = context.makeHCTimeSlot(Weekday.MWF(), 1);
         TimeSlot retrievedTimeSlot = context.getTimeslotWithId(initialTimeslot.getId());
         assertEquals(initialTimeslot, retrievedTimeSlot);
@@ -30,8 +23,6 @@ public class    ContextTest {
 
     @Test
     public void hasMasterInstructorList() {
-        Context context = Context.getInstance();
-
 
     }
 
@@ -42,8 +33,6 @@ public class    ContextTest {
 
     @Test
     public void isInstructorInMasterList() {
-        Context context = new TestableContext();
-
         Instructor instructor1 = new Instructor("Barbara", "Wahl", "CABW");
         Instructor instructor2 = new Instructor("Haris", "Skiadas", "CSHS");
         Instructor instructor3 = new Instructor("Donald", "Millar", "CSDM");
@@ -58,8 +47,6 @@ public class    ContextTest {
 
     @Test
     public void removeInstructorInMasterList() {
-        Context context = Context.getInstance();
-
         Instructor instructor1 = new Instructor("Barbara", "Wahl", "CABW");
         Instructor instructor2 = new Instructor("Haris", "Skiadas", "CSHS");
         Instructor instructor3 = new Instructor("Donald", "Millar", "CSDM");
@@ -77,8 +64,6 @@ public class    ContextTest {
 
     @Test
     public void testSearchInstructorById() {
-        Context context = Context.getInstance();
-
         // Create an instructor and add it to the MasterList
         Instructor instructor = new Instructor("Barbara", "Wahl", "CSBW");
         context.addInstructorToMasterList(instructor);
@@ -106,7 +91,6 @@ public class    ContextTest {
         MAT121.addInstructor(instructor);
         Instructor instructor2 = new Instructor("Hallett", "Harrison", "halletth@hanover.edu");
         MAT121.addInstructor(instructor2);
-        TestableContext context = new TestableContext();
         context.setSchedule(schedule);
         context.addInstructorToMasterList(instructor);
         context.addInstructorToMasterList(instructor2);
@@ -120,7 +104,6 @@ public class    ContextTest {
     public void getInstructorScheduleThrowsErrorCorrectly() {
         assertThrows(IllegalArgumentException.class, () -> {
             Schedule schedule = new Schedule();
-            TestableContext context = new TestableContext();
             context.setSchedule(schedule);
             context.getInstructorSchedule("wahlb@hanover.edu");
         });

@@ -7,7 +7,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class InstructorReplacementTest {
+public class InstructorReplacementTest extends ContextAwareTest {
 
     @Test
     public void testChangeInstructor() {
@@ -18,7 +18,7 @@ public class InstructorReplacementTest {
         Instructor newInstructor = new Instructor("Bradley", "Burdick", "burdick@hanover.edu");
 
         // Create a section assigned to the current instructor
-        Section section = new Section(new Course("MAT", "121", "Calculus I"), Context.getInstance().makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
+        Section section = new Section(new Course("MAT", "121", "Calculus I"), context.makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
 
         // Assign the section to the current instructor
         section.addInstructor(currentInstructor);

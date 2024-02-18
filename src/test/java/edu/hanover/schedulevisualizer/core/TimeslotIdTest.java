@@ -12,11 +12,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class TimeslotIdTest {
+public class TimeslotIdTest extends ContextAwareTest {
     @Test
     public void reassignedTimeSlot() {
         // Create Course, Create Timeslot (2), call assign, check course has new time slot
-        Context context = Context.getInstance();
         TimeSlot initialTimeslot = context.makeHCTimeSlot(Weekday.MWF(), 1);  //originalTimeSlot
         TimeSlot newTimeSlot = context.makeHCTimeSlot(Weekday.MWF(), 2);
         Section section = new Section(new Course("ABC", "220", "Fundamentals of Computer Science"), initialTimeslot); // Extract method
@@ -33,7 +32,6 @@ public class TimeslotIdTest {
     @Test
     public void assignInvalidTimeslot() {
         // If timeslot invalid, get an error
-        Context context = Context.getInstance();
         assertThrows(RuntimeException.class, () -> {
             context.assignTimeslot(1234, "invalidTimeslotId");
         });
@@ -42,7 +40,6 @@ public class TimeslotIdTest {
     @Test
     public void assignTimeslotToInvalidCourse() {
         // if-course invalid, get an error
-        Context context = Context.getInstance();
         TimeSlot newTimeSlot = context.makeHCTimeSlot(Weekday.MWF(), 2);
         assertThrows(RuntimeException.class, () -> {
             context.assignTimeslot(1234, newTimeSlot.getId());
@@ -53,7 +50,6 @@ public class TimeslotIdTest {
     @Test
     public void notifyObservers() {
         MyObserver<List<Section>> mockObserver = mock(MyObserver.class);
-        Context context = Context.getInstance();
         context.addObserver(mockObserver);
 
         TimeSlot newTimeSlot = context.makeHCTimeSlot(Weekday.MWF(), 3);

@@ -12,7 +12,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class ScheduleTest {
+public class ScheduleTest extends ContextAwareTest {
 
     private Section cs220 = new Section(new Course("CS", "220", "Fundamentals of Computer Science"), new HCTimeSlot(Weekday.MWF(), 1));
     private Section mat121 = new Section(new Course("MAT", "121", "Calculus I"), new HCTimeSlot(List.of(Weekday.Tuesday), 7));
@@ -87,7 +87,6 @@ public class ScheduleTest {
 
     @Test
     public void contextCanCreateNewEmptySchedule(){
-        TestableContext context = new TestableContext();
         Schedule originalSchedule = context.getSchedule();
         context.createNewEmptySchedule();
         Schedule newSchedule = context.getSchedule();
@@ -96,7 +95,6 @@ public class ScheduleTest {
 
     @Test
     public void newCreatedScheduleIsEmpty(){
-        TestableContext context = new TestableContext();
         context.createNewEmptySchedule();
         assertTrue(context.getSchedule().getSections().isEmpty());
     }
@@ -104,7 +102,6 @@ public class ScheduleTest {
     @Test
     public void observersAreNotified(){
         MyObserver<List<Section>> observer = mock(MyObserver.class);
-        TestableContext context = new TestableContext();
         context.addObserver(observer);
         context.createNewEmptySchedule();
         verify(observer, times(1)).update(any());
