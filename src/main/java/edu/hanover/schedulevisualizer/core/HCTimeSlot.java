@@ -9,7 +9,7 @@ public class HCTimeSlot implements TimeSlot {
     private final List<Weekday> weekdayList;
     public int slotnum;
 
-    public HCTimeSlot(final List<Weekday> weekdayList, final int slotnum){
+    HCTimeSlot(final List<Weekday> weekdayList, final int slotnum){
         this.weekdayList = weekdayList;
         this.slotnum = slotnum;
     }
@@ -18,6 +18,12 @@ public class HCTimeSlot implements TimeSlot {
     public String getId() {
         String weekdaysString = "";
         for (final Weekday w : weekdayList) { weekdaysString += w; }
+        return weekdaysString + "-" + slotnum;
+    }
+
+    public String getAbbrId() {
+        StringBuilder weekdaysString = new StringBuilder();
+        for (final Weekday w : weekdayList) { weekdaysString.append(w.toShortString()); }
         return weekdaysString + "-" + slotnum;
     }
 

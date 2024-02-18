@@ -9,13 +9,10 @@
         private Course course;
         private TimeSlot timeslot;
         private List<Instructor> instructorList = new ArrayList<>();
-        public Section(final String prefix, final String courseNum, final String courseName, final TimeSlot timeslot) {
-            this(new Course(prefix, courseNum, courseName), timeslot);
-        }
 
         protected Section() {}
 
-        public Section(final Course course, final TimeSlot timeslot) {
+        Section(final Course course, final TimeSlot timeslot) {
             this.sectionId = nextAvailableCourseId;
             nextAvailableCourseId += 1;
             this.course = course;

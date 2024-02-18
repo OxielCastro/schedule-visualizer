@@ -12,13 +12,13 @@ public class InstructorReplacementTest extends ContextAwareTest {
     @Test
     public void testChangeInstructor() {
         // Create the current instructor
-        Instructor currentInstructor = new Instructor("Barbara", "Smith", "barbara@hanover.edu");
+        Instructor currentInstructor = ef.makeInstructor("Barbara", "Smith", "barbara@hanover.edu");
 
         // Create the new instructor
-        Instructor newInstructor = new Instructor("Bradley", "Burdick", "burdick@hanover.edu");
+        Instructor newInstructor = ef.makeInstructor("Bradley", "Burdick", "burdick@hanover.edu");
 
         // Create a section assigned to the current instructor
-        Section section = new Section(new Course("MAT", "121", "Calculus I"), context.makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
+        Section section = ef.makeSection(ef.makeCourse("MAT", "121", "Calculus I"), ef.makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
 
         // Assign the section to the current instructor
         section.addInstructor(currentInstructor);

@@ -2,8 +2,7 @@ package edu.hanover.schedulevisualizer.db;
 
 import edu.hanover.schedulevisualizer.core.*;
 import jakarta.persistence.*;
-import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -15,15 +14,21 @@ import static org.hamcrest.Matchers.notNullValue;
 public class DbConnectionTest {
 
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("testdb");
+    private EntityFactory ef;
+
+    @BeforeEach
+    void setUp() {
+        ef = new EntityFactory();
+    }
 
     @Disabled
     @Test
     void canConfigureDb() {
         EntityManager em = emf.createEntityManager();
 
-        Course c = new Course("CS", "229", "Data Wrangling");
-        TimeSlot timeslot = new HCTimeSlot(Weekday.MWF(), 2);
-        Section s = new Section(c, timeslot);
+        Course c = ef.makeCourse("CS", "229", "Data Wrangling");
+        TimeSlot timeslot = ef.makeHCTimeSlot(Weekday.MWF(), 2);
+        Section s = ef.makeSection(c, timeslot);
         em.getTransaction().begin();
         em.persist(c);
         em.persist(s);

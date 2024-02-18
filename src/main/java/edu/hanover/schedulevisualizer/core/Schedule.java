@@ -11,7 +11,7 @@ public class Schedule implements Iterable<Section>{
      * Creates a blank set and assigns it to the sections variable.
      * Used to create a blank schedule.
      */
-    public Schedule() {
+    Schedule() {
         this(new HashSet<Section>());
     }
 
@@ -21,7 +21,7 @@ public class Schedule implements Iterable<Section>{
      *
      * @param collection
      */
-    public Schedule(final Collection<Section> collection) {
+    Schedule(final Collection<Section> collection) {
         this.sections = new HashSet<Section>(collection);
     }
 

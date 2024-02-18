@@ -45,7 +45,7 @@ public class UnassignedCourseList extends VBox implements MyObserver<List<Sectio
     }
 
     public String getTimeslotId() {
-        return Context.getInstance().makeUnassignedTimeslot().getId();
+        return Context.getInstance().ef.makeUnassignedTimeslot().getId();
     }
 
     public Node getNode() {

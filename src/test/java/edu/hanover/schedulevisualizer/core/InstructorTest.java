@@ -11,24 +11,24 @@ import static org.junit.jupiter.api.Assertions.*;
 public class InstructorTest extends ContextAwareTest {
     @Test
     public void instructorsHaveFullName() {
-        Instructor instructor1 = new Instructor("Bradley","Burdick", "burdick@hanover.edu");
-        Instructor instructor2 = new Instructor("Bradley","Burdick", "burdick@hanover.edu");
+        Instructor instructor1 = ef.makeInstructor("Bradley","Burdick", "burdick@hanover.edu");
+        Instructor instructor2 = ef.makeInstructor("Bradley","Burdick", "burdick@hanover.edu");
         assertThat(instructor2.getFullName(), equalTo(instructor1.getFullName()));
     }
 
     @Test
     public void canAssignInstructorToSection() {
-        Instructor instructor1 = new Instructor("Bradley","Burdick", "burdick@hanover.edu");
-        Section CalcI = new Section(new Course("MAT", "121", "Calculus I"), null);
+        Instructor instructor1 = ef.makeInstructor("Bradley","Burdick", "burdick@hanover.edu");
+        Section CalcI = ef.makeSection(ef.makeCourse("MAT", "121", "Calculus I"), null);
         CalcI.addInstructor(instructor1);
         assertThat(CalcI.getInstructorList(), equalTo(List.of(instructor1)));
     }
 
     @Test
     public void checkForInstructorTimeSlotOverlapTrue() {
-        Instructor instructor = new Instructor("Barbara", "Wahl", "wahl@hanover.edu");
-        Section section1 = new Section(new Course("CS", "220", "Fundamentals of Computer Science"), context.makeHCTimeSlot(Weekday.MWF(), 1));
-        Section section2 = new Section(new Course("MAT", "121", "Calculus I"), context.makeHCTimeSlot(Weekday.MWF(), 1));
+        Instructor instructor = ef.makeInstructor("Barbara", "Wahl", "wahl@hanover.edu");
+        Section section1 = ef.makeSection(ef.makeCourse("CS", "220", "Fundamentals of Computer Science"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
+        Section section2 = ef.makeSection(ef.makeCourse("MAT", "121", "Calculus I"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
 
         section1.addInstructor(instructor);
         section2.addInstructor(instructor);
@@ -38,9 +38,9 @@ public class InstructorTest extends ContextAwareTest {
 
     @Test
     public void checkForInstructorTimeSlotOverlapFalse() {
-        Instructor instructor = new Instructor("Barbara", "Wahl", "wahl@hanover.edu");
-        Section section1 = new Section(new Course("CS", "220", "Fundamentals of Computer Science"), context.makeHCTimeSlot(Weekday.MWF(), 1));
-        Section section2 = new Section(new Course("MAT", "121", "Calculus I"), context.makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
+        Instructor instructor = ef.makeInstructor("Barbara", "Wahl", "wahl@hanover.edu");
+        Section section1 = ef.makeSection(ef.makeCourse("CS", "220", "Fundamentals of Computer Science"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
+        Section section2 = ef.makeSection(ef.makeCourse("MAT", "121", "Calculus I"), ef.makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
 
         section1.addInstructor(instructor);
         section2.addInstructor(instructor);
@@ -50,15 +50,15 @@ public class InstructorTest extends ContextAwareTest {
 
     @Test
     public void canCompareInstructorsLast() {
-        Instructor instructor1 = new Instructor("Barbara", "Wahl", "wahl@hanover.edu");
-        Instructor instructor2 = new Instructor("Donald", "Millar", "millar@hanover.edu");
+        Instructor instructor1 = ef.makeInstructor("Barbara", "Wahl", "wahl@hanover.edu");
+        Instructor instructor2 = ef.makeInstructor("Donald", "Millar", "millar@hanover.edu");
         assertTrue(instructor1.compareTo(instructor2) > 0);
     }
 
     @Test
     public void canCompareInstructorsFirst() {
-        Instructor instructor1 = new Instructor("Barbara", "Wahl", "wahl@hanover.edu");
-        Instructor instructor2 = new Instructor("Barbara", "Waal", "wall@hanover.edu");
+        Instructor instructor1 = ef.makeInstructor("Barbara", "Wahl", "wahl@hanover.edu");
+        Instructor instructor2 = ef.makeInstructor("Barbara", "Waal", "wall@hanover.edu");
 
         assertFalse(instructor1.compareTo(instructor2) < 0);
     }
@@ -66,11 +66,11 @@ public class InstructorTest extends ContextAwareTest {
     @Test
     public void sortInstrcutorsName() {
         Instructor[] instructors = {
-                new Instructor("Millie", "Zurick", "zurick@hanover.edu"),
-                new Instructor("Barbara", "Wahl", "wahl@hanover.edu"),
-                new Instructor("Donald", "Millar", "millar@hanover.edu"),
-                new Instructor("Barbara", "Waal", "wall@hanover.edu"),
-                new Instructor("Haris", "Skiadas", "skiadas@hanover.edu")
+                ef.makeInstructor("Millie", "Zurick", "zurick@hanover.edu"),
+                ef.makeInstructor("Barbara", "Wahl", "wahl@hanover.edu"),
+                ef.makeInstructor("Donald", "Millar", "millar@hanover.edu"),
+                ef.makeInstructor("Barbara", "Waal", "wall@hanover.edu"),
+                ef.makeInstructor("Haris", "Skiadas", "skiadas@hanover.edu")
         };
 
         Instructor.sortInstructors(instructors);

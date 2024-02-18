@@ -42,4 +42,12 @@ public interface TimeSlot {
      * @return a string version of the class id
      */
     String getId();
+
+    /**
+     * An abbreviated version of the timeslot id. This should
+     * include a one-character version of the weekdays, followed
+     * by the slot number, separated by a dash. E.g. MWF-2
+     * @return an abbreviated string version of the class id
+     */
+    String getAbbrId();
 }

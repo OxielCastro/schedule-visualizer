@@ -7,7 +7,7 @@ public class Instructor implements Comparable<Instructor> {
     private final String last;
     private final String Id;
 
-    public Instructor(String first, String last, String Id) {
+    Instructor(String first, String last, String Id) {
         this.first = first;
         this.last = last;
         this.Id = Id;

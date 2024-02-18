@@ -1,9 +1,5 @@
 package edu.hanover.schedulevisualizer.core;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-
 import java.util.Objects;
 
 /**
@@ -11,7 +7,6 @@ import java.util.Objects;
  * prefix, courseNum, and courseName parameters.
  * @author mattb
  */
-@Entity
 public class Course {
     public int courseId;
 
@@ -26,7 +21,7 @@ public class Course {
      * @param courseNum this represents the course number or the course level.
      * @param courseName this is the full name of the course.
      */
-    public Course(final String prefix, final String courseNum, final String courseName) {
+    Course(final String prefix, final String courseNum, final String courseName) {
         this.prefix = prefix;
         this.courseNum = courseNum;
         this.courseName = courseName;

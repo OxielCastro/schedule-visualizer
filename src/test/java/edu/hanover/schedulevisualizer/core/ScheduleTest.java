@@ -14,34 +14,34 @@ import static org.mockito.Mockito.*;
 
 public class ScheduleTest extends ContextAwareTest {
 
-    private Section cs220 = new Section(new Course("CS", "220", "Fundamentals of Computer Science"), new HCTimeSlot(Weekday.MWF(), 1));
-    private Section mat121 = new Section(new Course("MAT", "121", "Calculus I"), new HCTimeSlot(List.of(Weekday.Tuesday), 7));
-    private Section fy101 = new Section(new Course("FY", "101", "First Year"), new UnassignedTimeSlot());
+    private Section cs220 = ef.makeSection(ef.makeCourse("CS", "220", "Fundamentals of Computer Science"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
+    private Section mat121 = ef.makeSection(ef.makeCourse("MAT", "121", "Calculus I"), ef.makeHCTimeSlot(List.of(Weekday.Tuesday), 7));
+    private Section fy101 = ef.makeSection(ef.makeCourse("FY", "101", "First Year"), ef.makeUnassignedTimeslot());
 
     @Test
     public void canMakeNewEmptySchedule(){
-        Schedule schedule = new Schedule();
+        Schedule schedule = ef.makeSchedule();
         assertTrue(schedule.getSections().isEmpty());
     }
 
     @Test
     public void canMakeScheduleWithListOfSections(){
         List<Section> sections = new ArrayList<>(List.of(cs220, mat121, fy101));
-        Schedule schedule = new Schedule(sections);
+        Schedule schedule = ef.makeSchedule(sections);
         assertEquals(Set.of(cs220, mat121, fy101), schedule.getSections());
     }
 
     @Test
     public void scheduleWillNotTakeDuplicateSections(){
         List<Section> sectionsRepeated = new ArrayList<>(List.of(cs220, mat121, mat121, fy101));
-        Schedule schedule = new Schedule(sectionsRepeated);
+        Schedule schedule = ef.makeSchedule(sectionsRepeated);
         assertEquals(Set.of(cs220, mat121, fy101), schedule.getSections());
     }
 
     @Test
     public void scheduleWillNotAddDuplicateSections(){
         List<Section> sections = new ArrayList<>(List.of(cs220, fy101));
-        Schedule schedule = new Schedule(sections);
+        Schedule schedule = ef.makeSchedule(sections);
         assertEquals(Set.of(cs220, fy101), schedule.getSections());
         schedule.addSection(cs220);
         assertEquals(Set.of(cs220, fy101), schedule.getSections());
@@ -49,7 +49,7 @@ public class ScheduleTest extends ContextAwareTest {
 
     @Test
     public void canAddCourses(){
-        Schedule schedule = new Schedule();
+        Schedule schedule = ef.makeSchedule();
         assertFalse(schedule.hasSection(cs220));
         assertFalse(schedule.hasSection(mat121));
         schedule.addSection(cs220);
@@ -63,7 +63,7 @@ public class ScheduleTest extends ContextAwareTest {
     @Test
     public void canRemoveCourses() {
         List<Section> sections = new ArrayList<>(List.of(cs220, mat121));
-        Schedule schedule = new Schedule(sections);
+        Schedule schedule = ef.makeSchedule(sections);
         assertTrue(schedule.hasSection(cs220));
         assertTrue(schedule.hasSection(mat121));
         schedule.removeSection(mat121);
@@ -77,7 +77,7 @@ public class ScheduleTest extends ContextAwareTest {
     @Test
     public void removeCoursesNotInSections() {
         List<Section> sections = new ArrayList<>(List.of(cs220, mat121));
-        Schedule schedule = new Schedule(sections);
+        Schedule schedule = ef.makeSchedule(sections);
         schedule.removeSection(fy101);
         assertEquals(Set.of(cs220, mat121), schedule.getSections());
         schedule.removeSection(cs220);
@@ -109,15 +109,15 @@ public class ScheduleTest extends ContextAwareTest {
     @Disabled
     @Test
     public void findSectionForWorksCorrectly() {
-        HCTimeSlot MWF1 = new HCTimeSlot(Weekday.MWF(), 1);
-        HCTimeSlot MWF2 = new HCTimeSlot(Weekday.MWF(), 2);
-        Section CS220 = new Section(new Course("CS", "220", "Fundamentals of Computer Science"), MWF1);
-        Section MAT121 = new Section(new Course("MAT", "121", "Calculus I"), MWF2);
-        Schedule schedule = new Schedule(List.of(CS220, MAT121)) ;
-        Instructor instructor = new Instructor("Barb", "Wahl", "wahlb@hanover.edu");
+        TimeSlot MWF1 = ef.makeHCTimeSlot(Weekday.MWF(), 1);
+        TimeSlot MWF2 = ef.makeHCTimeSlot(Weekday.MWF(), 2);
+        Section CS220 = ef.makeSection(ef.makeCourse("CS", "220", "Fundamentals of Computer Science"), MWF1);
+        Section MAT121 = ef.makeSection(ef.makeCourse("MAT", "121", "Calculus I"), MWF2);
+        Schedule schedule = ef.makeSchedule(List.of(CS220, MAT121)) ;
+        Instructor instructor = ef.makeInstructor("Barb", "Wahl", "wahlb@hanover.edu");
         CS220.addInstructor(instructor);
         MAT121.addInstructor(instructor);
-        Instructor instructor2 = new Instructor("Hallett", "Harrison", "halletth@hanover.edu");
+        Instructor instructor2 = ef.makeInstructor("Hallett", "Harrison", "halletth@hanover.edu");
         MAT121.addInstructor(instructor2);
         List<Section> correctList = new ArrayList<>(List.of(CS220, MAT121));
         List<Section> correctList2 = new ArrayList<>(List.of(MAT121));
@@ -132,13 +132,13 @@ public class ScheduleTest extends ContextAwareTest {
     @Test
     public void forLoopWorksForIterableSchedule() {
         // test for empty schedule
-        Schedule emptySchedule = new Schedule();
+        Schedule emptySchedule = ef.makeSchedule();
         long numberOfCourses = 0;
         for(Section s : emptySchedule) { numberOfCourses += 1; }
         assertEquals(0, numberOfCourses);
         // test for schedule with 3 sections
         numberOfCourses = 0;
-        Schedule schedule = new Schedule(List.of(cs220, mat121, fy101));
+        Schedule schedule = ef.makeSchedule(List.of(cs220, mat121, fy101));
         for(Section s : schedule) { numberOfCourses += 1; }
         assertEquals(3, numberOfCourses);
     }

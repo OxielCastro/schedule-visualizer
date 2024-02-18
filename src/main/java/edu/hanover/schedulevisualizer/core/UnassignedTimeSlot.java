@@ -19,11 +19,15 @@ public class UnassignedTimeSlot implements TimeSlot {
      *
      * @return The singleton instance of UnassignedTimeSlot.
      */
-    public static UnassignedTimeSlot getInstance() {
+    static UnassignedTimeSlot getInstance() {
         return instance;
     }
 
     public String getId() {
+        return "-";
+    }
+
+    public String getAbbrId() {
         return "-";
     }
 

@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class Context {
     private static Context instance = new Context();//creates one
-    private Map<String, TimeSlot> createdTimeslots = new HashMap<>();
+    public final EntityFactory ef = new EntityFactory();
     private List<MyObserver<List<Section>>> observers = new ArrayList<>();
     private Map<String, Instructor> instructorMasterList = new HashMap<>();
     protected Schedule schedule;
@@ -19,31 +19,13 @@ public class Context {
     private String id;
 
     protected Context() {
-        this.schedule = new Schedule(List.of(
-                new Section(new Course("CS", "220", "Fundamentals of Computer Science"), makeHCTimeSlot(Weekday.MWF(), 1)),
-                new Section(new Course("MAT", "121", "Calculus I"), makeHCTimeSlot(List.of(Weekday.Tuesday), 7)),
-                new Section(new Course("FY", "101", "First Year"), makeUnassignedTimeslot()),
-                new Section(new Course("FY2", "102", "First Year2"), makeUnassignedTimeslot())
+        this.schedule = ef.makeSchedule(List.of(
+                ef.makeSection(ef.makeCourse("CS", "220", "Fundamentals of Computer Science"), ef.makeHCTimeSlot(Weekday.MWF(), 1)),
+                ef.makeSection(ef.makeCourse("MAT", "121", "Calculus I"), ef.makeHCTimeSlot(List.of(Weekday.Tuesday), 7)),
+                ef.makeSection(ef.makeCourse("FY", "101", "First Year"), ef.makeUnassignedTimeslot()),
+                ef.makeSection(ef.makeCourse("FY2", "102", "First Year2"), ef.makeUnassignedTimeslot())
         ));
     }
-
-    public TimeSlot makeUnassignedTimeslot() {
-        return addIfNeededThenReturn(UnassignedTimeSlot.getInstance());
-    }
-
-    public TimeSlot makeHCTimeSlot(final List<Weekday> Tuesday, final int slotnum) {
-        return addIfNeededThenReturn(new HCTimeSlot(Tuesday, slotnum));
-    }
-
-    private TimeSlot addIfNeededThenReturn(final TimeSlot timeSlot) {
-        if (createdTimeslots.containsKey(timeSlot.getId())) {
-            return createdTimeslots.get(timeSlot.getId()); //putIfAbsent method will fix exit point issue
-        }
-        createdTimeslots.putIfAbsent(timeSlot.getId(), timeSlot);
-        return timeSlot;
-    }
-
-    ;//prevents others from calling
 
     /**
      * Get a reference to the singleton instance for Context.
@@ -75,17 +57,9 @@ public class Context {
         throw new RuntimeException("Cannot find course with id: " + courseId);
     }
 
-
-    public TimeSlot getTimeslotWithId(final String timeslotId) {
-        // TODO: Add error-checking if id doesn't exist
-        if (!createdTimeslots.containsKey(timeslotId))
-            throw new RuntimeException("Should not have a timeslot id that is not stored");
-        return createdTimeslots.get(timeslotId);
-    }
-
     public void moveCourseToTimeslot(final Long courseId, final String timeslotId) {
         final Section section = getCourseWithId(courseId);
-        final TimeSlot timeslot = getTimeslotWithId(timeslotId);
+        final TimeSlot timeslot = ef.getTimeslotWithId(timeslotId);
         section.setTimeslot(timeslot);
         System.out.println("Dropped: " + section + timeslot);
     }
@@ -97,14 +71,14 @@ public class Context {
 
     public void assignTimeslot(final long courseId, final String id) {
         final Section section = getCourseWithId(courseId);
-        final TimeSlot timeslot = getTimeslotWithId(id);
+        final TimeSlot timeslot = ef.getTimeslotWithId(id);
         section.setTimeslot(timeslot);
         notifyObservers();
     }
 
     public void assignInstructor(final long courseId, final String id, final String instructorId){
         final Section section = getCourseWithId(courseId);
-        final TimeSlot timeslot = getTimeslotWithId(id);
+        final TimeSlot timeslot = ef.getTimeslotWithId(id);
         final Instructor instructor = getInstructorWithId(instructorId);
         section.addInstructor(instructor);
         notifyObservers();
@@ -112,7 +86,7 @@ public class Context {
 
 
     public void createNewEmptySchedule() {
-        this.schedule = new Schedule();
+        this.schedule = ef.makeSchedule();
         notifyObservers();
     }
 
@@ -145,7 +119,4 @@ public class Context {
         }
         return acc;
     }
-
-    ;
-
 }
