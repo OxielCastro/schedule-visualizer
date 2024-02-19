@@ -1,4 +1,4 @@
-package edu.hanover.schedulevisualizer.core;
+package edu.hanover.schedulevisualizer.core.entity;
 public class DayTime {
     public int hours;
     public int minutes;

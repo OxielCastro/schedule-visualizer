@@ -1,4 +1,4 @@
-package edu.hanover.schedulevisualizer.core;
+package edu.hanover.schedulevisualizer.core.entity;
 
 import java.util.List;
 import java.util.function.Consumer;

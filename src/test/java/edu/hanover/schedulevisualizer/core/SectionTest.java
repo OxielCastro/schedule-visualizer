@@ -1,4 +1,6 @@
 package edu.hanover.schedulevisualizer.core;
+import edu.hanover.schedulevisualizer.core.entity.*;
+import edu.hanover.schedulevisualizer.core.simpleEntity.SimpleSection;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -31,7 +33,7 @@ public class SectionTest extends ContextAwareTest {
 
     @Test
     public void canConstructorWorkWithNullTimeSlot() {
-        UnassignedTimeSlot nulltimeslot = new UnassignedTimeSlot();
+        TimeSlot nulltimeslot = ef.makeUnassignedTimeslot();
         Section section1 = ef.makeSection(ef.makeCourse("CS", "223", "Data Structures"), nulltimeslot);
         assertThat(section1.getTimeslot(), equalTo(nulltimeslot));
     }
@@ -39,7 +41,7 @@ public class SectionTest extends ContextAwareTest {
     @Test
     void canCreateSectionFromCourseObject() {
         Course course1 = ef.makeCourse("CS", "321", "Software Development Practicum");
-        UnassignedTimeSlot nulltimeslot = new UnassignedTimeSlot();
+        TimeSlot nulltimeslot = ef.makeUnassignedTimeslot();
         Section section1 = ef.makeSection(course1, nulltimeslot);
         assertThat(section1.getPrefix(), equalTo("CS"));
         assertThat(section1.getCourseNum(), equalTo("321"));
@@ -48,7 +50,7 @@ public class SectionTest extends ContextAwareTest {
 
     @Test
     public void canAddInstructorList() {
-        Instructor barb = ef.makeInstructor("Barbara","Wahl", "wahl@hanover.edu");
+        Instructor barb = ef.makeInstructor("Barbara", "Wahl", "wahl@hanover.edu");
         Section section1 = ef.makeSection(ef.makeCourse("CS", "223", "Data Structures"), null);
         section1.addInstructor(barb);
         assertThat(section1.getInstructorList(), equalTo(List.of(barb)));
@@ -79,7 +81,7 @@ public class SectionTest extends ContextAwareTest {
     void TwoSectionsHaveSameCourse() {
         Course course1 = ef.makeCourse("CS", "321", "Software Development Practicum");
         Section section1 = ef.makeSection(course1, null);
-        Section section2 = ef.makeSection(course1, null);
+        SimpleSection section2 = ef.makeSection(course1, null);
         assertTrue(section1.IsSameCourse(section2));
     }
 

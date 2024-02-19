@@ -1,5 +1,6 @@
 package edu.hanover.schedulevisualizer.core;
 
+import edu.hanover.schedulevisualizer.core.entity.DayTime;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,7 +15,7 @@ public class DayTimeTest {
 
     @Test
     public void DayTimesWithSameHoursMinutesAreEqual() {
-        DayTime dayTime1 = new DayTime(4,15);
+        DayTime dayTime1 = new DayTime(4, 15);
         DayTime dayTime2 = new DayTime(4, 15);
         DayTime dayTime3 = new DayTime(5,15);
         DayTime dayTime4 = new DayTime(4,25);

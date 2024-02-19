@@ -1,7 +1,7 @@
 package edu.hanover.schedulevisualizer.ui.elements;
 
-import edu.hanover.schedulevisualizer.core.Section;
-import edu.hanover.schedulevisualizer.core.Weekday;
+import edu.hanover.schedulevisualizer.core.entity.Section;
+import edu.hanover.schedulevisualizer.core.entity.Weekday;
 import edu.hanover.schedulevisualizer.observable.MyObserver;
 import edu.hanover.schedulevisualizer.ui.controller.TimeSlotGridController;
 import javafx.application.Platform;

@@ -23,4 +23,6 @@ module edu.hanover.schedulevisualizer {
     opens edu.hanover.schedulevisualizer.ui.controller to javafx.fxml, javafx.graphics;
     exports edu.hanover.schedulevisualizer.ui.draganddrop;
     opens edu.hanover.schedulevisualizer.ui.draganddrop to javafx.fxml, javafx.graphics;
+    exports edu.hanover.schedulevisualizer.core.entity;
+    exports edu.hanover.schedulevisualizer.core.simpleEntity;
 }

@@ -1,5 +1,8 @@
 package edu.hanover.schedulevisualizer.core;
 
+import edu.hanover.schedulevisualizer.core.entity.*;
+import edu.hanover.schedulevisualizer.core.simpleEntity.SimpleEntityFactory;
+import edu.hanover.schedulevisualizer.core.simpleEntity.SimpleSection;
 import edu.hanover.schedulevisualizer.observable.MyObserver;
 
 import java.util.ArrayList;
@@ -11,7 +14,7 @@ import java.util.Map;
 
 public class Context {
     private static Context instance = new Context();//creates one
-    public final EntityFactory ef = new EntityFactory();
+    public final EntityFactory ef = new SimpleEntityFactory();
     private List<MyObserver<List<Section>>> observers = new ArrayList<>();
     private Map<String, Instructor> instructorMasterList = new HashMap<>();
     protected Schedule schedule;

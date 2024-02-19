@@ -1,6 +1,6 @@
 package edu.hanover.schedulevisualizer.conflict;
 
-import edu.hanover.schedulevisualizer.core.Section;
+import edu.hanover.schedulevisualizer.core.entity.Section;
 
 import java.util.Optional;
 

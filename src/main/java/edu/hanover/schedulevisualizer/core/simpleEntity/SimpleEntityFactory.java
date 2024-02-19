@@ -1,28 +1,28 @@
-package edu.hanover.schedulevisualizer.core;
+package edu.hanover.schedulevisualizer.core.simpleEntity;
 
-import java.util.Collection;
+import edu.hanover.schedulevisualizer.core.entity.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EntityFactory {
+public class SimpleEntityFactory implements EntityFactory {
     public Map<String, TimeSlot> createdTimeslots = new HashMap<>();
 
     public Course makeCourse(String prefix, String courseNum, String courseDescription) {
         // TODO Need to persist
-        return new Course(prefix, courseNum, courseDescription);
+        return new SimpleCourse(prefix, courseNum, courseDescription);
     }
 
-    public Section makeSection(Course course, TimeSlot timeslot) {
-        return new Section(course, timeslot);
+    public SimpleSection makeSection(Course course, TimeSlot timeslot) {
+        return new SimpleSection((SimpleCourse) course, timeslot);
     }
 
-    public Instructor makeInstructor(String first, String last, String id) {
-        return new Instructor(first, last, id);
+    public SimpleInstructor makeInstructor(String first, String last, String id) {
+        return new SimpleInstructor(first, last, id);
     }
 
-    public Schedule makeSchedule() { return new Schedule(); }
-    public Schedule makeSchedule(Collection<Section> sections) { return new Schedule(sections); }
+    public Schedule makeSchedule() { return new SimpleSchedule(); }
 
     public TimeSlot makeHCTimeSlot(final List<Weekday> Tuesday, final int slotnum) {
         return addIfNeededThenReturn(new HCTimeSlot(Tuesday, slotnum));
@@ -32,7 +32,7 @@ public class EntityFactory {
         return addIfNeededThenReturn(UnassignedTimeSlot.getInstance());
     }
 
-    private TimeSlot addIfNeededThenReturn(final TimeSlot timeSlot) {
+    private TimeSlot addIfNeededThenReturn(TimeSlot timeSlot) {
         if (createdTimeslots.containsKey(timeSlot.getId())) {
             return createdTimeslots.get(timeSlot.getId()); //putIfAbsent method will fix exit point issue
         }

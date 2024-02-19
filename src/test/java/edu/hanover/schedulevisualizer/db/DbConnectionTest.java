@@ -1,6 +1,9 @@
 package edu.hanover.schedulevisualizer.db;
 
-import edu.hanover.schedulevisualizer.core.*;
+import edu.hanover.schedulevisualizer.core.entity.*;
+import edu.hanover.schedulevisualizer.core.simpleEntity.SimpleCourse;
+import edu.hanover.schedulevisualizer.core.simpleEntity.SimpleEntityFactory;
+import edu.hanover.schedulevisualizer.core.simpleEntity.SimpleSection;
 import jakarta.persistence.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -18,7 +21,7 @@ public class DbConnectionTest {
 
     @BeforeEach
     void setUp() {
-        ef = new EntityFactory();
+        ef = new SimpleEntityFactory();
     }
 
     @Disabled
@@ -26,7 +29,7 @@ public class DbConnectionTest {
     void canConfigureDb() {
         EntityManager em = emf.createEntityManager();
 
-        Course c = ef.makeCourse("CS", "229", "Data Wrangling");
+        SimpleCourse c =  (SimpleCourse) ef.makeCourse("CS", "229", "Data Wrangling");
         TimeSlot timeslot = ef.makeHCTimeSlot(Weekday.MWF(), 2);
         Section s = ef.makeSection(c, timeslot);
         em.getTransaction().begin();

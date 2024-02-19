@@ -1,5 +1,6 @@
 package edu.hanover.schedulevisualizer.core;
 
+import edu.hanover.schedulevisualizer.core.entity.*;
 import edu.hanover.schedulevisualizer.observable.MyObserver;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

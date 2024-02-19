@@ -1,6 +1,9 @@
 package edu.hanover.schedulevisualizer.ui.elements;
 
 import edu.hanover.schedulevisualizer.core.*;
+import edu.hanover.schedulevisualizer.core.entity.Section;
+import edu.hanover.schedulevisualizer.core.entity.TimeSlot;
+import edu.hanover.schedulevisualizer.core.entity.Weekday;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;

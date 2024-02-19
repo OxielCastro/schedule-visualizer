@@ -1,7 +1,7 @@
 package edu.hanover.schedulevisualizer.ui.elements;
 
 import edu.hanover.schedulevisualizer.core.Context;
-import edu.hanover.schedulevisualizer.core.Section;
+import edu.hanover.schedulevisualizer.core.entity.Section;
 import edu.hanover.schedulevisualizer.observable.MyObserver;
 import edu.hanover.schedulevisualizer.ui.draganddrop.DragAndDropController;
 import edu.hanover.schedulevisualizer.ui.draganddrop.DropTarget;

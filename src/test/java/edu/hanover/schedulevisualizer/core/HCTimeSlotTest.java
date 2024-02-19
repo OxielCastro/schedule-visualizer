@@ -1,5 +1,8 @@
 package edu.hanover.schedulevisualizer.core;
 
+import edu.hanover.schedulevisualizer.core.entity.DayTime;
+import edu.hanover.schedulevisualizer.core.entity.HCTimeSlot;
+import edu.hanover.schedulevisualizer.core.entity.Weekday;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

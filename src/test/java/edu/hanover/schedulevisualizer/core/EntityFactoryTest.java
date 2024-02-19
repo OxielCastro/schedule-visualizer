@@ -1,5 +1,6 @@
 package edu.hanover.schedulevisualizer.core;
 
+import edu.hanover.schedulevisualizer.core.entity.Weekday;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;

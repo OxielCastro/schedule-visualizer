@@ -1,18 +1,23 @@
-    package edu.hanover.schedulevisualizer.core;
+    package edu.hanover.schedulevisualizer.core.simpleEntity;
+
+    import edu.hanover.schedulevisualizer.core.entity.TimeSlot;
+    import edu.hanover.schedulevisualizer.core.entity.Weekday;
+    import edu.hanover.schedulevisualizer.core.entity.Instructor;
+    import edu.hanover.schedulevisualizer.core.entity.Section;
 
     import java.util.ArrayList;
     import java.util.List;
 
-    public class Section {
+    public class SimpleSection implements Section {
         private static long nextAvailableCourseId = 0;
         private long sectionId;
-        private Course course;
+        private SimpleCourse course;
         private TimeSlot timeslot;
-        private List<Instructor> instructorList = new ArrayList<>();
+        private List<SimpleInstructor> instructorList = new ArrayList<>();
 
-        protected Section() {}
+        protected SimpleSection() {}
 
-        Section(final Course course, final TimeSlot timeslot) {
+        SimpleSection(final SimpleCourse course, final TimeSlot timeslot) {
             this.sectionId = nextAvailableCourseId;
             nextAvailableCourseId += 1;
             this.course = course;
@@ -49,13 +54,14 @@
             this.timeslot = timeslot;
         }
 
-        public List<Instructor> getInstructorList() {
+        public List<? extends Instructor> getInstructorList() {
             return instructorList;
         }
 
         public void addInstructor(final Instructor instructor) {
-            if (!instructorList.contains(instructor)) {
-                instructorList.add(instructor);
+            SimpleInstructor si = (SimpleInstructor) instructor;
+            if (!instructorList.contains(si)) {
+                instructorList.add(si);
             }
         }
 
@@ -71,7 +77,10 @@
         }
 
         public Boolean IsSameCourse(final Section section1) {
-            return (section1.course.equals(this.course));
+            if (section1 instanceof SimpleSection) {
+                return (((SimpleSection) section1).course.equals(this.course));
+            }
+            return false;
         }
 
         public boolean hasInstructor(final Instructor instr) {

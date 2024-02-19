@@ -1,6 +1,8 @@
 package edu.hanover.schedulevisualizer.core;
 
 import edu.hanover.schedulevisualizer.conflict.*;
+import edu.hanover.schedulevisualizer.core.entity.Section;
+import edu.hanover.schedulevisualizer.core.entity.Weekday;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

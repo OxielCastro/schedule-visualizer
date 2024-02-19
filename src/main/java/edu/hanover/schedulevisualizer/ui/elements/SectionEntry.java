@@ -1,6 +1,6 @@
 package edu.hanover.schedulevisualizer.ui.elements;
 
-import edu.hanover.schedulevisualizer.core.Section;
+import edu.hanover.schedulevisualizer.core.entity.Section;
 import edu.hanover.schedulevisualizer.ui.draganddrop.DragSource;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;

@@ -1,36 +1,29 @@
-package edu.hanover.schedulevisualizer.core;
+package edu.hanover.schedulevisualizer.core.simpleEntity;
+
+import edu.hanover.schedulevisualizer.core.entity.Instructor;
+import edu.hanover.schedulevisualizer.core.entity.Schedule;
+import edu.hanover.schedulevisualizer.core.entity.Section;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Schedule implements Iterable<Section>{
-    private Set<Section> sections;
+public class SimpleSchedule implements Schedule {
+    private Set<SimpleSection> sections = new HashSet<>();
 
     /**
      * Basic Constructor for Schedule class.
      * Creates a blank set and assigns it to the sections variable.
      * Used to create a blank schedule.
      */
-    Schedule() {
-        this(new HashSet<Section>());
+    SimpleSchedule() {
     }
 
-    /**
-     * Constructor for the Schedule class that takes a collection of Sections
-     * as a parameter. This is how you create a Schedule with sections in it.
-     *
-     * @param collection
-     */
-    Schedule(final Collection<Section> collection) {
-        this.sections = new HashSet<Section>(collection);
-    }
 
     /**
      * Takes an instructor as a parameter and then gets the sections for the schedule.
      * Then it filters the results to only return the ones for the given instructor.
      *
      * @param instr the instructor whose sections your searching for.
-     *
      * @return the sections for the instructor given as a collection of sections
      */
     public List<Section> findSectionFor(final Instructor instr) {
@@ -45,7 +38,7 @@ public class Schedule implements Iterable<Section>{
      *
      * @return the sections for a schedule as a set of sections.
      */
-    public Collection<Section> getSections(){
+    public Collection<Section> getSections() {
         final HashSet<Section> sections1 = new HashSet<>(sections);
         return sections1;
     }
@@ -55,8 +48,8 @@ public class Schedule implements Iterable<Section>{
      *
      * @param section section you wanted to add.
      */
-    void addSection(final Section section) {
-        sections.add(section);
+    public void addSection(final Section section) {
+        sections.add((SimpleSection) section);
     }
 
     /**
@@ -64,7 +57,7 @@ public class Schedule implements Iterable<Section>{
      *
      * @param section section you wanted to remove.
      */
-    void removeSection(final Section section) {
+    public void removeSection(final Section section) {
         sections.remove(section);
     }
 
@@ -72,10 +65,11 @@ public class Schedule implements Iterable<Section>{
      * Checks to see if schedule contains given section and returns boolean.
      *
      * @param section section your checking for.
-     *
      * @return Boolean
      */
-    boolean hasSection(final Section section) { return sections.contains(section); }
+    public boolean hasSection(final Section section) {
+        return sections.contains(section);
+    }
 
     /**
      * Returns an iterator for the class Section.
@@ -83,7 +77,15 @@ public class Schedule implements Iterable<Section>{
      * @return an Iterator of type Section.
      */
     public Iterator<Section> iterator() {
-        return sections.iterator();
-    }
+        Iterator<SimpleSection> it = sections.iterator();
+        return new Iterator<>() {
+            public boolean hasNext() {
+                return it.hasNext();
+            }
 
+            public Section next() {
+                return it.next();
+            }
+        };
+    }
 }

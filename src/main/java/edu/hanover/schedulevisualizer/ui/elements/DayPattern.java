@@ -1,6 +1,6 @@
 package edu.hanover.schedulevisualizer.ui.elements;
 
-import edu.hanover.schedulevisualizer.core.Weekday;
+import edu.hanover.schedulevisualizer.core.entity.Weekday;
 
 public enum DayPattern {
     MWF(6), TR(4);

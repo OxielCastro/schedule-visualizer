@@ -1,5 +1,6 @@
-package edu.hanover.schedulevisualizer.core;
+package edu.hanover.schedulevisualizer.entity;
 
+import edu.hanover.schedulevisualizer.core.entity.UnassignedTimeSlot;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,14 +12,14 @@ public class UnassignedTimeSlotTest {
 
     @Test
     public void weekdayListUnassigned(){
-        UnassignedTimeSlot unassignedSlot = new UnassignedTimeSlot();
+        UnassignedTimeSlot unassignedSlot = UnassignedTimeSlot.getInstance();
         assertThat(unassignedSlot.getWeekdayList(), equalTo(List.of()));
     }
 
     @Test
     public void overlapsTestUnassigned(){
-        UnassignedTimeSlot unassignedSlot = new UnassignedTimeSlot();
-        assertThat(unassignedSlot.overlaps(new UnassignedTimeSlot()), equalTo(Boolean.FALSE));
+        UnassignedTimeSlot unassignedSlot = UnassignedTimeSlot.getInstance();
+        assertThat(unassignedSlot.overlaps(UnassignedTimeSlot.getInstance()), equalTo(Boolean.FALSE));
 
     }
 }

@@ -1,13 +1,17 @@
-package edu.hanover.schedulevisualizer.core;
+package edu.hanover.schedulevisualizer.core.simpleEntity;
 
-import java.util.Arrays;
+import edu.hanover.schedulevisualizer.core.entity.TimeSlot;
+import edu.hanover.schedulevisualizer.core.entity.Instructor;
+import edu.hanover.schedulevisualizer.core.entity.Section;
 
-public class Instructor implements Comparable<Instructor> {
-    private final String first;
-    private final String last;
-    private final String Id;
+public class SimpleInstructor implements Instructor {
+    private String first;
+    private String last;
+    private String Id;
 
-    Instructor(String first, String last, String Id) {
+    protected SimpleInstructor() {}
+
+    SimpleInstructor(String first, String last, String Id) {
         this.first = first;
         this.last = last;
         this.Id = Id;
@@ -18,7 +22,7 @@ public class Instructor implements Comparable<Instructor> {
         return fullName;
     }
 
-     String getId() {
+     public String getId() {
         return Id;
     }
 
@@ -36,15 +40,13 @@ public class Instructor implements Comparable<Instructor> {
 
     @Override
     public int compareTo(Instructor other) {
-        int compareLast = this.last.compareTo(other.last);
+        SimpleInstructor si = (SimpleInstructor) other;
+        int compareLast = this.last.compareTo(si.last);
         if (compareLast != 0) {
             return compareLast;
         } else {
-            return this.first.compareTo(other.first);
+            return this.first.compareTo(si.first);
         }
     }
 
-    static void sortInstructors(Instructor[] instructors) {
-        Arrays.sort(instructors);
-    }
 }

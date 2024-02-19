@@ -1,5 +1,9 @@
 package edu.hanover.schedulevisualizer.core;
 
+import edu.hanover.schedulevisualizer.core.entity.Instructor;
+import edu.hanover.schedulevisualizer.core.entity.Section;
+import edu.hanover.schedulevisualizer.core.entity.Weekday;
+import edu.hanover.schedulevisualizer.core.simpleEntity.SimpleInstructor;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class InstructorTest extends ContextAwareTest {
     @Test
     public void instructorsHaveFullName() {
-        Instructor instructor1 = ef.makeInstructor("Bradley","Burdick", "burdick@hanover.edu");
+        Instructor instructor1 = ef.makeInstructor("Bradley", "Burdick", "burdick@hanover.edu");
         Instructor instructor2 = ef.makeInstructor("Bradley","Burdick", "burdick@hanover.edu");
         assertThat(instructor2.getFullName(), equalTo(instructor1.getFullName()));
     }
@@ -51,14 +55,14 @@ public class InstructorTest extends ContextAwareTest {
     @Test
     public void canCompareInstructorsLast() {
         Instructor instructor1 = ef.makeInstructor("Barbara", "Wahl", "wahl@hanover.edu");
-        Instructor instructor2 = ef.makeInstructor("Donald", "Millar", "millar@hanover.edu");
+        SimpleInstructor instructor2 = ef.makeInstructor("Donald", "Millar", "millar@hanover.edu");
         assertTrue(instructor1.compareTo(instructor2) > 0);
     }
 
     @Test
     public void canCompareInstructorsFirst() {
         Instructor instructor1 = ef.makeInstructor("Barbara", "Wahl", "wahl@hanover.edu");
-        Instructor instructor2 = ef.makeInstructor("Barbara", "Waal", "wall@hanover.edu");
+        SimpleInstructor instructor2 = ef.makeInstructor("Barbara", "Waal", "wall@hanover.edu");
 
         assertFalse(instructor1.compareTo(instructor2) < 0);
     }

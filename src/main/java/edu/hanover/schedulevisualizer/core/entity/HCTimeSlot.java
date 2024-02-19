@@ -1,4 +1,5 @@
-package edu.hanover.schedulevisualizer.core;
+package edu.hanover.schedulevisualizer.core.entity;
+
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -9,7 +10,7 @@ public class HCTimeSlot implements TimeSlot {
     private final List<Weekday> weekdayList;
     public int slotnum;
 
-    HCTimeSlot(final List<Weekday> weekdayList, final int slotnum){
+     public HCTimeSlot(final List<Weekday> weekdayList, final int slotnum){
         this.weekdayList = weekdayList;
         this.slotnum = slotnum;
     }

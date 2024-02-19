@@ -1,5 +1,5 @@
 
-package edu.hanover.schedulevisualizer.core;
+package edu.hanover.schedulevisualizer.core.entity;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -19,7 +19,7 @@ public class UnassignedTimeSlot implements TimeSlot {
      *
      * @return The singleton instance of UnassignedTimeSlot.
      */
-    static UnassignedTimeSlot getInstance() {
+    public static UnassignedTimeSlot getInstance() {
         return instance;
     }
 
