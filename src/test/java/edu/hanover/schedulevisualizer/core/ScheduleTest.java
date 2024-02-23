@@ -122,6 +122,7 @@ public class ScheduleTest extends ContextAwareTest {
         MAT121.addInstructor(instructor2);
         List<Section> correctList = new ArrayList<>(List.of(CS220, MAT121));
         List<Section> correctList2 = new ArrayList<>(List.of(MAT121));
+
         assertEquals(correctList.size(), schedule.findSectionFor(instructor).size());
         assertTrue(schedule.findSectionFor(instructor).contains(CS220));
         assertTrue(schedule.findSectionFor(instructor).contains(MAT121));
