@@ -19,16 +19,14 @@ public class HelloApplication extends Application {
     public void start(final Stage stage) throws IOException {
         stage.getIcons().add(new Image(HelloApplication.class.getResourceAsStream("icon.png")));
         app.startApp(stage);
-        final Thread thread = new Thread() {
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                    Context.getInstance().getData();
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+        final Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+                Context.getInstance().getData();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
-        };
+        });
         thread.start();
     }
 
