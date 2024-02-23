@@ -9,7 +9,7 @@
     import java.util.List;
 
     public class SimpleSection implements Section {
-        private static long nextAvailableCourseId = 0;
+        private static long nextAvailableSectionId = 0;
         private long sectionId;
         private SimpleCourse course;
         private TimeSlot timeslot;
@@ -18,8 +18,8 @@
         protected SimpleSection() {}
 
         SimpleSection(final SimpleCourse course, final TimeSlot timeslot) {
-            this.sectionId = nextAvailableCourseId;
-            nextAvailableCourseId += 1;
+            this.sectionId = nextAvailableSectionId;
+            nextAvailableSectionId += 1;
             this.course = course;
             this.timeslot = timeslot;
         }
