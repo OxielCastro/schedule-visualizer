@@ -24,7 +24,7 @@ public class DbConnectionTest {
         ef = new SimpleEntityFactory();
     }
 
-    @Disabled
+    //@Disabled
     @Test
     void canConfigureDb() {
         EntityManager em = emf.createEntityManager();
@@ -38,7 +38,7 @@ public class DbConnectionTest {
         em.getTransaction().commit();
         // making new manager to make sure things went to the database
         em = emf.createEntityManager();
-        Course course = em.find(Course.class, c.courseId);
+        Course course = em.find(SimpleCourse.class, c.courseId);
         assertThat(course, notNullValue());
         TypedQuery<Section> q = em.createQuery("SELECT s FROM Section s WHERE s.course.prefix = :prefix", Section.class);
         q.setParameter("prefix", "CS");
