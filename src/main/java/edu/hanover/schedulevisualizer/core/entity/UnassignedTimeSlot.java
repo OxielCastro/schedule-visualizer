@@ -12,7 +12,7 @@ import java.util.function.Consumer;
 public class UnassignedTimeSlot implements TimeSlot {
     private final static UnassignedTimeSlot instance = new UnassignedTimeSlot();
 
-    UnassignedTimeSlot(){}
+    public UnassignedTimeSlot(){}
 
     /**
      * Get the singleton instance of UnassignedTimeSlot.

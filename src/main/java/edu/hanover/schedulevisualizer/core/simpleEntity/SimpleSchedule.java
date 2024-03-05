@@ -8,16 +8,23 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class SimpleSchedule implements Schedule {
-    private Set<SimpleSection> sections = new HashSet<>();
+    private List<SimpleSection> sections = new ArrayList<>();
 
+    private long scheduleId;
+    private String scheduleName;
     /**
      * Basic Constructor for Schedule class.
      * Creates a blank set and assigns it to the sections variable.
      * Used to create a blank schedule.
      */
-    SimpleSchedule() {
+    protected SimpleSchedule() {
     }
 
+    public SimpleSchedule(int scheduleId, String scheduleName, List<SimpleSection> sections) {
+        this.scheduleId = scheduleId;
+        this.scheduleName = scheduleName;
+        this.sections = sections;
+    }
 
     /**
      * Takes an instructor as a parameter and then gets the sections for the schedule.
