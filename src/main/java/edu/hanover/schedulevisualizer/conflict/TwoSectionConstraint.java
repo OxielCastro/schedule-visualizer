@@ -10,19 +10,19 @@ import edu.hanover.schedulevisualizer.core.entity.Section;
  * is generateConflict this makes a conflict based off the result comparing the two sections
  */
 
-public class TwoCourseConstraint extends PairwiseConstraint {
+public class TwoSectionConstraint extends PairwiseConstraint {
 
     Section section1;
     Section section2;
 
-    public TwoCourseConstraint(final Section section1, final Section section2) {
+    public TwoSectionConstraint(final Section section1, final Section section2) {
         this.section1 = section1;
         this.section2 = section2;
     }
 
-    public TwoCourseConflict getPairwiseConstraint(Section s1, Section s2) {
+    public TwoSectionConflict getPairwiseConstraint(Section s1, Section s2) {
         if (s1.IsSameCourse(s2)) {
-            return new TwoCourseConflict(s1, s2);
+            return new TwoSectionConflict(s1, s2);
         } return null;
     }
 }

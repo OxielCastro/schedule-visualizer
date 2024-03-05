@@ -21,8 +21,8 @@ public class GenerateConflictsTest extends ContextAwareTest {
         sectionlist.add(section2);
         sectionlist.add(section3);
         List<Conflict> conflictlist = new ArrayList<>();
-        Constraint demo = new TwoCourseConstraint(section1, section2);
-        conflictlist.add(new TwoCourseConflict(section1, section2));
+        Constraint demo = new TwoSectionConstraint(section1, section2);
+        conflictlist.add(new TwoSectionConflict(section1, section2));
         assertEquals(conflictlist, demo.getConflicts(sectionlist));
     }
 }

@@ -10,7 +10,7 @@ import java.util.Objects;
  * to check for equality, generate a hash code, and create a string
  * representation of the conflict.
  */
-public class TwoCourseConflict implements Conflict {
+public class TwoSectionConflict implements Conflict {
 
     /** The first course section involved in the conflict. */
     Section section1;
@@ -24,7 +24,7 @@ public class TwoCourseConflict implements Conflict {
      * @param section1 The first course section involved in the conflict.
      * @param section2 The second course section involved in the conflict.
      */
-    public TwoCourseConflict(final Section section1, final Section section2) {
+    public TwoSectionConflict(final Section section1, final Section section2) {
         this.section1 = section1;
         this.section2 = section2;
     }
@@ -50,7 +50,7 @@ public class TwoCourseConflict implements Conflict {
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        final TwoCourseConflict that = (TwoCourseConflict) o;
+        final TwoSectionConflict that = (TwoSectionConflict) o;
         return Objects.equals(section1, that.section1) && Objects.equals(section2, that.section2);
     }
 
