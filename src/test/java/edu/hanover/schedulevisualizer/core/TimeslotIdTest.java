@@ -29,9 +29,6 @@ public class TimeslotIdTest extends ContextAwareTest {
     }
 
 
-
-
-
     @Test
     public void assignInvalidTimeslot() {
         // If timeslot invalid, get an error
@@ -48,7 +45,6 @@ public class TimeslotIdTest extends ContextAwareTest {
             context.assignTimeslot(1234, newTimeSlot.getId());
         });
     }
-
 
     @Test
     public void notifyObservers() {

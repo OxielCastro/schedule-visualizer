@@ -14,7 +14,6 @@ public class InstructorConstraint {
 
     /**
      * Checks if two sections have conflicting courses based on instructor availability and overlapping timeslots.
-     *
      * @param section1 the first section to compare
      * @param section2 the second section to compare
      * @return {@code true} if the sections have conflicting courses, {@code false} otherwise
