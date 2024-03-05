@@ -23,8 +23,10 @@ public class HelloApplication extends Application {
             try {
                 Thread.sleep(1000);
                 Context.getInstance().getData();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            } catch (InterruptedException ignored) {
+                /*
+                 * Logging potentially necessary here.
+                 */
             }
         });
         thread.start();
