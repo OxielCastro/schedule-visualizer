@@ -7,8 +7,6 @@ import edu.hanover.schedulevisualizer.core.entity.Weekday;
 import edu.hanover.schedulevisualizer.core.simpleEntity.SimpleSection;
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 

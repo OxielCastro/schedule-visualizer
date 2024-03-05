@@ -2,8 +2,6 @@ package edu.hanover.schedulevisualizer.conflict;
 
 import edu.hanover.schedulevisualizer.core.entity.Section;
 
-import java.util.List;
-
 /**
  * This class uses the constraint interface and compares two sections and determines weather
  * they are the same and depending on that result produces a conflict. This class contains
@@ -27,15 +25,4 @@ public class TwoCourseConstraint extends PairwiseConstraint {
             return new TwoCourseConflict(s1, s2);
         } return null;
     }
-
-//    public boolean twoConflictingCourses(final Section section1, final Section section2) {
-//        return section1.IsSameCourse(section2);
-//    }
-//
-//    public Optional<Conflict> generateConflict(final Section section1, final Section section2) {
-//        if (twoConflictingCourses(section1, section2)) {
-//            return Optional.of(new TwoCourseConflict(section1, section2));
-//        }
-//        return Optional.empty();
-//    }
 }
