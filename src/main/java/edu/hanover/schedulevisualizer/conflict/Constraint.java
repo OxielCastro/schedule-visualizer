@@ -10,19 +10,11 @@ public interface Constraint {
 
     /**
      * Generates a list of conflicts based on the given list of course sections.
-     * Each pair of sections in the list is checked for conflicts, and a list of optional conflicts is returned.
-     * @param sectionlist the list of course sections to generate conflicts for
+     * Each pair of sections in the list is checked for conflicts, and a list of optional conflicts is returned
      * @return a list of optional conflicts between course sections
      */
-    default List<Optional<Conflict>> generateConflicts(final List<Section> sectionlist) {
-        final List<Optional<Conflict>> conflictlist = new ArrayList<>();
-        for (int i = 0; i < sectionlist.size(); i++) {
-            for (int j = i + 1; j < sectionlist.size(); j++) {
-                conflictlist.add(generateConflict(sectionlist.get(i), sectionlist.get(j)));
-            }
-        }
-        return conflictlist;
-    }
+
+    List<Conflict> getConflicts(List<Section> sectionList);
 
     /**
      * Checks if two course sections conflict with each other based on the constraint.
@@ -31,7 +23,7 @@ public interface Constraint {
      * @param section1 the second course section
      * @return true if the two sections conflict, false otherwise
      */
-    boolean twoConflictingCourses(Section section, Section section1);
+//    boolean twoConflictingCourses(Section section, Section section1);
 
     /**
      * Generates a conflict between two course sections based on the constraint.
@@ -40,5 +32,5 @@ public interface Constraint {
      * @param section2 the second course section
      * @return an optional conflict between the two sections if they conflict, or empty if they don't
      */
-    Optional<Conflict> generateConflict(Section section1, Section section2);
+//    Optional<Conflict> generateConflict(Section section1, Section section2);
 }

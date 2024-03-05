@@ -19,7 +19,7 @@ public class TwoSectionConflictTest extends ContextAwareTest {
         Section section1 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
         SimpleSection section2 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
         TwoCourseConstraint twocourse = new TwoCourseConstraint(section1, section2);
-        assertTrue(twocourse.twoConflictingCourses(section1, section2));
+        assertEquals(new TwoCourseConflict(section1, section2), twocourse.getPairwiseConstraint(section1, section2));
     }
 
     @Test
@@ -27,22 +27,6 @@ public class TwoSectionConflictTest extends ContextAwareTest {
         Section section1 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
         SimpleSection section2 = ef.makeSection(ef.makeCourse("CS", "220", "Fundamentals Of CS"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
         TwoCourseConstraint twocourse = new TwoCourseConstraint(section1, section2);
-        assertFalse(twocourse.twoConflictingCourses(section1, section2));
-    }
-
-    @Test
-    public void sameSectionsHaveSameTimeSlot() {
-        Section section1 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
-        SimpleSection section2 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
-        TwoCourseConstraint twocourse = new TwoCourseConstraint(section1, section2);
-        assertTrue(twocourse.generateConflict(section1, section2).equals(Optional.of(new TwoCourseConflict(section1, section2))));
-    }
-
-    @Test
-    public void thereIsNoConflictForTwoSections() {
-        Section section1 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
-        SimpleSection section2 = ef.makeSection(ef.makeCourse("CS", "220", "Fundamentals Of CS"), ef.makeHCTimeSlot(Weekday.TR(), 1));
-        TwoCourseConstraint twocourse = new TwoCourseConstraint(section1, section2);
-        assertEquals(twocourse.generateConflict(section1, section2), Optional.empty());
+        assertNull(twocourse.getPairwiseConstraint(section1, section2));
     }
 }

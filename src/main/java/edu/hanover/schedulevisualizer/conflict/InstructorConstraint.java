@@ -5,7 +5,7 @@ import edu.hanover.schedulevisualizer.core.entity.Section;
 
 import java.util.Optional;
 
-public class InstructorConstraint implements Constraint {
+public class InstructorConstraint {
 
     /**
      * The instructor associated with this constraint.
