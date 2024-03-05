@@ -3,11 +3,10 @@ package edu.hanover.schedulevisualizer.conflict;
 import edu.hanover.schedulevisualizer.core.entity.Section;
 
 /**
- * This class uses the constraint interface and compares two sections and determines weather
- * they are the same and depending on that result produces a conflict. This class contains
- * two methods that return something. One of these methods is the twoConflictingCourses
- * which gives us information about the two sections. The second method that returns something
- * is generateConflict this makes a conflict based off the result comparing the two sections
+ * This class takes in two sections and checks if their
+ * courses are the same. If their courses are flagged as the same
+ * it will create a new TwoSectionConflict. For example if we have two courses
+ * 220A and 220B since those courses are the same they can not be at the same timeslot.
  */
 
 public class TwoSectionConstraint extends PairwiseConstraint {
