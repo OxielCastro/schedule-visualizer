@@ -7,7 +7,7 @@ import edu.hanover.schedulevisualizer.core.entity.Weekday;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class InstructorPreferenceConstraintTest {
+public class InstructorPreferenceConstraintTest extends ContextAwareTest {
 
     @Test
     public void testPreferredTimeSlot() {

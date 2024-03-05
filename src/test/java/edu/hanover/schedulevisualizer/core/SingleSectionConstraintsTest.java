@@ -1,4 +1,4 @@
-package edu.hanover.schedulevisualizer.core.simpleEntity;
+package edu.hanover.schedulevisualizer.core;
 
 import edu.hanover.schedulevisualizer.conflict.SingleSectionConstraints;
 import edu.hanover.schedulevisualizer.core.ContextAwareTest;

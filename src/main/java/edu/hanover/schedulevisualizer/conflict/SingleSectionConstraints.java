@@ -2,7 +2,7 @@ package edu.hanover.schedulevisualizer.conflict;
 
 import edu.hanover.schedulevisualizer.core.entity.Section;
 
-public class SingleSectionConstraints {
+public class SingleSectionConstraints{
     private Section section;
 
     public SingleSectionConstraints(Section section) {
