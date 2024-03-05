@@ -18,7 +18,7 @@ public class TwoCourseTimeSlotConstraint extends PairwiseConstraint{
     }
 
     public Conflict getPairwiseConstraint(Section s1, Section s2) {
-        if (s1.getTimeslot() == s2.getTimeslot()) {
+        if (s1.getTimeslot().equals(s2.getTimeslot())) {
             return new TwoCourseTimeSlotConflict(s1, s2);
         } return null;
     }
