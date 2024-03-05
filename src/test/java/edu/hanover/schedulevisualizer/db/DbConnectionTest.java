@@ -31,7 +31,7 @@ public class DbConnectionTest {
 
         SimpleCourse c =  (SimpleCourse) ef.makeCourse("CS", "229", "Data Wrangling");
         TimeSlot timeslot = ef.makeHCTimeSlot(Weekday.MWF(), 2);
-        Section s = ef.makeSection(c, timeslot);
+        SimpleSection s = (SimpleSection) ef.makeSection(c, timeslot);
         em.getTransaction().begin();
         em.persist(c);
         em.persist(s);

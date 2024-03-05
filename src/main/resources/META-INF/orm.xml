@@ -28,7 +28,9 @@
     </entity>
     <entity class="edu.hanover.schedulevisualizer.core.simpleEntity.SimpleInstructor" access="FIELD">
         <attributes>
-            <id name="Id" access="FIELD"/>
+            <id name="id" access="FIELD">
+                <generated-value/>
+            </id>
         </attributes>
     </entity>
     <converter class="edu.hanover.schedulevisualizer.db.TimeSlotConverter" auto-apply="false"/>

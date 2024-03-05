@@ -7,14 +7,14 @@ import edu.hanover.schedulevisualizer.core.entity.Section;
 public class SimpleInstructor implements Instructor {
     private String first;
     private String last;
-    private String Id;
+    private String id;
 
     protected SimpleInstructor() {}
 
     SimpleInstructor(String first, String last, String Id) {
         this.first = first;
         this.last = last;
-        this.Id = Id;
+        this.id = Id;
     }
 
      public String getFullName() {
@@ -22,8 +22,8 @@ public class SimpleInstructor implements Instructor {
         return fullName;
     }
 
-     public String getId() {
-        return Id;
+    public String getId() {
+        return id;
     }
 
     public boolean hasTimeSlotOverlap(Section section, Section otherSection) {

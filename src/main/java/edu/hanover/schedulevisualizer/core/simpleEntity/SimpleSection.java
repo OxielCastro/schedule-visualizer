@@ -43,6 +43,7 @@
             return course.getCourseCode();
         }
 
+        public SimpleCourse getCourse() { return course; }
         public List<Weekday> getWeekdays() { return timeslot.getWeekdayList(); }
 
         public long getSectionId() {
