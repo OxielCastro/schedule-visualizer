@@ -20,9 +20,12 @@ public class SimpleSchedule implements Schedule {
     protected SimpleSchedule() {
     }
 
-    public SimpleSchedule(int scheduleId, String scheduleName, List<SimpleSection> sections) {
-        this.scheduleId = scheduleId;
+    public SimpleSchedule(String scheduleName, List<SimpleSection> sections) {
         this.scheduleName = scheduleName;
+        this.sections = sections;
+    }
+
+    public SimpleSchedule(List<SimpleSection> sections){
         this.sections = sections;
     }
 
