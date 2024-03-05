@@ -32,4 +32,5 @@
         </attributes>
     </entity>
     <converter class="edu.hanover.schedulevisualizer.db.TimeSlotConverter" auto-apply="false"/>
+
 </entity-mappings>
