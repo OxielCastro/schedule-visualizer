@@ -2,6 +2,12 @@ package edu.hanover.schedulevisualizer.conflict;
 
 import edu.hanover.schedulevisualizer.core.entity.Section;
 
+/**
+ * this class takes in two sections and looks into each sections course timeslot
+ * and compares them. If they do have the same timeslot it will create a new
+ * TwoCourseTimeSlotConflict.
+ */
+
 public class TwoCourseTimeSlotConstraint extends PairwiseConstraint{
     Section section1;
     Section section2;
