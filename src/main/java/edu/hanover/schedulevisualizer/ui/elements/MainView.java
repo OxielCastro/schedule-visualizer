@@ -9,11 +9,12 @@ public class MainView extends HBox {
         super();
         TimeSlotGrid timeSlotGrid = new TimeSlotGrid();
         Button sidepanelButton = new Button("<<<");
+        Button addNewCourseButton = new Button("Add Course");
         SidePanel sidePanel = new SidePanel();
         Button newScheduleButton = new Button("+ New Schedule");
         this.getChildren().addAll(
-                timeSlotGrid, sidepanelButton, sidePanel, newScheduleButton
+                timeSlotGrid, sidepanelButton, sidePanel, newScheduleButton, addNewCourseButton
                                  );
-        MainController controller = new MainController(sidePanel, sidepanelButton, newScheduleButton);
+        MainController controller = new MainController(sidePanel, sidepanelButton, newScheduleButton, addNewCourseButton );
     }
 }

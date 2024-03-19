@@ -7,17 +7,26 @@ import javafx.scene.control.Button;
 
 public class MainController {
     private final Button newScheduleButton;
+    private Button addNewCourseButton;
     private SidePanel sidePanel;
     private Button sidePanelButton;
 
-    public MainController(final SidePanel sidePanel, final Button sidePanelButton, final Button newScheduleButton) {
+    public MainController(final SidePanel sidePanel, final Button sidePanelButton, final Button newScheduleButton, final Button addNewCourseButton) {
         this.sidePanel = sidePanel;
         this.sidePanelButton = sidePanelButton;
         this.newScheduleButton = newScheduleButton;
+        this.addNewCourseButton = addNewCourseButton;
         setPanelVisible(false);
         sidePanelButton.setOnAction(this::onToggleSidePanel);
         newScheduleButton.setOnAction(this::createNewEmptySchedule);
+        addNewCourseButton.setOnAction(this::createNewCourse);
     }
+
+    private void createNewCourse(final ActionEvent event) {
+        final Context context = Context.getInstance();
+        context.createNewCourse();
+    }
+
     private boolean panelVisible = false;
 
     public void onToggleSidePanel(final ActionEvent event) {

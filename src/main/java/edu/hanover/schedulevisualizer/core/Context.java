@@ -3,6 +3,8 @@ package edu.hanover.schedulevisualizer.core;
 import edu.hanover.schedulevisualizer.core.entity.*;
 import edu.hanover.schedulevisualizer.core.simpleEntity.SimpleEntityFactory;
 import edu.hanover.schedulevisualizer.observable.MyObserver;
+import edu.hanover.schedulevisualizer.ui.elements.SectionEntry;
+import edu.hanover.schedulevisualizer.ui.elements.UnassignedCourseList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,6 +95,14 @@ public class Context {
         this.schedule = ef.makeSchedule();
         notifyObservers();
     }
+
+    public void createNewCourse() {
+        Section section = ef.makeSection(ef.makeCourse("SPA", "116", "Spanish I"), ef.makeUnassignedTimeslot());
+        schedule.addSection(section);
+
+        notifyObservers();
+    }
+
 
     public void addInstructorToMasterList(final Instructor instructor) {
         instructorMasterList.put(instructor.getId(), instructor);
