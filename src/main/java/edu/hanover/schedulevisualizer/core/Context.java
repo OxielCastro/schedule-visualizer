@@ -64,6 +64,7 @@ public class Context {
         final Section section = getCourseWithId(courseId);
         final TimeSlot timeslot = ef.getTimeslotWithId(timeslotId);
         section.setTimeslot(timeslot);
+        notifyObservers();
         System.out.println("Dropped: " + section + timeslot);
     }
 
