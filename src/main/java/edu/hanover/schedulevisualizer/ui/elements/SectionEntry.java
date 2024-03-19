@@ -1,6 +1,7 @@
 package edu.hanover.schedulevisualizer.ui.elements;
 
 import edu.hanover.schedulevisualizer.core.entity.Section;
+import edu.hanover.schedulevisualizer.ui.draganddrop.DragAndDropController;
 import edu.hanover.schedulevisualizer.ui.draganddrop.DragSource;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -18,6 +19,7 @@ public class SectionEntry extends Label implements DragSource {
         super();
         this.setColor(Color.AQUA);
         this.setAlignment(Pos.CENTER);
+        DragAndDropController.getInstance().setupDragSource(this);
     }
 
     public String getDraggedContent() {

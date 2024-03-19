@@ -38,6 +38,7 @@ public class HelloApplication extends Application {
             public boolean executeTheDrop(final DropTarget target, final Dragboard db) {
                 final Long courseId = Long.valueOf(db.getString());
                 final String timeslotId = target.getTimeslotId();
+                System.out.println("Hi!");
                 Context.getInstance().moveCourseToTimeslot(courseId, timeslotId);
                 return true;
             }

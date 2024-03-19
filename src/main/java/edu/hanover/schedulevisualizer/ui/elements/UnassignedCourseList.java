@@ -15,6 +15,11 @@ import java.util.List;
 
 public class UnassignedCourseList extends VBox implements MyObserver<List<Section>>, DropTarget {
 
+    UnassignedCourseList() {
+        super();
+        DragAndDropController.getInstance().setupDropTarget(this);
+    }
+
     void addCourse(Section section) {
         getChildren().add(SectionEntry.forCourse(section));
     }
