@@ -9,9 +9,9 @@ import java.util.List;
 public interface EntityFactory {
     Course makeCourse(String prefix, String courseNum, String courseDescription);
 
-    SimpleSection makeSection(Course course, TimeSlot timeslot);
+    Section makeSection(Course course, TimeSlot timeslot);
 
-    SimpleInstructor makeInstructor(String first, String last, String id);
+    Instructor makeInstructor(String first, String last, String id);
 
     Schedule makeSchedule();
 

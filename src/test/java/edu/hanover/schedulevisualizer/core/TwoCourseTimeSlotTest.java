@@ -14,7 +14,7 @@ public class TwoCourseTimeSlotTest extends ContextAwareTest {
     @Test
     public void TwoCoursesHaveSameTimeSlot() {
         Section section1 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
-        SimpleSection section2 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
+        Section section2 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
         TwoCourseTimeSlotConstraint twoCourse = new TwoCourseTimeSlotConstraint(section1, section2);
         assertEquals(new TwoCourseTimeSlotConflict(section1, section2), twoCourse.getPairwiseConstraint(section1, section2));
     }
@@ -22,7 +22,7 @@ public class TwoCourseTimeSlotTest extends ContextAwareTest {
     @Test
     public void TwoCoursesDifferentTimeSlot() {
         Section section1 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
-        SimpleSection section2 = ef.makeSection(ef.makeCourse("CS", "220", "Fundamentals of Computer Science"), ef.makeHCTimeSlot(Weekday.MWF(), 3));
+        Section section2 = ef.makeSection(ef.makeCourse("CS", "220", "Fundamentals of Computer Science"), ef.makeHCTimeSlot(Weekday.MWF(), 3));
         TwoCourseTimeSlotConstraint twoCourse = new TwoCourseTimeSlotConstraint(section1, section2);
         assertNull(twoCourse.getPairwiseConstraint(section1, section2));
     }

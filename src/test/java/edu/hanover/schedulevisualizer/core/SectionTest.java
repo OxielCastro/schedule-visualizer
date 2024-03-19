@@ -81,7 +81,7 @@ public class SectionTest extends ContextAwareTest {
     void TwoSectionsHaveSameCourse() {
         Course course1 = ef.makeCourse("CS", "321", "Software Development Practicum");
         Section section1 = ef.makeSection(course1, null);
-        SimpleSection section2 = ef.makeSection(course1, null);
+        Section section2 = ef.makeSection(course1, null);
         assertTrue(section1.IsSameCourse(section2));
     }
 

@@ -1,10 +1,9 @@
 plugins {
-    id("java")
     id("application")
     id("co.uzzu.dotenv.gradle") version "4.0.0"
-    id("org.javamodularity.moduleplugin") version "1.8.9" apply false
+//    id("org.javamodularity.moduleplugin") version "1.8.9" apply false
     id("org.openjfx.javafxplugin") version "0.1.0"
-    id("org.beryx.jlink") version "2.24.1"
+//    id("org.beryx.jlink") version "2.24.1"
     pmd
     jacoco
 }
@@ -38,9 +37,9 @@ val markdownDoclet by configurations.creating
 
 dependencies {
     markdownDoclet("org.jdrupes.mdoclet:doclet:4.1.0")
-    implementation("org.openjfx:javafx-controls:19")
-    implementation("org.openjfx:javafx-fxml:19")
-    implementation("org.openjfx:javafx-web:19")
+    implementation("org.openjfx:javafx-controls:21")
+    implementation("org.openjfx:javafx-fxml:21")
+    implementation("org.openjfx:javafx-web:21")
     implementation("org.controlsfx:controlsfx:11.1.1")
     implementation("com.dlsc.formsfx:formsfx-core:11.5.0")
     implementation("org.kordamp.ikonli:ikonli-javafx:12.3.1")
@@ -57,6 +56,8 @@ dependencies {
     implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
     runtimeOnly("org.hibernate.orm:hibernate-core:6.4.3.Final")
     testRuntimeOnly("com.h2database:h2:2.2.224")
+    // JSON, YAML
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1")
 }
 
 tasks.named<Test>("test") {
@@ -64,15 +65,26 @@ tasks.named<Test>("test") {
 }
 
 javafx {
-    version = "17"
-    setPlatform("mac")
+    version = "21.0.2"
+//    setPlatform("mac")
     modules("javafx.controls", "javafx.fxml")
 }
+
+//jlink {
+//    launcher {
+//        name = "edu.hanover.schedulevisualizer"
+//    }
+//}
 
 application {
     mainModule.set("edu.hanover.schedulevisualizer")
     mainClass.set("edu.hanover.schedulevisualizer.HelloApplication")
+    applicationDefaultJvmArgs += listOf("-Djavafx.verbose=true", "-Dprism.verbose=true")
 }
+
+//java {
+//    modularity.inferModulePath.set(true)
+//}
 
 pmd {
     toolVersion = "6.55.0"

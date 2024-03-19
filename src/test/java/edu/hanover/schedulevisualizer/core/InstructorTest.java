@@ -55,14 +55,14 @@ public class InstructorTest extends ContextAwareTest {
     @Test
     public void canCompareInstructorsLast() {
         Instructor instructor1 = ef.makeInstructor("Barbara", "Wahl", "wahl@hanover.edu");
-        SimpleInstructor instructor2 = ef.makeInstructor("Donald", "Millar", "millar@hanover.edu");
+        Instructor instructor2 = ef.makeInstructor("Donald", "Millar", "millar@hanover.edu");
         assertTrue(instructor1.compareTo(instructor2) > 0);
     }
 
     @Test
     public void canCompareInstructorsFirst() {
         Instructor instructor1 = ef.makeInstructor("Barbara", "Wahl", "wahl@hanover.edu");
-        SimpleInstructor instructor2 = ef.makeInstructor("Barbara", "Waal", "wall@hanover.edu");
+        Instructor instructor2 = ef.makeInstructor("Barbara", "Waal", "wall@hanover.edu");
 
         assertFalse(instructor1.compareTo(instructor2) < 0);
     }

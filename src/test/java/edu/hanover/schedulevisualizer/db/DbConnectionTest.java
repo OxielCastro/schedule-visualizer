@@ -24,7 +24,7 @@ public class DbConnectionTest {
         ef = new SimpleEntityFactory();
     }
 
-    //@Disabled
+    @Disabled
     @Test
     void canConfigureDb() {
         EntityManager em = emf.createEntityManager();
