@@ -50,4 +50,15 @@ public enum Weekday {
     public boolean isTR() {
         return this == Tuesday || this == Thursday;
     }
+
+    public List<Weekday> weekdayExpansion (Weekday day) {
+        switch (day) {
+            case "M", "F", "W" -> {
+                return MWF();
+            }
+            case "T", "R" -> {
+                return TR();
+            }
+        }
+    }
 }
