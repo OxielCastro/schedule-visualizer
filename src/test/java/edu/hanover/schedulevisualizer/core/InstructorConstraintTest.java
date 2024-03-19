@@ -5,44 +5,18 @@ import edu.hanover.schedulevisualizer.conflict.InstructorConstraint;
 import edu.hanover.schedulevisualizer.core.entity.Instructor;
 import edu.hanover.schedulevisualizer.core.entity.Section;
 import edu.hanover.schedulevisualizer.core.entity.Weekday;
-import edu.hanover.schedulevisualizer.core.simpleEntity.SimpleSection;
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class InstructorConstraintTest extends ContextAwareTest {
-    @Test
-    public void TimeSlotIsFilled(){
-        Section section1 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
-        Section section2 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
-        Instructor instructor1 = ef.makeInstructor("John", "Smith", "456357");
-        section1.addInstructor(instructor1);
-        section2.addInstructor(instructor1);
-        InstructorConstraint FilledTimeSlot = new InstructorConstraint();
-        assertTrue(FilledTimeSlot.twoConflictingCourses(section1, section2));
-
-    }
-
-    @Test
-    public void TimeSlotIsNotFilled() {
-        Section section1 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
-        Section section2 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
-        Instructor instructor1 = ef.makeInstructor("John", "Smith", "456357");
-        Instructor instructor2 = ef.makeInstructor("Colin", "Sharp", "456857");
-        section1.addInstructor(instructor1);
-        section2.addInstructor(instructor2);
-        InstructorConstraint IsntFilledTimeSlot = new InstructorConstraint();
-        assertFalse(IsntFilledTimeSlot.twoConflictingCourses(section1, section2));
-    }
-
     @Test
     public void neitherCourseHasInstructor() {
         Section section1 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
         Section section2 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
-        InstructorConstraint IsntFilledTimeSlot = new InstructorConstraint();
-        assertFalse(IsntFilledTimeSlot.twoConflictingCourses(section1, section2));
+        InstructorConstraint instructorConstraint = new InstructorConstraint(section1, section2);
+        assertNull(instructorConstraint.getPairwiseConstraint(section1, section2));
     }
 
     @Test
@@ -52,8 +26,8 @@ public class InstructorConstraintTest extends ContextAwareTest {
         Instructor instructor1 = ef.makeInstructor("John", "Smith", "456357");
         section1.addInstructor(instructor1);
         section2.addInstructor(instructor1);
-        InstructorConstraint instructorconstraint = new InstructorConstraint();
-        assertTrue(instructorconstraint.generateConflict(section1, section2).equals(Optional.of(new InstructorConflict(section1, section2))));
+        InstructorConstraint instructorconstraint = new InstructorConstraint(section1, section2);
+        assertEquals(new InstructorConflict(section1, section2), instructorconstraint.getPairwiseConstraint(section1, section2));
     }
 
     @Test
@@ -64,7 +38,7 @@ public class InstructorConstraintTest extends ContextAwareTest {
         Instructor instructor2 = ef.makeInstructor("Colin", "Sharp", "456857");
         section1.addInstructor(instructor1);
         section2.addInstructor(instructor2);
-        InstructorConstraint instructorconstraint = new InstructorConstraint();
-        assertEquals(instructorconstraint.generateConflict(section1, section2), Optional.empty());
+        InstructorConstraint instructorconstraint = new InstructorConstraint(section1, section2);
+        assertNull(instructorconstraint.getPairwiseConstraint(section1, section2));
     }
 }
