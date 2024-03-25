@@ -16,14 +16,16 @@ public class MainView extends HBox {
         Button newScheduleButton = new Button("New Schedule");
 
         VBox textFieldContainer = new VBox();
-        TextField prefixTextField = new TextField("Prefix");
-        TextField courseNumTextField =  new TextField("Course Number");
-        TextField courseDescriptionTextField =  new TextField("Course Description");
-        prefixTextField.setOnMouseClicked(e -> prefixTextField.setText(""));
-        courseNumTextField.setOnMouseClicked(e -> courseNumTextField.setText(""));
-        courseDescriptionTextField.setOnMouseClicked(e -> courseDescriptionTextField.setText(""));
+        TextField prefixTextField = new TextField("");
+        TextField courseNumTextField =  new TextField("");
+        TextField courseDescriptionTextField =  new TextField("");
+        prefixTextField.setPromptText("Prefix");
+        courseNumTextField.setPromptText("Course Number");
+        courseDescriptionTextField.setPromptText("Course Description");
+
 
         textFieldContainer.getChildren().addAll(prefixTextField, courseNumTextField, courseDescriptionTextField);
+
 
         this.getChildren().addAll(
                 timeSlotGrid, sidepanelButton, sidePanel, newScheduleButton, addNewCourseButton, textFieldContainer

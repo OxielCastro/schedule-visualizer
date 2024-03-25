@@ -11,16 +11,16 @@ public class MainController {
     private Button addNewCourseButton;
     private SidePanel sidePanel;
     private Button sidePanelButton;
-    private TextField prefixTextFeld;
+    private TextField prefixTextField;
     private TextField courseNumTextField;
     private TextField courseDescriptionTextField;
 
-    public MainController(final SidePanel sidePanel, final Button sidePanelButton, final Button newScheduleButton, final Button addNewCourseButton, TextField prefixTextFeld, TextField courseNumTextField, TextField courseDescriptionTextField) {
+    public MainController(final SidePanel sidePanel, final Button sidePanelButton, final Button newScheduleButton, final Button addNewCourseButton, TextField prefixTextField, TextField courseNumTextField, TextField courseDescriptionTextField) {
         this.sidePanel = sidePanel;
         this.sidePanelButton = sidePanelButton;
         this.newScheduleButton = newScheduleButton;
         this.addNewCourseButton = addNewCourseButton;
-        this.prefixTextFeld = prefixTextFeld;
+        this.prefixTextField = prefixTextField;
         this.courseNumTextField = courseNumTextField;
         this.courseDescriptionTextField = courseDescriptionTextField;
         setPanelVisible(false);
@@ -31,10 +31,20 @@ public class MainController {
 
     private void createNewCourse(final ActionEvent event) {
         final Context context = Context.getInstance();
-        String prefix = prefixTextFeld.getText();
+        String prefix = prefixTextField.getText();
         String courseNum = courseNumTextField.getText();
         String description = courseDescriptionTextField.getText();
         context.createNewCourse(prefix, courseNum, description);
+
+        // Update prompt text of text fields
+        prefixTextField.setPromptText("Prefix");
+        courseNumTextField.setPromptText("Course Number");
+        courseDescriptionTextField.setPromptText("Course Description");
+
+        // Clear text fields
+        prefixTextField.setText("");
+        courseNumTextField.setText("");
+        courseDescriptionTextField.setText("");
     }
 
     private boolean panelVisible = false;
