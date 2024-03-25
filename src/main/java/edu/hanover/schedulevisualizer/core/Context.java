@@ -63,6 +63,9 @@ public class Context {
     public void moveCourseToTimeslot(final Long courseId, final String timeslotId) {
         final Section section = getCourseWithId(courseId);
         final TimeSlot timeslot = ef.getTimeslotWithId(timeslotId);
+        TimeSlot ts1 = section.getTimeslot();
+
+
         section.setTimeslot(timeslot);
         notifyObservers();
         System.out.println("Dropped: " + section + timeslot);

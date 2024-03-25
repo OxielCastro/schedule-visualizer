@@ -1,7 +1,9 @@
 package edu.hanover.schedulevisualizer.core.entity;
 
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
  * Class that implements the interface Timeslot
@@ -82,6 +84,10 @@ public class HCTimeSlot implements TimeSlot {
 
 
     public void ifUnassignedSlotDo(final Runnable runnable) {
+    }
+
+    public <T> T computeWithSlot(BiFunction<List<Weekday>, Integer, T> f1, Supplier<T> f2) {
+        return f1.apply(weekdayList, slotnum);
     }
 
     private boolean hasDaysInCommonWith(final HCTimeSlot hcOtherSlot) {

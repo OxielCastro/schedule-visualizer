@@ -2,7 +2,9 @@
 package edu.hanover.schedulevisualizer.core.entity;
 
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
  * Represents an unassigned time slot.
@@ -45,5 +47,9 @@ public class UnassignedTimeSlot implements TimeSlot {
 
     public void ifUnassignedSlotDo(final Runnable runnable) {
         runnable.run();
+    }
+
+    public <T> T computeWithSlot(BiFunction<List<Weekday>, Integer, T> f1, Supplier<T> f2) {
+        return f2.get();
     }
 }

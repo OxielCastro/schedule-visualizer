@@ -1,7 +1,9 @@
 package edu.hanover.schedulevisualizer.core.entity;
 
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
  * Interface Timeslot gets implemented by Class {@link HCTimeSlot} (Specified timeslots to just hanover college)
@@ -37,6 +39,8 @@ public interface TimeSlot {
      */
     void ifUnassignedSlotDo(Runnable runnable);
 
+    <T> T computeWithSlot(BiFunction<List<Weekday>, Integer, T> f1, Supplier<T> f2);
+
     /**
      * Used to get the Weekday List and the slotnum combining them to form an ID for the class
      * @return a string version of the class id
@@ -50,4 +54,5 @@ public interface TimeSlot {
      * @return an abbreviated string version of the class id
      */
     String getAbbrId();
+
 }
