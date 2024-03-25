@@ -9,6 +9,9 @@ public interface Schedule extends Iterable<Section> {
 
     Collection<Section> getSections();
 
+    String getName();
+    void setName(String newName);
+
     void addSection(Section section);
 
     void removeSection(Section section);

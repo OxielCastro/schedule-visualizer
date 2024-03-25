@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 
 public class SimpleSchedule implements Schedule {
     private List<SimpleSection> sections = new ArrayList<>();
-
     private long scheduleId;
-    private String scheduleName;
+    private String scheduleName = "Untitled Schedule";
+
     /**
      * Basic Constructor for Schedule class.
      * Creates a blank set and assigns it to the sections variable.
@@ -52,6 +52,25 @@ public class SimpleSchedule implements Schedule {
         final HashSet<Section> sections1 = new HashSet<>(sections);
         return sections1;
     }
+
+    /**
+     * Returns the name of the Schedule.
+     *
+     * @return string scheduleName
+     */
+    public String getName() {
+        return scheduleName;
+    }
+
+    /**
+     * Changes the set name of the schedule
+     *
+     * @param name string of the desired schedule name
+     */
+    public void setName(String name) {
+        scheduleName = name;
+    }
+
 
     /**
      * Adds a section to the schedule.
