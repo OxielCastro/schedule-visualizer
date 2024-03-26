@@ -3,6 +3,7 @@ package edu.hanover.schedulevisualizer.ui.controller;
 import edu.hanover.schedulevisualizer.core.Context;
 import edu.hanover.schedulevisualizer.ui.elements.SidePanel;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
@@ -33,8 +34,20 @@ public class MainController {
         final Context context = Context.getInstance();
         String prefix = prefixTextField.getText();
         String courseNum = courseNumTextField.getText();
-        String description = courseDescriptionTextField.getText();
-        context.createNewCourse(prefix, courseNum, description);
+        String courseDescription = courseDescriptionTextField.getText();
+
+        if (prefix.isEmpty() || (courseNum.isEmpty()) || courseDescription.isEmpty()) {
+            // Display an error message in a popup
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill in all fields.");
+
+            alert.showAndWait();
+            return;
+        }
+
+        context.createNewCourse(prefix, courseNum, courseDescription);
 
         // Update prompt text of text fields
         prefixTextField.setPromptText("Prefix");
