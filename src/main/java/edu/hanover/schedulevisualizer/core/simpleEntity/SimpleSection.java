@@ -11,6 +11,7 @@
     public class SimpleSection implements Section {
         private static long nextAvailableSectionId = 0;
         private long sectionId;
+        private SimpleSchedule schedule;
         private SimpleCourse course;
         private TimeSlot timeslot;
         private List<SimpleInstructor> instructorList = new ArrayList<>();

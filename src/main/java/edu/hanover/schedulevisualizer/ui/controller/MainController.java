@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 
 public class MainController {
     private final Button newScheduleButton;
+    private final Button loadSchedulesButton;
     private Button addNewCourseButton;
     private SidePanel sidePanel;
     private Button sidePanelButton;
@@ -16,10 +17,11 @@ public class MainController {
     private TextField courseNumTextField;
     private TextField courseDescriptionTextField;
 
-    public MainController(final SidePanel sidePanel, final Button sidePanelButton, final Button newScheduleButton, final Button addNewCourseButton, TextField prefixTextField, TextField courseNumTextField, TextField courseDescriptionTextField) {
+    public MainController(final SidePanel sidePanel, final Button sidePanelButton, final Button newScheduleButton, final Button loadSchedulesButton, final Button addNewCourseButton, TextField prefixTextField, TextField courseNumTextField, TextField courseDescriptionTextField) {
         this.sidePanel = sidePanel;
         this.sidePanelButton = sidePanelButton;
         this.newScheduleButton = newScheduleButton;
+        this.loadSchedulesButton = loadSchedulesButton;
         this.addNewCourseButton = addNewCourseButton;
         this.prefixTextField = prefixTextField;
         this.courseNumTextField = courseNumTextField;
@@ -27,6 +29,7 @@ public class MainController {
         setPanelVisible(false);
         sidePanelButton.setOnAction(this::onToggleSidePanel);
         newScheduleButton.setOnAction(this::createNewEmptySchedule);
+        loadSchedulesButton.setOnAction(this::loadSchedulesList);
         addNewCourseButton.setOnAction(this::createNewCourse);
     }
 
@@ -69,6 +72,9 @@ public class MainController {
     private void createNewEmptySchedule(final ActionEvent event) {
         final Context context = Context.getInstance();
         context.createNewEmptySchedule();
+    }
+
+    private void loadSchedulesList(ActionEvent actionEvent) {
     }
 
     boolean getPanelVisible() {

@@ -3,6 +3,7 @@ package edu.hanover.schedulevisualizer.db;
 import edu.hanover.schedulevisualizer.core.entity.*;
 import edu.hanover.schedulevisualizer.core.simpleEntity.SimpleCourse;
 import edu.hanover.schedulevisualizer.core.simpleEntity.SimpleEntityFactory;
+import edu.hanover.schedulevisualizer.core.simpleEntity.SimpleSchedule;
 import edu.hanover.schedulevisualizer.core.simpleEntity.SimpleSection;
 import jakarta.persistence.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,8 +31,10 @@ public class DbConnectionTest {
         SimpleCourse c =  (SimpleCourse) ef.makeCourse("CS", "229", "Data Wrangling");
         TimeSlot timeslot = ef.makeHCTimeSlot(Weekday.MWF(), 2);
         SimpleSection s = (SimpleSection) ef.makeSection(c, timeslot);
+        SimpleSchedule sch = (SimpleSchedule) ef.makeSchedule();
         em.getTransaction().begin();
         em.persist(c);
+        em.persist(sch);
         em.merge(s);
         em.getTransaction().commit();
         // making new manager to make sure things went to the database

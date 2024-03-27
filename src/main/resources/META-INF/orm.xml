@@ -12,6 +12,16 @@
             </basic>
         </attributes>
     </entity>
+    <entity class="edu.hanover.schedulevisualizer.core.simpleEntity.SimpleSchedule" name="Schedule" access="FIELD">
+        <attributes>
+            <id name="scheduleId">
+                <generated-value/>
+            </id>
+            <basic name="scheduleName">
+            </basic>
+            <one-to-many name="sections" access="FIELD"/>
+        </attributes>
+    </entity>
     <entity class="edu.hanover.schedulevisualizer.core.simpleEntity.SimpleSection" name="Section" access="FIELD">
         <attributes>
             <id name="sectionId" access="FIELD">
@@ -21,6 +31,8 @@
                 <convert converter="edu.hanover.schedulevisualizer.db.TimeSlotConverter" />
             </basic>
             <many-to-one name="course" access="FIELD">
+            </many-to-one>
+            <many-to-one name="schedule" access="FIELD">
             </many-to-one>
             <many-to-many name="instructorList">
             </many-to-many>
