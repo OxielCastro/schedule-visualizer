@@ -24,17 +24,15 @@ public class DbConnectionTest {
         ef = new SimpleEntityFactory();
     }
 
-    @Disabled
     @Test
     void canConfigureDb() {
         EntityManager em = emf.createEntityManager();
-
         SimpleCourse c =  (SimpleCourse) ef.makeCourse("CS", "229", "Data Wrangling");
         TimeSlot timeslot = ef.makeHCTimeSlot(Weekday.MWF(), 2);
         SimpleSection s = (SimpleSection) ef.makeSection(c, timeslot);
         em.getTransaction().begin();
         em.persist(c);
-        em.persist(s);
+        em.merge(s);
         em.getTransaction().commit();
         // making new manager to make sure things went to the database
         em = emf.createEntityManager();
