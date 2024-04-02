@@ -58,10 +58,15 @@ dependencies {
     testRuntimeOnly("com.h2database:h2:2.2.224")
     // JSON, YAML
     implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1")
+    testImplementation(platform("io.cucumber:cucumber-bom:7.16.1"))
+    testImplementation("io.cucumber:cucumber-java")
+    testImplementation("io.cucumber:cucumber-junit-platform-engine")
+    testImplementation("org.junit.platform:junit-platform-suite")
 }
 
 tasks.named<Test>("test") {
     useJUnitPlatform()
+    systemProperty("cucumber.junit-platform.naming-strategy", "long")
 }
 
 javafx {
