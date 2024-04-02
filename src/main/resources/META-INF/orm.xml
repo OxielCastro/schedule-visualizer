@@ -45,10 +45,5 @@
             </id>
         </attributes>
     </entity>
-    <entity class="edu.hanover.schedulevisualizer.core.simpleEntity.SimpleSchedule" access="FIELD">
-        <attributes>
-            <id name="scheduleId" access="FIELD"/>
-        </attributes>
-    </entity>
     <converter class="edu.hanover.schedulevisualizer.db.TimeSlotConverter" auto-apply="false"/>
 </entity-mappings>
