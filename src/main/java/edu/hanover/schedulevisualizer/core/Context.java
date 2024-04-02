@@ -79,7 +79,9 @@ public class Context {
     public void assignTimeslot(final long courseId, final String id) {
         final Section section = getCourseWithId(courseId);
         final TimeSlot timeslot = ef.getTimeslotWithId(id);
-        section.setTimeslot(timeslot);
+        TimeSlotHandler handler = new TimeSlotHandler(ef);
+        TimeSlot result = handler.combine(section.getTimeslot(), timeslot);
+        section.setTimeslot(result);
         notifyObservers();
     }
 

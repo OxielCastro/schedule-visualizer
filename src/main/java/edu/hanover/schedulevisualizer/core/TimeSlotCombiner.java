@@ -1,5 +1,6 @@
 package edu.hanover.schedulevisualizer.core;
 
+import edu.hanover.schedulevisualizer.core.entity.EntityFactory;
 import edu.hanover.schedulevisualizer.core.entity.TimeSlot;
 import edu.hanover.schedulevisualizer.core.entity.Weekday;
 

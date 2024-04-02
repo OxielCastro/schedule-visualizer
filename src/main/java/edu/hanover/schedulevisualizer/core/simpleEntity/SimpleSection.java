@@ -1,9 +1,6 @@
     package edu.hanover.schedulevisualizer.core.simpleEntity;
 
-    import edu.hanover.schedulevisualizer.core.entity.TimeSlot;
-    import edu.hanover.schedulevisualizer.core.entity.Weekday;
-    import edu.hanover.schedulevisualizer.core.entity.Instructor;
-    import edu.hanover.schedulevisualizer.core.entity.Section;
+    import edu.hanover.schedulevisualizer.core.entity.*;
 
     import java.util.ArrayList;
     import java.util.List;
