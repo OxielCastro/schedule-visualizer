@@ -42,4 +42,5 @@ public class WeekdayTest {
     private void assertAbbreviatesTo(Weekday weekday, String abbr) {
         assertEquals(abbr, weekday.toShortString());
     }
+
 }

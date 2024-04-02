@@ -71,7 +71,6 @@ public class Context {
         System.out.println("Dropped: " + section + timeslot);
     }
 
-
     public void addSections(final Section section) {
         schedule.addSection(section);
     }

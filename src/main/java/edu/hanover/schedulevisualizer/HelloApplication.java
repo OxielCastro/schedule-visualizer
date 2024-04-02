@@ -39,7 +39,7 @@ public class HelloApplication extends Application {
                 final Long courseId = Long.valueOf(db.getString());
                 final String timeslotId = target.getTimeslotId();
                 System.out.println("Hi!");
-                Context.getInstance().moveCourseToTimeslot(courseId, timeslotId);
+                Context.getInstance().assignTimeslot(courseId, timeslotId);
                 return true;
             }
 

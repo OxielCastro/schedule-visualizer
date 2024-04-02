@@ -51,14 +51,15 @@ public enum Weekday {
         return this == Tuesday || this == Thursday;
     }
 
-    public List<Weekday> weekdayExpansion (Weekday day) {
+    public List<Weekday> weekdayExpansion(Weekday day) {
         switch (day) {
-            case "M", "F", "W" -> {
+            case Monday, Wednesday, Friday -> {
                 return MWF();
             }
-            case "T", "R" -> {
+            case Tuesday, Thursday -> {
                 return TR();
             }
         }
+        throw new RuntimeException("Invalid weekday entry!");
     }
 }
