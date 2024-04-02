@@ -13,11 +13,10 @@ public class MainView extends HBox {
         Button sidepanelButton = new Button("<<<");
         Button addNewCourseButton = new Button("Add Course");
         SidePanel sidePanel = new SidePanel();
-        Button newScheduleButton = new Button("New Schedule");
-        Button loadSchedulesButton = new Button("Load Schedules");
-        VBox scheduleButtons = new VBox();
-        newScheduleButton.setPrefWidth(98);
-        scheduleButtons.getChildren().addAll(newScheduleButton, loadSchedulesButton);
+
+        ScheduleView scheduleView = new ScheduleView();
+        VBox scheduleViewWithGrid = new VBox();
+        scheduleViewWithGrid.getChildren().addAll(scheduleView, timeSlotGrid);
 
         VBox textFieldContainer = new VBox();
         TextField prefixTextField = new TextField("");
@@ -32,11 +31,11 @@ public class MainView extends HBox {
 
 
         this.getChildren().addAll(
-                timeSlotGrid, sidepanelButton, sidePanel, scheduleButtons, addNewCourseButton, textFieldContainer
+                scheduleViewWithGrid, sidepanelButton, sidePanel, addNewCourseButton, textFieldContainer
                                  );
 
         MainController controller = new MainController(
-                                            sidePanel, sidepanelButton, newScheduleButton, loadSchedulesButton, addNewCourseButton,
+                                            sidePanel, sidepanelButton, addNewCourseButton,
                                                 prefixTextField, courseNumTextField, courseDescriptionTextField );
     }
 }
