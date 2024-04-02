@@ -60,17 +60,6 @@ public class Context {
         throw new RuntimeException("Cannot find course with id: " + courseId);
     }
 
-    public void moveCourseToTimeslot(final Long courseId, final String timeslotId) {
-        final Section section = getCourseWithId(courseId);
-        final TimeSlot timeslot = ef.getTimeslotWithId(timeslotId);
-        TimeSlot ts1 = section.getTimeslot();
-
-
-        section.setTimeslot(timeslot);
-        notifyObservers();
-        System.out.println("Dropped: " + section + timeslot);
-    }
-
     public void addSections(final Section section) {
         schedule.addSection(section);
     }
