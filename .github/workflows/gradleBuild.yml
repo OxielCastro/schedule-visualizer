@@ -9,7 +9,7 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v4
       - name: Read dotenv
-        uses: xom9ikk/dotenv@v2
+        uses: xom9ikk/dotenv@v2.3.0
       - name: Log variables
         run: | 
           echo "Java version: $JAVA_VERSION" >> $GITHUB_STEP_SUMMARY
