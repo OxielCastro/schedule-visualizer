@@ -1,5 +1,8 @@
 Feature: Apple Map
 
+  This is showing the use of a map to keep track of how many apples people have.
+  They can trade apples to each other.
+
 Scenario: Different people can start with different number of apples
 Given John starts with 5 apples
   And Jane starts with 3 apples

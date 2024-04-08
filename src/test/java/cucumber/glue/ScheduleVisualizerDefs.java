@@ -2,25 +2,25 @@ package cucumber.glue;
 
 import edu.hanover.schedulevisualizer.core.Context;
 import edu.hanover.schedulevisualizer.core.entity.Weekday;
+import edu.hanover.schedulevisualizer.ui.elements.MainView;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.ParameterType;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
-import edu.hanover.schedulevisualizer.ui.elements.MainView;
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
+import java.util.concurrent.Semaphore;
+
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.notNullValue;
 
 public class ScheduleVisualizerDefs extends ApplicationTest {
     private Scene mainScene;
@@ -54,9 +54,17 @@ public class ScheduleVisualizerDefs extends ApplicationTest {
     public Weekday weekday(String weekday){
         return Weekday.valueOf(weekday);
     }
+
     @When("^The page is updated$")
-    public void whenThePageIsUpdated() {
+    public void whenThePageIsUpdated() throws InterruptedException {
         Context.getInstance().getData();
+        waitForUIUpdate();
+    }
+
+    private static void waitForUIUpdate() throws InterruptedException {
+        Semaphore semaphore = new Semaphore(0);
+        Platform.runLater(() -> semaphore.release());
+        semaphore.acquire();
     }
 
     @Then("The section {string} is scheduled on {weekday} at slot {int}")
