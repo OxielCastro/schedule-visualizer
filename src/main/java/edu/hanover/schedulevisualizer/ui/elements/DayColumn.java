@@ -34,8 +34,8 @@ public class DayColumn extends VBox {
 
     static DayColumn forWeekday(Weekday weekday) {
         DayColumn dayColumn = new DayColumn();
+        dayColumn.setId("column" + weekday); // Must set id before creating slots
         dayColumn.setDay(weekday);
-        dayColumn.setId("column" + weekday);
         return dayColumn;
     }
 

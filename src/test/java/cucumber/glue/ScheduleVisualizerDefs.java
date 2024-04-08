@@ -17,9 +17,11 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
+import java.util.Optional;
 import java.util.concurrent.Semaphore;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 public class ScheduleVisualizerDefs extends ApplicationTest {
@@ -70,7 +72,10 @@ public class ScheduleVisualizerDefs extends ApplicationTest {
     @Then("The section {string} is scheduled on {weekday} at slot {int}")
     public void sectionScheduledAtTimeSlot(String sectionName, Weekday day, int slotnum) {
         Parent root = mainScene.getRoot();
-        Node node = from(root).lookup("CS 220").query();
-        assertThat(node, notNullValue());
+        Optional<Node> optNode = from(root)
+                .lookup("#slot" + slotnum + "column" + day)
+                .tryQuery()
+                .flatMap(tsc -> from(tsc).lookup("CS 220").tryQuery());
+        assertThat(optNode.isPresent(), equalTo(true));
     }
 }
