@@ -28,6 +28,10 @@ public enum Weekday {
         return List.of(Tuesday, Thursday);
     }
 
+    public static List<Weekday> W(){return  List.of(Wednesday);}
+
+    public static List<Weekday> R(){return List.of(Thursday);}
+
     public static List<Weekday> fromLetters(String s) {
         String[] weekdays = s.split("");
         List<Weekday> weekdayList = new ArrayList<>();
