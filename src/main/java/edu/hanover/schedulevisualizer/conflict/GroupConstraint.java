@@ -2,8 +2,7 @@ package edu.hanover.schedulevisualizer.conflict;
 
 import edu.hanover.schedulevisualizer.core.entity.Section;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class GroupConstraint implements Constraint {
 
@@ -19,4 +18,13 @@ public class GroupConstraint implements Constraint {
             conflictList.addAll(constraintList.get(i).getConflicts(sectionList));
         } return conflictList;
     }
+
+    public void addConstraint(Constraint constraint) {
+        constraintList.add(constraint);
+    }
+
+    public void removeConstraint(Constraint constraint) {
+        constraintList.remove(constraint);
+    }
+
 }

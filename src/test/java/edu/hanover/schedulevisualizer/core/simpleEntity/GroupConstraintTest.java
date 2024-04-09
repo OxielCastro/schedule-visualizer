@@ -64,4 +64,38 @@ public class GroupConstraintTest extends ContextAwareTest {
 
         assertEquals(correctList, groupConstraint.getConflicts(sectionList));
     }
+
+    @Test
+    void canAddConstraintToList() {
+        Section section1 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
+        Section section2 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
+        Section section3 = ef.makeSection(ef.makeCourse("CS", "220", "Fundamentals Of CS"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
+
+        Constraint sectionOneAndThreeTimeSlot = new TwoCourseTimeSlotConstraint(section1, section3);
+        Constraint twoSectionConstraint = new TwoSectionConstraint(section1, section2);
+        Constraint sectionOneAndTwoTimeSlot = new TwoCourseTimeSlotConstraint(section1, section2);
+        List<Constraint> constraintList = new ArrayList<>();
+        Collections.addAll(constraintList, sectionOneAndThreeTimeSlot, twoSectionConstraint);
+
+        GroupConstraint groupConstraint = new GroupConstraint(constraintList);
+        groupConstraint.addConstraint(sectionOneAndTwoTimeSlot);
+        assertEquals(List.of(sectionOneAndThreeTimeSlot, twoSectionConstraint, sectionOneAndTwoTimeSlot), groupConstraint.constraintList);
+    }
+
+    @Test
+    void canRemoveConstraintFromList() {
+        Section section1 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
+        Section section2 = ef.makeSection(ef.makeCourse("CS", "321", "Software Development Practicum"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
+        Section section3 = ef.makeSection(ef.makeCourse("CS", "220", "Fundamentals Of CS"), ef.makeHCTimeSlot(Weekday.MWF(), 1));
+
+        Constraint sectionOneAndThreeTimeSlot = new TwoCourseTimeSlotConstraint(section1, section3);
+        Constraint twoSectionConstraint = new TwoSectionConstraint(section1, section2);
+        Constraint sectionOneAndTwoTimeSlot = new TwoCourseTimeSlotConstraint(section1, section2);
+        List<Constraint> constraintList = new ArrayList<>();
+        Collections.addAll(constraintList, sectionOneAndThreeTimeSlot, twoSectionConstraint, sectionOneAndTwoTimeSlot);
+
+        GroupConstraint groupConstraint = new GroupConstraint(constraintList);
+        groupConstraint.removeConstraint(sectionOneAndTwoTimeSlot);
+        assertEquals(List.of(sectionOneAndThreeTimeSlot, twoSectionConstraint), groupConstraint.constraintList);
+    }
 }
