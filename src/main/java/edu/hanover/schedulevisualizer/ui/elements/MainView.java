@@ -11,31 +11,24 @@ public class MainView extends HBox {
         super();
         TimeSlotGrid timeSlotGrid = new TimeSlotGrid();
         Button sidepanelButton = new Button("<<<");
-        Button addNewCourseButton = new Button("Add Course");
         SidePanel sidePanel = new SidePanel();
 
         ScheduleView scheduleView = new ScheduleView();
         VBox scheduleViewWithGrid = new VBox();
         scheduleViewWithGrid.getChildren().addAll(scheduleView, timeSlotGrid);
 
-        VBox textFieldContainer = new VBox();
-        TextField prefixTextField = new TextField("");
-        TextField courseNumTextField =  new TextField("");
-        TextField courseDescriptionTextField =  new TextField("");
-        prefixTextField.setPromptText("Prefix");
-        courseNumTextField.setPromptText("Course Number");
-        courseDescriptionTextField.setPromptText("Course Description");
-
-
-        textFieldContainer.getChildren().addAll(prefixTextField, courseNumTextField, courseDescriptionTextField);
-
+        NewCourseView newCourseView = new NewCourseView();
 
         this.getChildren().addAll(
-                scheduleViewWithGrid, sidepanelButton, sidePanel, addNewCourseButton, textFieldContainer
+                scheduleViewWithGrid, sidepanelButton, sidePanel, newCourseView
                                  );
 
         MainController controller = new MainController(
-                                            sidePanel, sidepanelButton, addNewCourseButton,
-                                                prefixTextField, courseNumTextField, courseDescriptionTextField );
+                                            sidePanel, sidepanelButton,
+                newCourseView.getAddNewCourseButton(), newCourseView.getPrefixTextField(),
+                newCourseView.getCourseNumTextField(), newCourseView.getCourseDescriptionTextField());
     }
 }
+
+
+
