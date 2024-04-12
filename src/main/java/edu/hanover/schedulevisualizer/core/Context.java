@@ -22,12 +22,21 @@ public class Context {
     private String id;
 
     protected Context() {
-        this.schedule = ef.makeSchedule(List.of(
+        String prepopSet = System.getenv("PREPOPULATE");
+        if (prepopSet != null) {
+            this.schedule = ef.makeSchedule(dummySectionList());
+        } else {
+            this.schedule = ef.makeSchedule();
+        }
+    }
+
+    private List<Section> dummySectionList() {
+        return List.of(
                 ef.makeSection(ef.makeCourse("CS", "220", "Fundamentals of Computer Science"), ef.makeHCTimeSlot(Weekday.MWF(), 1)),
                 ef.makeSection(ef.makeCourse("MAT", "121", "Calculus I"), ef.makeHCTimeSlot(List.of(Weekday.Tuesday), 7)),
                 ef.makeSection(ef.makeCourse("FY", "101", "First Year"), ef.makeUnassignedTimeslot()),
                 ef.makeSection(ef.makeCourse("FY2", "102", "First Year2"), ef.makeUnassignedTimeslot())
-        ));
+                      );
     }
 
     /**

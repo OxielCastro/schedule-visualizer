@@ -6,6 +6,7 @@ import edu.hanover.schedulevisualizer.ui.elements.MainView;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.ParameterType;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import javafx.application.Platform;
@@ -67,6 +68,14 @@ public class ScheduleVisualizerDefs extends ApplicationTest {
         Semaphore semaphore = new Semaphore(0);
         Platform.runLater(() -> semaphore.release());
         semaphore.acquire();
+    }
+
+    @Given("A blank schedule")
+    public void aBlankSchedule() {}
+
+    @Given("A section with prefix {string} number {string} and description {string}")
+    public void aSectionWith(String prefix, String number, String description) {
+        Context.getInstance().createNewCourse(prefix, number, description);
     }
 
     @Then("The section {string} is scheduled on {weekday} at slot {int}")
